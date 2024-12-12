@@ -10,11 +10,33 @@
 part of 'app_router.dart';
 
 /// generated route for
-/// [RegisterPage]
-class RegisterRoute extends PageRouteInfo<void> {
-  const RegisterRoute({List<PageRouteInfo>? children})
+/// [MainNavigationPage]
+class MainNavigationRoute extends PageRouteInfo<void> {
+  const MainNavigationRoute({List<PageRouteInfo>? children})
       : super(
+          MainNavigationRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'MainNavigationRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const MainNavigationPage();
+    },
+  );
+}
+
+/// generated route for
+/// [RegisterPage]
+class RegisterRoute extends PageRouteInfo<RegisterRouteArgs> {
+  RegisterRoute({
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
           RegisterRoute.name,
+          args: RegisterRouteArgs(key: key),
           initialChildren: children,
         );
 
@@ -23,7 +45,39 @@ class RegisterRoute extends PageRouteInfo<void> {
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return const RegisterPage();
+      final args = data.argsAs<RegisterRouteArgs>(
+          orElse: () => const RegisterRouteArgs());
+      return RegisterPage(key: args.key);
+    },
+  );
+}
+
+class RegisterRouteArgs {
+  const RegisterRouteArgs({this.key});
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'RegisterRouteArgs{key: $key}';
+  }
+}
+
+/// generated route for
+/// [SignInPage]
+class SignInRoute extends PageRouteInfo<void> {
+  const SignInRoute({List<PageRouteInfo>? children})
+      : super(
+          SignInRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'SignInRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const SignInPage();
     },
   );
 }
@@ -43,6 +97,25 @@ class SplashRoute extends PageRouteInfo<void> {
     name,
     builder: (data) {
       return const SplashPage();
+    },
+  );
+}
+
+/// generated route for
+/// [UserSubjectsPage]
+class UserSubjectsRoute extends PageRouteInfo<void> {
+  const UserSubjectsRoute({List<PageRouteInfo>? children})
+      : super(
+          UserSubjectsRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'UserSubjectsRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const UserSubjectsPage();
     },
   );
 }

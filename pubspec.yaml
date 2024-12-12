@@ -14,8 +14,14 @@ dependencies:
   cupertino_icons: ^1.0.8
 
   # ui based
+  loading_indicator: ^3.1.1
   flutter_svg: ^2.0.16
   lottie: ^3.1.3
+  smooth_page_indicator: ^1.2.0+3
+  carousel_slider: ^5.0.0
+  auto_size_text: ^3.0.0
+  board_datetime_picker: ^2.1.6
+  dotted_border: ^2.1.0
 
   # network
   dio: ^5.7.0
@@ -46,6 +52,8 @@ dependencies:
   focus_detector: ^2.0.1
   keyboard_dismisser: ^3.0.0
   equatable: ^2.0.7
+  window_manager: ^0.4.3
+  gsheets: ^0.5.0
 
 dev_dependencies:
   flutter_test:
@@ -68,7 +76,7 @@ flutter:
 
   assets:
     - assets/images/
-    - assets/localization/
+    - assets/translations/
     - assets/svgs/
 
 flutter_gen:

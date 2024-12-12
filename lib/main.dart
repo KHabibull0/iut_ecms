@@ -4,16 +4,33 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:easy_localization_loader/easy_localization_loader.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:iut_ecms/core/base/base_page.dart';
 import 'package:iut_ecms/core/di/injection.dart';
 import 'package:iut_ecms/core/gen/assets.gen.dart';
 import 'package:iut_ecms/core/gen/strings.dart';
 import 'package:iut_ecms/core/router/app_router.dart';
+import 'package:iut_ecms/core/widgets/display/display_widget.dart';
+import 'package:iut_ecms/presentation/app/cubit/app_cubit.dart';
+import 'package:iut_ecms/presentation/app/cubit/app_state.dart';
+import 'package:window_manager/window_manager.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await configureDependencies();
   await EasyLocalization.ensureInitialized();
   await Hive.initFlutter();
+  await windowManager.ensureInitialized();
+
+  WindowOptions windowOptions = const WindowOptions(
+    minimumSize: Size(1295, 810),
+    size: Size(1295, 810),
+    center: true,
+  );
+  windowManager.waitUntilReadyToShow(windowOptions, () async {
+    await windowManager.show();
+    await windowManager.focus();
+  });
+
   runApp(
     EasyLocalization(
       supportedLocales: Strings.supportedLocales,
@@ -26,21 +43,24 @@ void main() async {
   );
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends BasePage<AppCubit, AppBuildable, AppListenable> {
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp.router(
-      title: 'IUT-eCMS',
-      debugShowCheckedModeBanner: false,
-      scrollBehavior: ScrollConfiguration.of(context).copyWith(
-        dragDevices: {PointerDeviceKind.touch, PointerDeviceKind.mouse},
+  Widget builder(BuildContext context, AppBuildable state) {
+    return DisplayWidget(
+      child: MaterialApp.router(
+        title: 'IUT-eCMS',
+        debugShowCheckedModeBanner: false,
+        scrollBehavior: ScrollConfiguration.of(context).copyWith(
+          dragDevices: {PointerDeviceKind.touch, PointerDeviceKind.mouse},
+        ),
+        theme: ThemeData(useMaterial3: true),
+        localizationsDelegates: context.localizationDelegates,
+        supportedLocales: context.supportedLocales,
+        locale: context.locale,
+        routerConfig: getIt<AppRouter>().config(),
       ),
-      theme: ThemeData(useMaterial3: true),
-      localizationsDelegates: context.localizationDelegates,
-      supportedLocales: context.supportedLocales,
-      routerConfig: getIt<AppRouter>().config(),
     );
   }
 }

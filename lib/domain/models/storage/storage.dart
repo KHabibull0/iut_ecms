@@ -20,4 +20,6 @@ class Storage {
   }
 
   BaseStorage<Tokens> get tokens => BaseStorage(_box, 'tokens');
+
+  BaseStorage<Tokens> get language => BaseStorage(_box, 'language');
 }

@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/iut_ecms.iml" filepath="$PROJECT_DIR$/.idea/iut_ecms.iml" />
+      <module fileurl="file://$PROJECT_DIR$/android/iut_ecms_android.iml" filepath="$PROJECT_DIR$/android/iut_ecms_android.iml" />
     </modules>
   </component>
 </project>

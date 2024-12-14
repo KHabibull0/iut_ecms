@@ -11,6 +11,7 @@ import 'package:iut_ecms/core/utils/locale_convert.dart';
 import 'package:iut_ecms/core/widgets/common_button.dart';
 import 'package:iut_ecms/domain/models/language/language.dart';
 import 'package:iut_ecms/domain/models/storage/shared_prefs.dart';
+import 'package:iut_ecms/main.dart';
 import 'package:iut_ecms/presentation/app/cubit/app_cubit.dart';
 import 'package:iut_ecms/presentation/user/user_settings/cubit/user_settings_cubit.dart';
 import 'package:iut_ecms/presentation/user/user_settings/cubit/user_settings_state.dart';
@@ -248,6 +249,7 @@ class UserSettingsPage
                     Locale newLocale =
                         LocaleConvert.getProperLocale(state.language?.code ?? 'en_US');
                     appCubit.select(newLocale);
+                    localeController.add(newLocale);
                     await context.setLocale(newLocale);
                     await _saveLanguage(
                         state.language?.code ?? 'en_US', state.language?.name ?? 'English');

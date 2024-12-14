@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:ui';
 
 import 'package:easy_localization/easy_localization.dart';
@@ -14,6 +15,8 @@ import 'package:iut_ecms/domain/models/storage/shared_prefs.dart';
 import 'package:iut_ecms/presentation/app/cubit/app_cubit.dart';
 import 'package:iut_ecms/presentation/app/cubit/app_state.dart';
 import 'package:window_manager/window_manager.dart';
+
+final StreamController<Locale> localeController = StreamController<Locale>.broadcast();
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -34,8 +37,10 @@ void main() async {
 
   final SharedPrefs sharedPrefs = getIt<SharedPrefs>();
 
-  Language language = (sharedPrefs.getLanguage());
+  Language language = sharedPrefs.getLanguage();
   Locale locale = LocaleConvert.getProperLocale(language.code!);
+
+  localeController.add(locale);
 
   runApp(
     EasyLocalization(
@@ -58,20 +63,25 @@ class MyApp extends BasePage<AppCubit, AppBuildable, AppListenable> {
 
   @override
   Widget builder(BuildContext context, AppBuildable state) {
-    return DisplayWidget(
-      child: MaterialApp.router(
-        // key: ValueKey(state.locale),
-        title: 'IUT-eCMS',
-        debugShowCheckedModeBanner: false,
-        scrollBehavior: ScrollConfiguration.of(context).copyWith(
-          dragDevices: {PointerDeviceKind.touch, PointerDeviceKind.mouse},
-        ),
-        theme: ThemeData(useMaterial3: true),
-        localizationsDelegates: context.localizationDelegates,
-        supportedLocales: context.supportedLocales,
-        locale: context.locale,
-        routerConfig: getIt<AppRouter>().config(),
-      ),
-    );
+    return StreamBuilder<Locale>(
+        stream: localeController.stream,
+        initialData: context.locale,
+        builder: (context, snapshot) {
+          final locale = snapshot.data ?? context.locale;
+          return DisplayWidget(
+            child: MaterialApp.router(
+              title: 'IUT-eCMS',
+              debugShowCheckedModeBanner: false,
+              scrollBehavior: ScrollConfiguration.of(context).copyWith(
+                dragDevices: {PointerDeviceKind.touch, PointerDeviceKind.mouse},
+              ),
+              theme: ThemeData(useMaterial3: true),
+              localizationsDelegates: context.localizationDelegates,
+              supportedLocales: context.supportedLocales,
+              locale: locale,
+              routerConfig: getIt<AppRouter>().config(),
+            ),
+          );
+        });
   }
 }

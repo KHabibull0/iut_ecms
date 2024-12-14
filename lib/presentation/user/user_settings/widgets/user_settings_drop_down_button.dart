@@ -4,8 +4,11 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iut_ecms/core/constants/app_colors.dart';
-import 'package:iut_ecms/core/gen/strings.dart';
-import 'package:iut_ecms/presentation/app/cubit/app_cubit.dart';
+import 'package:iut_ecms/core/di/injection.dart';
+import 'package:iut_ecms/core/gen/local_keys.g.dart';
+import 'package:iut_ecms/domain/models/language/language.dart';
+import 'package:iut_ecms/domain/models/storage/shared_prefs.dart';
+import 'package:iut_ecms/presentation/user/user_settings/cubit/user_settings_cubit.dart';
 
 class UserSettingsDropDownButton extends StatefulWidget {
   const UserSettingsDropDownButton({super.key});
@@ -17,17 +20,36 @@ class UserSettingsDropDownButton extends StatefulWidget {
 class _UserSettingsDropDownButtonState extends State<UserSettingsDropDownButton> {
   String? selectedValue = 'en_US';
   final Map<String, String> options = {
-    'en_US': Strings.english,
-    'uz_UZ': Strings.uzbek,
-    'ru_RU': Strings.russian,
+    'en_US': LocaleKeys.english,
+    'uz_UZ': LocaleKeys.uzbek,
+    'ru_RU': LocaleKeys.russian,
   };
+
+  final SharedPrefs _sharedPrefs = getIt<SharedPrefs>();
+
+  @override
+  void initState() {
+    super.initState();
+    _loadSelectedLanguage();
+  }
+
+  void _loadSelectedLanguage() {
+    final savedLanguage = _sharedPrefs.getLanguage();
+    setState(() {
+      selectedValue = savedLanguage.code ?? 'en_US';
+      log(selectedValue.toString());
+    });
+  }
+
+  late final userSettingsCubit = context.read<UserSettingsCubit>();
+
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          Strings.language,
+          LocaleKeys.language.tr(),
           style: TextStyle(
             fontSize: 14,
             fontWeight: FontWeight.w400,
@@ -49,7 +71,7 @@ class _UserSettingsDropDownButtonState extends State<UserSettingsDropDownButton>
                 return DropdownMenuItem(
                   value: entry.key,
                   child: Text(
-                    entry.value,
+                    entry.value.tr(),
                     style: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w400,
@@ -59,11 +81,9 @@ class _UserSettingsDropDownButtonState extends State<UserSettingsDropDownButton>
                 );
               }).toList(),
               onChanged: (String? newValue) async {
-                if (newValue == null || newValue == selectedValue) return;
-
-                final mainCubit = context.read<AppCubit>();
-                mainCubit.select(newValue ?? 'en_US');
-                await getProperLanguage(newValue ?? 'en_US', context);
+                if (newValue == null) return;
+                userSettingsCubit
+                    .changeLanguage(Language(code: newValue, name: options[newValue] ?? 'English'));
                 setState(() {
                   selectedValue = newValue;
                 });
@@ -80,23 +100,5 @@ class _UserSettingsDropDownButtonState extends State<UserSettingsDropDownButton>
         ),
       ],
     );
-  }
-
-  Future<void> getProperLanguage(String language, BuildContext context) async {
-    switch (language) {
-      case 'en_US':
-        await context.setLocale(const Locale('en', 'US'));
-        break;
-      case 'uz_UZ':
-        await context.setLocale(const Locale('uz', 'UZ'));
-        break;
-      case 'ru_RU':
-        await context.setLocale(const Locale('ru', 'RU'));
-        break;
-      default:
-        await context.setLocale(const Locale('en', 'US'));
-        break;
-    }
-    log('Locale changed to: ${context.locale}');
   }
 }

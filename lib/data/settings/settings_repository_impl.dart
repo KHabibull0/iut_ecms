@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:gsheets/gsheets.dart';
@@ -35,11 +36,12 @@ class SettingsRepositoryImpl extends SettingsRepository {
     for (var row in rows.skip(1)) {
       if (row.length > 1) {
         final key = row[0];
-        final enUS = row[1];
+        final enUS = row[3];
         translations[key] = enUS;
       }
     }
-    log(translations.toString());
+    final jsonString = jsonEncode(translations);
+    log(jsonString.toString());
   }
 
   Future<Worksheet> _getWorkSheet(Spreadsheet spreadsheet, {required String title}) async {

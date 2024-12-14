@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'app_state.freezed.dart';
@@ -5,7 +6,7 @@ part 'app_state.freezed.dart';
 @freezed
 class AppBuildable with _$AppBuildable {
   const factory AppBuildable({
-    String? language,
+    Locale? locale,
   }) = _AppBuildable;
 }
 

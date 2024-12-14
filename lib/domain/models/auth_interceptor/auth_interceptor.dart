@@ -1,13 +1,10 @@
 import 'package:dio/dio.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:injectable/injectable.dart';
 import 'package:iut_ecms/core/constants/constants.dart';
-import 'package:iut_ecms/core/gen/strings.dart';
 import 'package:iut_ecms/domain/models/storage/storage.dart';
 import 'package:iut_ecms/domain/models/tokens/tokens.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:logger/web.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 @lazySingleton
 class AuthInterceptor extends QueuedInterceptor {
@@ -22,11 +19,6 @@ class AuthInterceptor extends QueuedInterceptor {
     RequestInterceptorHandler handler,
   ) async {
     final Tokens? tokens = _storage.tokens.call();
-
-    final preferences = await SharedPreferences.getInstance();
-    final locale = preferences.getString('locale')?.toLocale().languageCode ??
-        Strings.supportedLocales.first.languageCode;
-    options.headers.addAll({'Accept-Language': locale});
 
     if (tokens == null) return handler.next(options);
 

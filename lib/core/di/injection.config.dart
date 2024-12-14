@@ -12,6 +12,8 @@ import 'package:dio/dio.dart' as _i361;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 import 'package:iut_ecms/core/di/app_module.dart' as _i425;
+import 'package:iut_ecms/core/di/shared_prefs.dart' as _i617;
+import 'package:iut_ecms/core/utils/language_service.dart' as _i546;
 import 'package:iut_ecms/core/widgets/display/display.dart' as _i472;
 import 'package:iut_ecms/core/widgets/display/display_impl.dart' as _i327;
 import 'package:iut_ecms/data/auth/auth_api.dart' as _i968;
@@ -20,6 +22,7 @@ import 'package:iut_ecms/data/settings/settings_repository_impl.dart' as _i873;
 import 'package:iut_ecms/data/splash/splash_repository_impl.dart' as _i991;
 import 'package:iut_ecms/domain/models/auth_interceptor/auth_interceptor.dart'
     as _i106;
+import 'package:iut_ecms/domain/models/storage/shared_prefs.dart' as _i180;
 import 'package:iut_ecms/domain/models/storage/storage.dart' as _i597;
 import 'package:iut_ecms/domain/repos/auth_repository.dart' as _i655;
 import 'package:iut_ecms/domain/repos/settings_repository.dart' as _i162;
@@ -41,6 +44,7 @@ import 'package:iut_ecms/presentation/user/user_subjects_page/cubit/user_subject
     as _i220;
 import 'package:logger/logger.dart' as _i974;
 import 'package:logger/web.dart' as _i120;
+import 'package:shared_preferences/shared_preferences.dart' as _i460;
 
 extension GetItInjectableX on _i174.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -53,7 +57,12 @@ extension GetItInjectableX on _i174.GetIt {
       environment,
       environmentFilter,
     );
+    final sharedPreferencesModule = _$SharedPreferencesModule();
     final appModule = _$AppModule();
+    await gh.factoryAsync<_i460.SharedPreferences>(
+      () => sharedPreferencesModule.sharedPreferences,
+      preResolve: true,
+    );
     gh.factory<_i542.AppCubit>(() => _i542.AppCubit());
     gh.factory<_i220.UserSubjectsCubit>(() => _i220.UserSubjectsCubit());
     gh.factory<_i536.UserContentCubit>(() => _i536.UserContentCubit());
@@ -73,6 +82,10 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i779.AuthRepositoryImpl(gh<_i968.AuthApi>()));
     gh.factory<_i528.UserSettingsCubit>(
         () => _i528.UserSettingsCubit(gh<_i162.SettingsRepository>()));
+    gh.factory<_i180.SharedPrefs>(() =>
+        _i180.SharedPrefs(sharedPreferences: gh<_i460.SharedPreferences>()));
+    gh.factory<_i546.LanguageService>(
+        () => _i546.LanguageService(gh<_i180.SharedPrefs>()));
     gh.lazySingleton<_i106.AuthInterceptor>(() => _i106.AuthInterceptor(
           gh<_i597.Storage>(),
           gh<_i120.Logger>(),
@@ -82,5 +95,7 @@ extension GetItInjectableX on _i174.GetIt {
     return this;
   }
 }
+
+class _$SharedPreferencesModule extends _i617.SharedPreferencesModule {}
 
 class _$AppModule extends _i425.AppModule {}

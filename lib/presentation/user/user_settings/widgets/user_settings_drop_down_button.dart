@@ -5,9 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iut_ecms/core/constants/app_colors.dart';
 import 'package:iut_ecms/core/di/injection.dart';
-import 'package:iut_ecms/core/gen/local_keys.g.dart';
+import 'package:iut_ecms/core/gen/strings.dart';
+import 'package:iut_ecms/core/utils/locale_convert.dart';
 import 'package:iut_ecms/domain/models/language/language.dart';
 import 'package:iut_ecms/domain/models/storage/shared_prefs.dart';
+import 'package:iut_ecms/presentation/common/main_navigation_page/cubit/main_navigation_cubit.dart';
 import 'package:iut_ecms/presentation/user/user_settings/cubit/user_settings_cubit.dart';
 
 class UserSettingsDropDownButton extends StatefulWidget {
@@ -20,12 +22,18 @@ class UserSettingsDropDownButton extends StatefulWidget {
 class _UserSettingsDropDownButtonState extends State<UserSettingsDropDownButton> {
   String? selectedValue = 'en_US';
   final Map<String, String> options = {
-    'en_US': LocaleKeys.english,
-    'uz_UZ': LocaleKeys.uzbek,
-    'ru_RU': LocaleKeys.russian,
+    'en_US': Strings.english,
+    'uz_UZ': Strings.uzbek,
+    'ru_RU': Strings.russian,
   };
 
+  Future<void> _saveLanguage(String code, String name) async {
+    final Language language = Language(code: code, name: name);
+    await _sharedPrefs.setLanguage(language);
+  }
+
   final SharedPrefs _sharedPrefs = getIt<SharedPrefs>();
+  late final mainNavigationCubit = context.read<MainNavigationCubit>();
 
   @override
   void initState() {
@@ -49,7 +57,7 @@ class _UserSettingsDropDownButtonState extends State<UserSettingsDropDownButton>
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          LocaleKeys.language.tr(),
+          Strings.language,
           style: TextStyle(
             fontSize: 14,
             fontWeight: FontWeight.w400,
@@ -82,11 +90,13 @@ class _UserSettingsDropDownButtonState extends State<UserSettingsDropDownButton>
               }).toList(),
               onChanged: (String? newValue) async {
                 if (newValue == null) return;
-                userSettingsCubit
-                    .changeLanguage(Language(code: newValue, name: options[newValue] ?? 'English'));
                 setState(() {
                   selectedValue = newValue;
                 });
+                Locale newLocale = LocaleConvert.getProperLocale(newValue);
+                mainNavigationCubit.select(newLocale);
+                await context.setLocale(newLocale);
+                await _saveLanguage(newValue, options[newValue] ?? 'English');
               },
               icon: Icon(
                 Icons.arrow_drop_down,

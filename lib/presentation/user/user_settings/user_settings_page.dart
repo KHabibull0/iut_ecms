@@ -1,18 +1,12 @@
 import 'package:dotted_border/dotted_border.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iut_ecms/core/base/base_page.dart';
 import 'package:iut_ecms/core/constants/app_colors.dart';
 import 'package:iut_ecms/core/di/injection.dart';
 import 'package:iut_ecms/core/gen/assets.gen.dart';
-import 'package:iut_ecms/core/gen/local_keys.g.dart';
-import 'package:iut_ecms/core/utils/locale_convert.dart';
+import 'package:iut_ecms/core/gen/strings.dart';
 import 'package:iut_ecms/core/widgets/common_button.dart';
-import 'package:iut_ecms/domain/models/language/language.dart';
 import 'package:iut_ecms/domain/models/storage/shared_prefs.dart';
-import 'package:iut_ecms/main.dart';
-import 'package:iut_ecms/presentation/app/cubit/app_cubit.dart';
 import 'package:iut_ecms/presentation/user/user_settings/cubit/user_settings_cubit.dart';
 import 'package:iut_ecms/presentation/user/user_settings/cubit/user_settings_state.dart';
 import 'package:iut_ecms/presentation/user/user_settings/widgets/input_field_view.dart';
@@ -26,14 +20,13 @@ class UserSettingsPage
 
   @override
   Widget builder(BuildContext context, UserSettingsBuildable state) {
-    late final appCubit = context.read<AppCubit>();
     return SingleChildScrollView(
       physics: const ClampingScrollPhysics(),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            LocaleKeys.profileDetails.tr(),
+            Strings.profileDetails,
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
           ),
           const SizedBox(height: 24),
@@ -58,7 +51,7 @@ class UserSettingsPage
                           Icon(Icons.add),
                           const SizedBox(height: 8),
                           Text(
-                            LocaleKeys.upload.tr(),
+                            Strings.upload,
                             style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
                           ),
                         ],
@@ -73,20 +66,20 @@ class UserSettingsPage
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     InputFieldView(
-                      header: LocaleKeys.name.tr(),
-                      hint: LocaleKeys.yourName.tr(),
+                      header: Strings.name,
+                      hint: Strings.yourName,
                       onChanged: (value) {},
                     ),
                     const SizedBox(height: 16),
                     InputFieldView(
-                      header: LocaleKeys.dateOfBirth.tr(),
-                      hint: LocaleKeys.dmy.tr(),
+                      header: Strings.dateOfBirth,
+                      hint: Strings.dmy,
                       onChanged: (value) {},
                     ),
                     const SizedBox(height: 16),
                     InputFieldView(
-                      header: LocaleKeys.phoneNumber.tr(),
-                      hint: LocaleKeys.yourPhoneNumber.tr(),
+                      header: Strings.phoneNumber,
+                      hint: Strings.yourPhoneNumber,
                       onChanged: (value) {},
                     ),
                   ],
@@ -98,20 +91,20 @@ class UserSettingsPage
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     InputFieldView(
-                      header: LocaleKeys.lastName.tr(),
-                      hint: LocaleKeys.lastName.tr(),
+                      header: Strings.lastName,
+                      hint: Strings.lastName,
                       onChanged: (value) {},
                     ),
                     const SizedBox(height: 16),
                     InputFieldView(
-                      header: LocaleKeys.university.tr(),
-                      hint: LocaleKeys.university.tr(),
+                      header: Strings.university,
+                      hint: Strings.university,
                       onChanged: (value) {},
                     ),
                     const SizedBox(height: 16),
                     InputFieldView(
-                      header: LocaleKeys.adress.tr(),
-                      hint: LocaleKeys.adress.tr(),
+                      header: Strings.adress,
+                      hint: Strings.adress,
                       onChanged: (value) {},
                     ),
                   ],
@@ -123,14 +116,14 @@ class UserSettingsPage
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     InputFieldView(
-                      header: LocaleKeys.eMail.tr(),
-                      hint: LocaleKeys.yourEmail.tr(),
+                      header: Strings.eMail,
+                      hint: Strings.yourEmail,
                       onChanged: (value) {},
                     ),
                     const SizedBox(height: 16),
                     InputFieldView(
-                      header: LocaleKeys.studentId.tr(),
-                      hint: LocaleKeys.studentId.tr(),
+                      header: Strings.studentId,
+                      hint: Strings.studentId,
                       onChanged: (value) {},
                     ),
                     const SizedBox(height: 87.5),
@@ -141,7 +134,7 @@ class UserSettingsPage
           ),
           const SizedBox(height: 24),
           Text(
-            LocaleKeys.accountDetails.tr(),
+            Strings.accountDetails,
             style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.w500,
@@ -154,7 +147,7 @@ class UserSettingsPage
             children: [
               Expanded(
                 child: InputFieldView(
-                  header: LocaleKeys.eMail.tr(),
+                  header: Strings.eMail,
                   hint: 'your_email@example.com',
                   onChanged: (value) {},
                 ),
@@ -162,7 +155,7 @@ class UserSettingsPage
               const SizedBox(width: 24),
               Expanded(
                 child: InputFieldView(
-                  header: LocaleKeys.currentPassword.tr(),
+                  header: Strings.currentPassword,
                   hint: '***************',
                   onChanged: (value) {},
                 ),
@@ -170,7 +163,7 @@ class UserSettingsPage
               const SizedBox(width: 24),
               Expanded(
                 child: InputFieldView(
-                  header: LocaleKeys.newPassword.tr(),
+                  header: Strings.newPassword,
                   hint: '***************',
                   onChanged: (value) {},
                 ),
@@ -179,7 +172,7 @@ class UserSettingsPage
               TextButton(
                 onPressed: () {},
                 child: Text(
-                  LocaleKeys.changePassword.tr(),
+                  Strings.changePassword,
                   style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w400,
@@ -192,7 +185,7 @@ class UserSettingsPage
           ),
           const SizedBox(height: 24),
           Text(
-            LocaleKeys.settings.tr(),
+            Strings.settings,
             style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.w500,
@@ -207,7 +200,7 @@ class UserSettingsPage
               Expanded(child: SizedBox(height: 1)),
               const SizedBox(width: 112),
               Text(
-                LocaleKeys.changePassword.tr(),
+                Strings.changePassword,
                 style: TextStyle(fontSize: 14, color: AppColors.transparent),
               ),
             ],
@@ -219,7 +212,7 @@ class UserSettingsPage
                 flex: 1,
                 child: CommonButton.elevated(
                   radius: 10,
-                  text: LocaleKeys.logOut.tr(),
+                  text: Strings.logOut,
                   backgroundColor: AppColors.blueOriginal,
                   icon: Assets.svgs.logOutSettings.svg(height: 16, width: 16),
                   onPressed: () {},
@@ -230,7 +223,7 @@ class UserSettingsPage
                 flex: 2,
                 child: CommonButton.elevated(
                   radius: 10,
-                  text: LocaleKeys.deleteAccount.tr(),
+                  text: Strings.deleteAccount,
                   backgroundColor: AppColors.red,
                   icon: Assets.svgs.trashBin.svg(height: 16, width: 16),
                   onPressed: () {},
@@ -242,18 +235,10 @@ class UserSettingsPage
                 flex: 2,
                 child: CommonButton.elevated(
                   radius: 10,
-                  text: LocaleKeys.saveChanges.tr(),
+                  text: Strings.saveChanges,
                   backgroundColor: AppColors.blueOriginal,
                   icon: Assets.svgs.checkSquare.svg(height: 16, width: 16),
-                  onPressed: () async {
-                    Locale newLocale =
-                        LocaleConvert.getProperLocale(state.language?.code ?? 'en_US');
-                    appCubit.select(newLocale);
-                    localeController.add(newLocale);
-                    await context.setLocale(newLocale);
-                    await _saveLanguage(
-                        state.language?.code ?? 'en_US', state.language?.name ?? 'English');
-                  },
+                  onPressed: () async {},
                 ),
               ),
             ],
@@ -262,10 +247,5 @@ class UserSettingsPage
         ],
       ),
     );
-  }
-
-  Future<void> _saveLanguage(String code, String name) async {
-    final Language language = Language(code: code, name: name);
-    await _sharedPrefs.setLanguage(language);
   }
 }

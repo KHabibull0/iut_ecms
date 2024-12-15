@@ -1,10 +1,9 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:iut_ecms/core/base/base_page.dart';
 import 'package:iut_ecms/core/constants/app_colors.dart';
 import 'package:iut_ecms/core/gen/assets.gen.dart';
-import 'package:iut_ecms/core/gen/local_keys.g.dart';
+import 'package:iut_ecms/core/gen/strings.dart';
 import 'package:iut_ecms/presentation/user/user_subjects_page/cubit/user_subjects_cubit.dart';
 import 'package:iut_ecms/presentation/user/user_subjects_page/cubit/user_subjects_state.dart';
 import 'package:iut_ecms/presentation/user/user_subjects_page/widgets/user_subjects_table.dart';
@@ -46,7 +45,7 @@ class UserSubjectsPage
             Align(
               alignment: Alignment.center,
               child: Text(
-                LocaleKeys.canChooseAnySubject.tr(),
+                Strings.canChooseAnySubject,
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.w600,
@@ -80,7 +79,7 @@ class UserSubjectsPage
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Text(
-                                '{Selected} ${LocaleKeys.major.tr()}',
+                                '{Selected} ${Strings.major}',
                                 style: TextStyle(
                                   fontSize: 32,
                                   fontWeight: FontWeight.w600,
@@ -89,7 +88,7 @@ class UserSubjectsPage
                               ),
                               const SizedBox(height: 10),
                               Text(
-                                LocaleKeys.allResoursesHere.tr(),
+                                Strings.allResoursesHere,
                                 style: TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.w500,
@@ -103,7 +102,7 @@ class UserSubjectsPage
                     ),
                     const SizedBox(height: 24),
                     Text(
-                      LocaleKeys.subjectRelatedMajor.tr(),
+                      Strings.subjectRelatedMajor,
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.w600,
@@ -118,7 +117,7 @@ class UserSubjectsPage
                       borderRadius: 10,
                       borderColor: AppColors.dottedBorder,
                       hintTextColor: AppColors.headline,
-                      hintText: LocaleKeys.search.tr(),
+                      hintText: Strings.search,
                       prefixIcon: Padding(
                         padding: const EdgeInsets.only(top: 9, bottom: 7),
                         child: Assets.svgs.searchOutlined.svg(),

@@ -1,3 +1,1 @@
-abstract class SettingsRepository {
-  Future<void> getTranslations();
-}
+abstract class SettingsRepository {}

@@ -1,23 +1,21 @@
-import 'dart:async';
 import 'dart:ui';
 
 import 'package:easy_localization/easy_localization.dart';
+import 'package:easy_localization_loader/easy_localization_loader.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:iut_ecms/core/base/base_page.dart';
 import 'package:iut_ecms/core/di/injection.dart';
-import 'package:iut_ecms/core/gen/codegen_loader.g.dart';
+import 'package:iut_ecms/core/gen/assets.gen.dart';
+import 'package:iut_ecms/core/gen/strings.dart';
 import 'package:iut_ecms/core/router/app_router.dart';
-import 'package:iut_ecms/core/utils/locale_convert.dart';
 import 'package:iut_ecms/core/widgets/display/display_widget.dart';
-import 'package:iut_ecms/domain/models/language/language.dart';
 import 'package:iut_ecms/domain/models/storage/shared_prefs.dart';
-import 'package:iut_ecms/presentation/app/cubit/app_cubit.dart';
-import 'package:iut_ecms/presentation/app/cubit/app_state.dart';
+import 'package:iut_ecms/presentation/common/main_navigation_page/cubit/main_navigation_cubit.dart';
+import 'package:iut_ecms/presentation/common/main_navigation_page/cubit/main_navigation_state.dart';
 import 'package:window_manager/window_manager.dart';
 
-final StreamController<Locale> localeController = StreamController<Locale>.broadcast();
-
+final ValueNotifier<Locale> appLocaleNotifier = ValueNotifier(Locale('en', 'US'));
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await configureDependencies();
@@ -36,52 +34,42 @@ void main() async {
   });
 
   final SharedPrefs sharedPrefs = getIt<SharedPrefs>();
-
-  Language language = sharedPrefs.getLanguage();
-  Locale locale = LocaleConvert.getProperLocale(language.code!);
-
-  localeController.add(locale);
+  await sharedPrefs.setMainPageIndex(0);
 
   runApp(
     EasyLocalization(
-      supportedLocales: const [
-        Locale('en', 'US'),
-        Locale('uz', 'UZ'),
-        Locale('ru', 'RU'),
-      ],
-      path: 'assets/translations',
-      fallbackLocale: Locale('en', 'US'),
-      startLocale: Locale('en', 'US'),
-      assetLoader: const CodegenLoader(),
+      supportedLocales: Strings.supportedLocales,
+      path: Assets.localization.translations,
+      fallbackLocale: Strings.supportedLocales.first,
+      startLocale: Strings.supportedLocales.first,
+      assetLoader: CsvAssetLoader(),
       child: MyApp(),
     ),
   );
 }
 
-class MyApp extends BasePage<AppCubit, AppBuildable, AppListenable> {
+class MyApp
+    extends BasePage<MainNavigationCubit, MainNavigationBuildable, MainNavigationListenable> {
   const MyApp({super.key});
 
   @override
-  Widget builder(BuildContext context, AppBuildable state) {
-    return StreamBuilder<Locale>(
-        stream: localeController.stream,
-        initialData: context.locale,
-        builder: (context, snapshot) {
-          final locale = snapshot.data ?? context.locale;
-          return DisplayWidget(
-            child: MaterialApp.router(
-              title: 'IUT-eCMS',
-              debugShowCheckedModeBanner: false,
-              scrollBehavior: ScrollConfiguration.of(context).copyWith(
-                dragDevices: {PointerDeviceKind.touch, PointerDeviceKind.mouse},
-              ),
-              theme: ThemeData(useMaterial3: true),
-              localizationsDelegates: context.localizationDelegates,
-              supportedLocales: context.supportedLocales,
-              locale: locale,
-              routerConfig: getIt<AppRouter>().config(),
-            ),
-          );
-        });
+  Widget builder(BuildContext context, MainNavigationBuildable state) {
+    return DisplayWidget(
+      key: ValueKey<String>(
+        ' ${state.locale?.countryCode ?? 'US'} - ${state.locale?.languageCode ?? 'en'}',
+      ),
+      child: MaterialApp.router(
+        title: 'IUT-eCMS',
+        debugShowCheckedModeBanner: false,
+        scrollBehavior: ScrollConfiguration.of(context).copyWith(
+          dragDevices: {PointerDeviceKind.touch, PointerDeviceKind.mouse},
+        ),
+        theme: ThemeData(useMaterial3: true),
+        localizationsDelegates: context.localizationDelegates,
+        supportedLocales: context.supportedLocales,
+        locale: state.locale,
+        routerConfig: getIt<AppRouter>().config(),
+      ),
+    );
   }
 }

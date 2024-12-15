@@ -1,9 +1,8 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:iut_ecms/core/base/base_page.dart';
 import 'package:iut_ecms/core/constants/app_colors.dart';
 import 'package:iut_ecms/core/constants/constants.dart';
-import 'package:iut_ecms/core/gen/local_keys.g.dart';
+import 'package:iut_ecms/core/gen/strings.dart';
 import 'package:iut_ecms/presentation/user/user_home/cubit/user_home_cubit.dart';
 import 'package:iut_ecms/presentation/user/user_home/cubit/user_home_state.dart';
 
@@ -16,7 +15,7 @@ class UserHomePage extends BasePage<UserHomeCubit, UserHomeBuildable, UserHomeLi
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          LocaleKeys.welcomeToApp.tr(),
+          Strings.welcomeToApp,
           style: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.w600,
@@ -38,7 +37,7 @@ class UserHomePage extends BasePage<UserHomeCubit, UserHomeBuildable, UserHomeLi
             ),
             child: Center(
               child: Text(
-                LocaleKeys.cmsForStudents.tr(),
+                Strings.cmsForStudents,
                 style: TextStyle(
                   fontSize: 28,
                   fontWeight: FontWeight.w900,
@@ -52,7 +51,7 @@ class UserHomePage extends BasePage<UserHomeCubit, UserHomeBuildable, UserHomeLi
         Align(
           alignment: Alignment.center,
           child: Text(
-            LocaleKeys.platformBenefits.tr(),
+            Strings.platformBenefits,
             style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.w600,
@@ -113,7 +112,7 @@ class UserHomePage extends BasePage<UserHomeCubit, UserHomeBuildable, UserHomeLi
                 ),
                 const SizedBox(height: 32),
                 Text(
-                  LocaleKeys.ourPlatform.tr(),
+                  Strings.ourPlatform,
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w600,

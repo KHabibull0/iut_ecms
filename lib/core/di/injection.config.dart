@@ -13,7 +13,6 @@ import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 import 'package:iut_ecms/core/di/app_module.dart' as _i425;
 import 'package:iut_ecms/core/di/shared_prefs.dart' as _i617;
-import 'package:iut_ecms/core/utils/language_service.dart' as _i546;
 import 'package:iut_ecms/core/widgets/display/display.dart' as _i472;
 import 'package:iut_ecms/core/widgets/display/display_impl.dart' as _i327;
 import 'package:iut_ecms/data/auth/auth_api.dart' as _i968;
@@ -27,11 +26,12 @@ import 'package:iut_ecms/domain/models/storage/storage.dart' as _i597;
 import 'package:iut_ecms/domain/repos/auth_repository.dart' as _i655;
 import 'package:iut_ecms/domain/repos/settings_repository.dart' as _i162;
 import 'package:iut_ecms/domain/repos/splash_repository.dart' as _i369;
-import 'package:iut_ecms/presentation/app/cubit/app_cubit.dart' as _i542;
 import 'package:iut_ecms/presentation/common/auth/register/cubit/register_cubit.dart'
     as _i37;
 import 'package:iut_ecms/presentation/common/auth/sign_in/cubit/sign_in_cubit.dart'
     as _i165;
+import 'package:iut_ecms/presentation/common/main_navigation_page/cubit/main_navigation_cubit.dart'
+    as _i295;
 import 'package:iut_ecms/presentation/common/splash/cubit/splash_cubit.dart'
     as _i473;
 import 'package:iut_ecms/presentation/user/user_content/cubit/user_content_cubit.dart'
@@ -63,7 +63,6 @@ extension GetItInjectableX on _i174.GetIt {
       () => sharedPreferencesModule.sharedPreferences,
       preResolve: true,
     );
-    gh.factory<_i542.AppCubit>(() => _i542.AppCubit());
     gh.factory<_i220.UserSubjectsCubit>(() => _i220.UserSubjectsCubit());
     gh.factory<_i536.UserContentCubit>(() => _i536.UserContentCubit());
     gh.factory<_i183.UserHomeCubit>(() => _i183.UserHomeCubit());
@@ -84,12 +83,12 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i528.UserSettingsCubit(gh<_i162.SettingsRepository>()));
     gh.factory<_i180.SharedPrefs>(() =>
         _i180.SharedPrefs(sharedPreferences: gh<_i460.SharedPreferences>()));
-    gh.factory<_i546.LanguageService>(
-        () => _i546.LanguageService(gh<_i180.SharedPrefs>()));
     gh.lazySingleton<_i106.AuthInterceptor>(() => _i106.AuthInterceptor(
           gh<_i597.Storage>(),
           gh<_i120.Logger>(),
         ));
+    gh.factory<_i295.MainNavigationCubit>(
+        () => _i295.MainNavigationCubit(gh<_i180.SharedPrefs>()));
     gh.factory<_i473.SplashCubit>(
         () => _i473.SplashCubit(gh<_i369.SplashRepository>()));
     return this;

@@ -1,13 +1,12 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:iut_ecms/core/base/base_page.dart';
 import 'package:iut_ecms/core/constants/app_colors.dart';
 import 'package:iut_ecms/core/extensions/screen_size_extention.dart';
 import 'package:iut_ecms/core/gen/assets.gen.dart';
-import 'package:iut_ecms/core/gen/local_keys.g.dart';
+import 'package:iut_ecms/core/gen/strings.dart';
 import 'package:iut_ecms/core/router/app_router.dart';
 import 'package:iut_ecms/core/widgets/common_button.dart';
 import 'package:iut_ecms/presentation/common/auth/sign_in/cubit/sign_in_cubit.dart';
@@ -28,7 +27,7 @@ class SignInPage extends BasePage<SignInCubit, SignInBuildable, SignInListenable
       body: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          AuthGreetingWidget(header: LocaleKeys.welcomeBack.tr()),
+          AuthGreetingWidget(header: Strings.welcomeBack),
           Container(
             width: context.width / 2,
             height: context.height,
@@ -43,11 +42,11 @@ class SignInPage extends BasePage<SignInCubit, SignInBuildable, SignInListenable
                     alignment: Alignment.topRight,
                     child: RichText(
                       text: TextSpan(
-                        text: '${LocaleKeys.haveNoAccount.tr()} ',
+                        text: '${Strings.haveNoAccount} ',
                         style: TextStyle(fontSize: 16, color: AppColors.text26),
                         children: <TextSpan>[
                           TextSpan(
-                            text: LocaleKeys.signUp.tr(),
+                            text: Strings.signUp,
                             style: TextStyle(
                               fontSize: 16,
                               color: AppColors.vividBlue,
@@ -64,7 +63,7 @@ class SignInPage extends BasePage<SignInCubit, SignInBuildable, SignInListenable
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       AutoSizeText(
-                        LocaleKeys.loginToAccount.tr(),
+                        Strings.loginToAccount,
                         minFontSize: 20,
                         maxFontSize: 32,
                         maxLines: 1,
@@ -76,15 +75,15 @@ class SignInPage extends BasePage<SignInCubit, SignInBuildable, SignInListenable
                       ),
                       const SizedBox(height: 44),
                       AuthInputView(
-                        header: LocaleKeys.emailAddress.tr(),
-                        hint: LocaleKeys.typeHere.tr(),
+                        header: Strings.emailAddress,
+                        hint: Strings.typeHere,
                         icon: Icon(Icons.person_rounded, color: AppColors.textFieldIconColor),
                         onChanged: (value) {},
                       ),
                       const SizedBox(height: 16),
                       AuthInputView(
-                        header: LocaleKeys.password.tr(),
-                        hint: LocaleKeys.typeHere,
+                        header: Strings.password,
+                        hint: Strings.typeHere,
                         icon: Assets.svgs.lock.svg(
                           colorFilter: ColorFilter.mode(
                             AppColors.textFieldIconColor,
@@ -111,7 +110,7 @@ class SignInPage extends BasePage<SignInCubit, SignInBuildable, SignInListenable
                             },
                             shadowColor: AppColors.transparent,
                             backgroundColor: AppColors.transparent,
-                            text: LocaleKeys.signIn.tr(),
+                            text: Strings.signIn,
                             radius: 50,
                           ),
                         ),

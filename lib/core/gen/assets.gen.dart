@@ -30,6 +30,16 @@ class $AssetsImagesGen {
   List<AssetGenImage> get values => [appLogo, authWelcome, verify];
 }
 
+class $AssetsLocalizationGen {
+  const $AssetsLocalizationGen();
+
+  /// File path: assets/localization/translations.csv
+  String get translations => 'assets/localization/translations.csv';
+
+  /// List of all assets
+  List<String> get values => [translations];
+}
+
 class $AssetsSvgsGen {
   const $AssetsSvgsGen();
 
@@ -104,28 +114,12 @@ class $AssetsSvgsGen {
       ];
 }
 
-class $AssetsTranslationsGen {
-  const $AssetsTranslationsGen();
-
-  /// File path: assets/translations/en_US.json
-  String get enUS => 'assets/translations/en_US.json';
-
-  /// File path: assets/translations/ru_RU.json
-  String get ruRU => 'assets/translations/ru_RU.json';
-
-  /// File path: assets/translations/uz_UZ.json
-  String get uzUZ => 'assets/translations/uz_UZ.json';
-
-  /// List of all assets
-  List<String> get values => [enUS, ruRU, uzUZ];
-}
-
 class Assets {
   Assets._();
 
   static const $AssetsImagesGen images = $AssetsImagesGen();
+  static const $AssetsLocalizationGen localization = $AssetsLocalizationGen();
   static const $AssetsSvgsGen svgs = $AssetsSvgsGen();
-  static const $AssetsTranslationsGen translations = $AssetsTranslationsGen();
 }
 
 class AssetGenImage {

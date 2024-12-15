@@ -1,8 +1,7 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:iut_ecms/core/constants/app_colors.dart';
 import 'package:iut_ecms/core/extensions/screen_size_extention.dart';
-import 'package:iut_ecms/core/gen/local_keys.g.dart';
+import 'package:iut_ecms/core/gen/strings.dart';
 
 class UserSubjectsTable extends StatefulWidget {
   const UserSubjectsTable({super.key});
@@ -40,7 +39,7 @@ class _UserSubjectsTableState extends State<UserSubjectsTable> {
                         SizedBox(
                           width: 30,
                           child: Text(
-                            index == 0 ? '${LocaleKeys.n.tr()}.' : '$index',
+                            index == 0 ? '${Strings.n}.' : '$index',
                             style: TextStyle(
                               fontSize: 14,
                               fontWeight: index == 0 ? FontWeight.w500 : FontWeight.w400,
@@ -52,9 +51,7 @@ class _UserSubjectsTableState extends State<UserSubjectsTable> {
                         ),
                         const SizedBox(width: 8),
                         Text(
-                          index == 0
-                              ? LocaleKeys.subjects.tr()
-                              : 'Introduction to Computer Science',
+                          index == 0 ? Strings.subjects : 'Introduction to Computer Science',
                           style: TextStyle(
                             fontSize: 14,
                             fontWeight: index == 0 ? FontWeight.w500 : FontWeight.w400,
@@ -67,7 +64,7 @@ class _UserSubjectsTableState extends State<UserSubjectsTable> {
                         SizedBox(
                           width: 150,
                           child: Text(
-                            index == 0 ? LocaleKeys.totalMaterials.tr() : '${(index + 1) * 10}',
+                            index == 0 ? Strings.totalMaterials : '${(index + 1) * 10}',
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontSize: 14,

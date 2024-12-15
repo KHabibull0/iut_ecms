@@ -6,19 +6,11 @@ import 'package:iut_ecms/presentation/user/user_settings/cubit/user_settings_sta
 
 @injectable
 class UserSettingsCubit extends BaseCubit<UserSettingsBuildable, UserSettingsListenable> {
-  UserSettingsCubit(this._settingsRepository) : super(UserSettingsBuildable()) {
-    getTranslations();
-  }
+  UserSettingsCubit(this._settingsRepository) : super(UserSettingsBuildable());
 
-  SettingsRepository _settingsRepository;
+  final SettingsRepository _settingsRepository;
 
   void changeLanguage(Language language) {
     build((buildable) => buildable.copyWith(language: language));
-  }
-
-  Future<void> getTranslations() async {
-    return callable(
-      future: _settingsRepository.getTranslations(),
-    );
   }
 }

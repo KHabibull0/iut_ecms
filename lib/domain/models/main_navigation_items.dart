@@ -1,5 +1,5 @@
 import 'package:iut_ecms/core/gen/assets.gen.dart';
-import 'package:iut_ecms/core/gen/local_keys.g.dart';
+import 'package:iut_ecms/core/gen/strings.dart';
 
 class MainNavigationItems {
   final SvgGenImage icon;
@@ -11,8 +11,8 @@ class MainNavigationItems {
   });
 
   static List<MainNavigationItems> get items => [
-        MainNavigationItems(icon: Assets.svgs.home, label: LocaleKeys.home),
-        MainNavigationItems(icon: Assets.svgs.checklist, label: LocaleKeys.browseContent),
-        MainNavigationItems(icon: Assets.svgs.settings, label: LocaleKeys.settings),
+        MainNavigationItems(icon: Assets.svgs.home, label: Strings.home),
+        MainNavigationItems(icon: Assets.svgs.checklist, label: Strings.browseContent),
+        MainNavigationItems(icon: Assets.svgs.settings, label: Strings.settings),
       ];
 }

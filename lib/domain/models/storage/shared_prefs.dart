@@ -24,4 +24,13 @@ class SharedPrefs {
     var result = await _sharedPreferences.setString('language', jsonEncode(language.toJson()));
     return result;
   }
+
+  Future<bool> setMainPageIndex(int index) async {
+    var result = await _sharedPreferences.setInt('MainPageIndex', index);
+    return result;
+  }
+
+  int getMainPageIndex(){
+    return _sharedPreferences.getInt('MainPageIndex') ?? 0;
+  }
 }

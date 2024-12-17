@@ -23,23 +23,19 @@ class UserSubjectsPage
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              children: [
-                InkWell(
-                  onTap: () {
-                    context.router.maybePop();
-                  },
-                  borderRadius: BorderRadius.circular(100),
-                  child: SizedBox(
-                    height: 42,
-                    width: 42,
-                    child: Icon(
-                      Icons.arrow_back_ios_new_rounded,
-                      color: AppColors.black,
-                    ),
-                  ),
+            InkWell(
+              onTap: () {
+                context.router.maybePop();
+              },
+              borderRadius: BorderRadius.circular(100),
+              child: SizedBox(
+                height: 42,
+                width: 42,
+                child: Icon(
+                  Icons.arrow_back_ios_new_rounded,
+                  color: AppColors.black,
                 ),
-              ],
+              ),
             ),
             const SizedBox(height: 16),
             Align(
@@ -126,7 +122,7 @@ class UserSubjectsPage
                       onChanged: (value) {},
                     ),
                     const SizedBox(height: 16),
-                    UserSubjectsTable(),
+                    Expanded(child: UserSubjectsTable()),
                   ],
                 ),
               ),

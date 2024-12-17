@@ -62,12 +62,18 @@ class MyApp
         title: 'IUT-eCMS',
         debugShowCheckedModeBanner: false,
         scrollBehavior: ScrollConfiguration.of(context).copyWith(
-          dragDevices: {PointerDeviceKind.touch, PointerDeviceKind.mouse},
+          dragDevices: {
+            PointerDeviceKind.touch,
+            PointerDeviceKind.mouse,
+            PointerDeviceKind.trackpad,
+            PointerDeviceKind.stylus,
+            PointerDeviceKind.invertedStylus,
+          },
         ),
         theme: ThemeData(useMaterial3: true),
         localizationsDelegates: context.localizationDelegates,
         supportedLocales: context.supportedLocales,
-        locale: state.locale,
+        locale: context.locale,
         routerConfig: getIt<AppRouter>().config(),
       ),
     );

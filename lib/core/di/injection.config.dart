@@ -36,6 +36,8 @@ import 'package:iut_ecms/presentation/common/splash/cubit/splash_cubit.dart'
     as _i473;
 import 'package:iut_ecms/presentation/user/user_content/cubit/user_content_cubit.dart'
     as _i536;
+import 'package:iut_ecms/presentation/user/user_content_type/cubit/user_content_type_cubit.dart'
+    as _i821;
 import 'package:iut_ecms/presentation/user/user_home/cubit/user_home_cubit.dart'
     as _i183;
 import 'package:iut_ecms/presentation/user/user_settings/cubit/user_settings_cubit.dart'
@@ -68,6 +70,7 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i183.UserHomeCubit>(() => _i183.UserHomeCubit());
     gh.factory<_i165.SignInCubit>(() => _i165.SignInCubit());
     gh.factory<_i37.RegisterCubit>(() => _i37.RegisterCubit());
+    gh.factory<_i821.UserContentTypeCubit>(() => _i821.UserContentTypeCubit());
     gh.lazySingleton<_i974.Logger>(() => appModule.logger);
     await gh.lazySingletonAsync<_i597.Storage>(
       () => _i597.Storage.create(),

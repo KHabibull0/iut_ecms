@@ -79,7 +79,7 @@ class _UserSettingsDropDownButtonState extends State<UserSettingsDropDownButton>
                 return DropdownMenuItem(
                   value: entry.key,
                   child: Text(
-                    entry.value.tr(),
+                    entry.value,
                     style: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w400,

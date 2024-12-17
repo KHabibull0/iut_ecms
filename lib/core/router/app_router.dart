@@ -4,6 +4,7 @@ import 'package:iut_ecms/presentation/common/auth/register/register_page.dart';
 import 'package:iut_ecms/presentation/common/auth/sign_in/sign_in_page.dart';
 import 'package:iut_ecms/presentation/common/main_navigation_page/main_navigation_page.dart';
 import 'package:iut_ecms/presentation/common/splash/splash_page.dart';
+import 'package:iut_ecms/presentation/user/user_content_type/user_content_type_page.dart';
 import 'package:iut_ecms/presentation/user/user_subjects_page/user_subjects_page.dart';
 
 part 'app_router.gr.dart';
@@ -20,5 +21,6 @@ class AppRouter extends RootStackRouter {
         AutoRoute(page: SignInRoute.page),
         AutoRoute(page: MainNavigationRoute.page),
         AutoRoute(page: UserSubjectsRoute.page),
+        AutoRoute(page: UserContentTypeRoute.page),
       ];
 }

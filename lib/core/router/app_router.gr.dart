@@ -102,6 +102,41 @@ class SplashRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [UserContentTypePage]
+class UserContentTypeRoute extends PageRouteInfo<UserContentTypeRouteArgs> {
+  UserContentTypeRoute({
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
+          UserContentTypeRoute.name,
+          args: UserContentTypeRouteArgs(key: key),
+          initialChildren: children,
+        );
+
+  static const String name = 'UserContentTypeRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<UserContentTypeRouteArgs>(
+          orElse: () => const UserContentTypeRouteArgs());
+      return UserContentTypePage(key: args.key);
+    },
+  );
+}
+
+class UserContentTypeRouteArgs {
+  const UserContentTypeRouteArgs({this.key});
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'UserContentTypeRouteArgs{key: $key}';
+  }
+}
+
+/// generated route for
 /// [UserSubjectsPage]
 class UserSubjectsRoute extends PageRouteInfo<void> {
   const UserSubjectsRoute({List<PageRouteInfo>? children})

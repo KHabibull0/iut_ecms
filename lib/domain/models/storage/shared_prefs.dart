@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:injectable/injectable.dart';
 import 'package:iut_ecms/domain/models/language/language.dart';
+import 'package:iut_ecms/domain/models/tokens/tokens.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 @injectable
@@ -30,7 +31,21 @@ class SharedPrefs {
     return result;
   }
 
-  int getMainPageIndex(){
+  int getMainPageIndex() {
     return _sharedPreferences.getInt('MainPageIndex') ?? 0;
+  }
+
+  Future<bool> setTokens(Tokens tokens) async {
+    var result = await _sharedPreferences.setString('tokens', jsonEncode(tokens.toJson()));
+    return result;
+  }
+
+  Tokens getTokens() {
+    var tokensString = _sharedPreferences.getString('tokens');
+    if (tokensString == null) {
+      return Tokens(refreshToken: '', accessToken: '');
+    }
+    var jsonMap = jsonDecode(tokensString);
+    return Tokens.fromJson(jsonMap);
   }
 }

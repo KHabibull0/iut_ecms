@@ -5,9 +5,7 @@ import 'package:iut_ecms/presentation/common/splash/cubit/splash_state.dart';
 
 @injectable
 class SplashCubit extends BaseCubit<SplashBuildable, SplashListenable> {
-  SplashCubit(this._splashRepository) : super(const SplashBuildable()) {
-    // startBridge();
-  }
+  SplashCubit(this._splashRepository) : super(const SplashBuildable());
 
   final SplashRepository _splashRepository;
 }

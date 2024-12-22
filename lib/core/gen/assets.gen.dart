@@ -57,6 +57,12 @@ class $AssetsSvgsGen {
   /// File path: assets/svgs/checklist.svg
   SvgGenImage get checklist => const SvgGenImage('assets/svgs/checklist.svg');
 
+  /// File path: assets/svgs/download.svg
+  SvgGenImage get download => const SvgGenImage('assets/svgs/download.svg');
+
+  /// File path: assets/svgs/error_icon.svg
+  SvgGenImage get errorIcon => const SvgGenImage('assets/svgs/error_icon.svg');
+
   /// File path: assets/svgs/home.svg
   SvgGenImage get home => const SvgGenImage('assets/svgs/home.svg');
 
@@ -94,12 +100,20 @@ class $AssetsSvgsGen {
   /// File path: assets/svgs/trash_bin.svg
   SvgGenImage get trashBin => const SvgGenImage('assets/svgs/trash_bin.svg');
 
+  /// File path: assets/svgs/update.svg
+  SvgGenImage get update => const SvgGenImage('assets/svgs/update.svg');
+
+  /// File path: assets/svgs/users.svg
+  SvgGenImage get users => const SvgGenImage('assets/svgs/users.svg');
+
   /// List of all assets
   List<SvgGenImage> get values => [
         arrowCircleBack,
         calendar,
         checkSquare,
         checklist,
+        download,
+        errorIcon,
         home,
         information,
         lock,
@@ -110,7 +124,9 @@ class $AssetsSvgsGen {
         settings,
         sms,
         studentHat,
-        trashBin
+        trashBin,
+        update,
+        users
       ];
 }
 

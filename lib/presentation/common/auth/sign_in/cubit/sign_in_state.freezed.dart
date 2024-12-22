@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$SignInBuildable {
   bool get loading => throw _privateConstructorUsedError;
   bool get error => throw _privateConstructorUsedError;
+  LoginModel? get loginModel => throw _privateConstructorUsedError;
 
   /// Create a copy of SignInBuildable
   /// with the given fields replaced by the non-null parameter values.
@@ -32,7 +33,9 @@ abstract class $SignInBuildableCopyWith<$Res> {
           SignInBuildable value, $Res Function(SignInBuildable) then) =
       _$SignInBuildableCopyWithImpl<$Res, SignInBuildable>;
   @useResult
-  $Res call({bool loading, bool error});
+  $Res call({bool loading, bool error, LoginModel? loginModel});
+
+  $LoginModelCopyWith<$Res>? get loginModel;
 }
 
 /// @nodoc
@@ -52,6 +55,7 @@ class _$SignInBuildableCopyWithImpl<$Res, $Val extends SignInBuildable>
   $Res call({
     Object? loading = null,
     Object? error = null,
+    Object? loginModel = freezed,
   }) {
     return _then(_value.copyWith(
       loading: null == loading
@@ -62,7 +66,25 @@ class _$SignInBuildableCopyWithImpl<$Res, $Val extends SignInBuildable>
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as bool,
+      loginModel: freezed == loginModel
+          ? _value.loginModel
+          : loginModel // ignore: cast_nullable_to_non_nullable
+              as LoginModel?,
     ) as $Val);
+  }
+
+  /// Create a copy of SignInBuildable
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $LoginModelCopyWith<$Res>? get loginModel {
+    if (_value.loginModel == null) {
+      return null;
+    }
+
+    return $LoginModelCopyWith<$Res>(_value.loginModel!, (value) {
+      return _then(_value.copyWith(loginModel: value) as $Val);
+    });
   }
 }
 
@@ -74,7 +96,10 @@ abstract class _$$SignInBuildableImplCopyWith<$Res>
       __$$SignInBuildableImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool loading, bool error});
+  $Res call({bool loading, bool error, LoginModel? loginModel});
+
+  @override
+  $LoginModelCopyWith<$Res>? get loginModel;
 }
 
 /// @nodoc
@@ -92,6 +117,7 @@ class __$$SignInBuildableImplCopyWithImpl<$Res>
   $Res call({
     Object? loading = null,
     Object? error = null,
+    Object? loginModel = freezed,
   }) {
     return _then(_$SignInBuildableImpl(
       loading: null == loading
@@ -102,6 +128,10 @@ class __$$SignInBuildableImplCopyWithImpl<$Res>
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as bool,
+      loginModel: freezed == loginModel
+          ? _value.loginModel
+          : loginModel // ignore: cast_nullable_to_non_nullable
+              as LoginModel?,
     ));
   }
 }
@@ -109,7 +139,10 @@ class __$$SignInBuildableImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$SignInBuildableImpl implements _SignInBuildable {
-  const _$SignInBuildableImpl({this.loading = false, this.error = false});
+  const _$SignInBuildableImpl(
+      {this.loading = false,
+      this.error = false,
+      this.loginModel = const LoginModel()});
 
   @override
   @JsonKey()
@@ -117,10 +150,13 @@ class _$SignInBuildableImpl implements _SignInBuildable {
   @override
   @JsonKey()
   final bool error;
+  @override
+  @JsonKey()
+  final LoginModel? loginModel;
 
   @override
   String toString() {
-    return 'SignInBuildable(loading: $loading, error: $error)';
+    return 'SignInBuildable(loading: $loading, error: $error, loginModel: $loginModel)';
   }
 
   @override
@@ -129,11 +165,13 @@ class _$SignInBuildableImpl implements _SignInBuildable {
         (other.runtimeType == runtimeType &&
             other is _$SignInBuildableImpl &&
             (identical(other.loading, loading) || other.loading == loading) &&
-            (identical(other.error, error) || other.error == error));
+            (identical(other.error, error) || other.error == error) &&
+            (identical(other.loginModel, loginModel) ||
+                other.loginModel == loginModel));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, loading, error);
+  int get hashCode => Object.hash(runtimeType, loading, error, loginModel);
 
   /// Create a copy of SignInBuildable
   /// with the given fields replaced by the non-null parameter values.
@@ -146,13 +184,17 @@ class _$SignInBuildableImpl implements _SignInBuildable {
 }
 
 abstract class _SignInBuildable implements SignInBuildable {
-  const factory _SignInBuildable({final bool loading, final bool error}) =
-      _$SignInBuildableImpl;
+  const factory _SignInBuildable(
+      {final bool loading,
+      final bool error,
+      final LoginModel? loginModel}) = _$SignInBuildableImpl;
 
   @override
   bool get loading;
   @override
   bool get error;
+  @override
+  LoginModel? get loginModel;
 
   /// Create a copy of SignInBuildable
   /// with the given fields replaced by the non-null parameter values.
@@ -163,13 +205,23 @@ abstract class _SignInBuildable implements SignInBuildable {
 }
 
 /// @nodoc
-mixin _$SignInListenable {}
+mixin _$SignInListenable {
+  SignInEffect get effect => throw _privateConstructorUsedError;
+
+  /// Create a copy of SignInListenable
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $SignInListenableCopyWith<SignInListenable> get copyWith =>
+      throw _privateConstructorUsedError;
+}
 
 /// @nodoc
 abstract class $SignInListenableCopyWith<$Res> {
   factory $SignInListenableCopyWith(
           SignInListenable value, $Res Function(SignInListenable) then) =
       _$SignInListenableCopyWithImpl<$Res, SignInListenable>;
+  @useResult
+  $Res call({SignInEffect effect});
 }
 
 /// @nodoc
@@ -184,13 +236,29 @@ class _$SignInListenableCopyWithImpl<$Res, $Val extends SignInListenable>
 
   /// Create a copy of SignInListenable
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? effect = null,
+  }) {
+    return _then(_value.copyWith(
+      effect: null == effect
+          ? _value.effect
+          : effect // ignore: cast_nullable_to_non_nullable
+              as SignInEffect,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$SignInListenableImplCopyWith<$Res> {
+abstract class _$$SignInListenableImplCopyWith<$Res>
+    implements $SignInListenableCopyWith<$Res> {
   factory _$$SignInListenableImplCopyWith(_$SignInListenableImpl value,
           $Res Function(_$SignInListenableImpl) then) =
       __$$SignInListenableImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({SignInEffect effect});
 }
 
 /// @nodoc
@@ -203,28 +271,65 @@ class __$$SignInListenableImplCopyWithImpl<$Res>
 
   /// Create a copy of SignInListenable
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? effect = null,
+  }) {
+    return _then(_$SignInListenableImpl(
+      effect: null == effect
+          ? _value.effect
+          : effect // ignore: cast_nullable_to_non_nullable
+              as SignInEffect,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$SignInListenableImpl implements _SignInListenable {
-  const _$SignInListenableImpl();
+  const _$SignInListenableImpl({required this.effect});
+
+  @override
+  final SignInEffect effect;
 
   @override
   String toString() {
-    return 'SignInListenable()';
+    return 'SignInListenable(effect: $effect)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$SignInListenableImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$SignInListenableImpl &&
+            (identical(other.effect, effect) || other.effect == effect));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, effect);
+
+  /// Create a copy of SignInListenable
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SignInListenableImplCopyWith<_$SignInListenableImpl> get copyWith =>
+      __$$SignInListenableImplCopyWithImpl<_$SignInListenableImpl>(
+          this, _$identity);
 }
 
 abstract class _SignInListenable implements SignInListenable {
-  const factory _SignInListenable() = _$SignInListenableImpl;
+  const factory _SignInListenable({required final SignInEffect effect}) =
+      _$SignInListenableImpl;
+
+  @override
+  SignInEffect get effect;
+
+  /// Create a copy of SignInListenable
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$SignInListenableImplCopyWith<_$SignInListenableImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

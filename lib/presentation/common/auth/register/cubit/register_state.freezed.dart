@@ -19,6 +19,8 @@ mixin _$RegisterBuildable {
   bool get loading => throw _privateConstructorUsedError;
   bool get error => throw _privateConstructorUsedError;
   int get currentIndex => throw _privateConstructorUsedError;
+  String? get confirmedPassword => throw _privateConstructorUsedError;
+  RegisterModel? get registerModel => throw _privateConstructorUsedError;
 
   /// Create a copy of RegisterBuildable
   /// with the given fields replaced by the non-null parameter values.
@@ -33,7 +35,14 @@ abstract class $RegisterBuildableCopyWith<$Res> {
           RegisterBuildable value, $Res Function(RegisterBuildable) then) =
       _$RegisterBuildableCopyWithImpl<$Res, RegisterBuildable>;
   @useResult
-  $Res call({bool loading, bool error, int currentIndex});
+  $Res call(
+      {bool loading,
+      bool error,
+      int currentIndex,
+      String? confirmedPassword,
+      RegisterModel? registerModel});
+
+  $RegisterModelCopyWith<$Res>? get registerModel;
 }
 
 /// @nodoc
@@ -54,6 +63,8 @@ class _$RegisterBuildableCopyWithImpl<$Res, $Val extends RegisterBuildable>
     Object? loading = null,
     Object? error = null,
     Object? currentIndex = null,
+    Object? confirmedPassword = freezed,
+    Object? registerModel = freezed,
   }) {
     return _then(_value.copyWith(
       loading: null == loading
@@ -68,7 +79,29 @@ class _$RegisterBuildableCopyWithImpl<$Res, $Val extends RegisterBuildable>
           ? _value.currentIndex
           : currentIndex // ignore: cast_nullable_to_non_nullable
               as int,
+      confirmedPassword: freezed == confirmedPassword
+          ? _value.confirmedPassword
+          : confirmedPassword // ignore: cast_nullable_to_non_nullable
+              as String?,
+      registerModel: freezed == registerModel
+          ? _value.registerModel
+          : registerModel // ignore: cast_nullable_to_non_nullable
+              as RegisterModel?,
     ) as $Val);
+  }
+
+  /// Create a copy of RegisterBuildable
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $RegisterModelCopyWith<$Res>? get registerModel {
+    if (_value.registerModel == null) {
+      return null;
+    }
+
+    return $RegisterModelCopyWith<$Res>(_value.registerModel!, (value) {
+      return _then(_value.copyWith(registerModel: value) as $Val);
+    });
   }
 }
 
@@ -80,7 +113,15 @@ abstract class _$$RegisterBuildableImplCopyWith<$Res>
       __$$RegisterBuildableImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool loading, bool error, int currentIndex});
+  $Res call(
+      {bool loading,
+      bool error,
+      int currentIndex,
+      String? confirmedPassword,
+      RegisterModel? registerModel});
+
+  @override
+  $RegisterModelCopyWith<$Res>? get registerModel;
 }
 
 /// @nodoc
@@ -99,6 +140,8 @@ class __$$RegisterBuildableImplCopyWithImpl<$Res>
     Object? loading = null,
     Object? error = null,
     Object? currentIndex = null,
+    Object? confirmedPassword = freezed,
+    Object? registerModel = freezed,
   }) {
     return _then(_$RegisterBuildableImpl(
       loading: null == loading
@@ -113,6 +156,14 @@ class __$$RegisterBuildableImplCopyWithImpl<$Res>
           ? _value.currentIndex
           : currentIndex // ignore: cast_nullable_to_non_nullable
               as int,
+      confirmedPassword: freezed == confirmedPassword
+          ? _value.confirmedPassword
+          : confirmedPassword // ignore: cast_nullable_to_non_nullable
+              as String?,
+      registerModel: freezed == registerModel
+          ? _value.registerModel
+          : registerModel // ignore: cast_nullable_to_non_nullable
+              as RegisterModel?,
     ));
   }
 }
@@ -121,7 +172,11 @@ class __$$RegisterBuildableImplCopyWithImpl<$Res>
 
 class _$RegisterBuildableImpl implements _RegisterBuildable {
   const _$RegisterBuildableImpl(
-      {this.loading = false, this.error = false, this.currentIndex = 0});
+      {this.loading = false,
+      this.error = false,
+      this.currentIndex = 0,
+      this.confirmedPassword = '',
+      this.registerModel = const RegisterModel()});
 
   @override
   @JsonKey()
@@ -132,10 +187,16 @@ class _$RegisterBuildableImpl implements _RegisterBuildable {
   @override
   @JsonKey()
   final int currentIndex;
+  @override
+  @JsonKey()
+  final String? confirmedPassword;
+  @override
+  @JsonKey()
+  final RegisterModel? registerModel;
 
   @override
   String toString() {
-    return 'RegisterBuildable(loading: $loading, error: $error, currentIndex: $currentIndex)';
+    return 'RegisterBuildable(loading: $loading, error: $error, currentIndex: $currentIndex, confirmedPassword: $confirmedPassword, registerModel: $registerModel)';
   }
 
   @override
@@ -146,11 +207,16 @@ class _$RegisterBuildableImpl implements _RegisterBuildable {
             (identical(other.loading, loading) || other.loading == loading) &&
             (identical(other.error, error) || other.error == error) &&
             (identical(other.currentIndex, currentIndex) ||
-                other.currentIndex == currentIndex));
+                other.currentIndex == currentIndex) &&
+            (identical(other.confirmedPassword, confirmedPassword) ||
+                other.confirmedPassword == confirmedPassword) &&
+            (identical(other.registerModel, registerModel) ||
+                other.registerModel == registerModel));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, loading, error, currentIndex);
+  int get hashCode => Object.hash(runtimeType, loading, error, currentIndex,
+      confirmedPassword, registerModel);
 
   /// Create a copy of RegisterBuildable
   /// with the given fields replaced by the non-null parameter values.
@@ -166,7 +232,9 @@ abstract class _RegisterBuildable implements RegisterBuildable {
   const factory _RegisterBuildable(
       {final bool loading,
       final bool error,
-      final int currentIndex}) = _$RegisterBuildableImpl;
+      final int currentIndex,
+      final String? confirmedPassword,
+      final RegisterModel? registerModel}) = _$RegisterBuildableImpl;
 
   @override
   bool get loading;
@@ -174,6 +242,10 @@ abstract class _RegisterBuildable implements RegisterBuildable {
   bool get error;
   @override
   int get currentIndex;
+  @override
+  String? get confirmedPassword;
+  @override
+  RegisterModel? get registerModel;
 
   /// Create a copy of RegisterBuildable
   /// with the given fields replaced by the non-null parameter values.

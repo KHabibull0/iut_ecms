@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:iut_ecms/core/widgets/common_text_filed.dart';
 
-class AuthInputView extends StatelessWidget {
+class AuthInputView extends StatefulWidget {
   const AuthInputView({
     super.key,
     this.onChanged,
@@ -13,6 +13,7 @@ class AuthInputView extends StatelessWidget {
     this.inputFormatter,
     this.readOnly,
     this.onTap,
+    this.controller,
   });
 
   final Function(String)? onChanged;
@@ -23,14 +24,20 @@ class AuthInputView extends StatelessWidget {
   final List<TextInputFormatter>? inputFormatter;
   final bool? readOnly;
   final Function()? onTap;
+  final TextEditingController? controller;
 
+  @override
+  State<AuthInputView> createState() => _AuthInputViewState();
+}
+
+class _AuthInputViewState extends State<AuthInputView> {
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          header,
+          widget.header,
           style: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w600,
@@ -40,17 +47,18 @@ class AuthInputView extends StatelessWidget {
         SizedBox(
           height: 56,
           child: CommonTextField(
-            inputFormatter: inputFormatter,
-            maxLength: maxLength,
+            controller: widget.controller,
+            inputFormatter: widget.inputFormatter,
+            maxLength: widget.maxLength,
             counterText: '',
-            readOnly: readOnly,
+            readOnly: widget.readOnly,
             prefixIcon: Padding(
               padding: const EdgeInsets.only(left: 12, top: 14, bottom: 14, right: 8),
-              child: icon,
+              child: widget.icon,
             ),
-            hint: hint,
-            onChanged: onChanged,
-            onTap: onTap,
+            hint: widget.hint,
+            onChanged: widget.onChanged,
+            onTap: widget.onTap,
           ),
         ),
       ],

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iut_ecms/core/constants/app_colors.dart';
 import 'package:iut_ecms/core/gen/strings.dart';
-import 'package:iut_ecms/presentation/widgets/resizable_textfield.dart';
 
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar({super.key});
@@ -47,20 +46,16 @@ class CustomAppBar extends StatelessWidget {
               ],
             ),
           ),
-          const SizedBox(width: 100),
-          Expanded(
-            child: ResizableTextfield(
-              hintText: Strings.search,
-              onChanged: (value) {},
-            ),
-          ),
           const Spacer(),
-          Container(
-            width: 41,
-            height: 41,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(6),
-              color: AppColors.primary,
+          InkWell(
+            onTap: () {},
+            child: Container(
+              width: 41,
+              height: 41,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(6),
+                color: AppColors.primary,
+              ),
             ),
           ),
         ],

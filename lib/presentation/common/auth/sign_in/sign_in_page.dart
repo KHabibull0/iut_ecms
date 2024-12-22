@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iut_ecms/core/base/base_page.dart';
 import 'package:iut_ecms/core/constants/app_colors.dart';
 import 'package:iut_ecms/core/extensions/screen_size_extention.dart';
@@ -9,6 +10,7 @@ import 'package:iut_ecms/core/gen/assets.gen.dart';
 import 'package:iut_ecms/core/gen/strings.dart';
 import 'package:iut_ecms/core/router/app_router.dart';
 import 'package:iut_ecms/core/widgets/common_button.dart';
+import 'package:iut_ecms/core/widgets/result_notifier.dart';
 import 'package:iut_ecms/presentation/common/auth/sign_in/cubit/sign_in_cubit.dart';
 import 'package:iut_ecms/presentation/common/auth/sign_in/cubit/sign_in_state.dart';
 import 'package:iut_ecms/presentation/common/auth/widgets/auth_greeting_widget.dart';
@@ -16,7 +18,15 @@ import 'package:iut_ecms/presentation/common/auth/widgets/auth_input_view.dart';
 
 @RoutePage()
 class SignInPage extends BasePage<SignInCubit, SignInBuildable, SignInListenable> {
-  const SignInPage({super.key});
+  SignInPage({super.key});
+
+  late SignInCubit loginCubit;
+
+  @override
+  void init(BuildContext context) {
+    loginCubit = context.read<SignInCubit>();
+    super.init(context);
+  }
 
   @override
   Widget builder(BuildContext context, SignInBuildable state) {
@@ -78,7 +88,9 @@ class SignInPage extends BasePage<SignInCubit, SignInBuildable, SignInListenable
                         header: Strings.emailAddress,
                         hint: Strings.typeHere,
                         icon: Icon(Icons.person_rounded, color: AppColors.textFieldIconColor),
-                        onChanged: (value) {},
+                        onChanged: (value) {
+                          loginCubit.updateLoginModel(email: value);
+                        },
                       ),
                       const SizedBox(height: 16),
                       AuthInputView(
@@ -90,7 +102,9 @@ class SignInPage extends BasePage<SignInCubit, SignInBuildable, SignInListenable
                             BlendMode.srcIn,
                           ),
                         ),
-                        onChanged: (value) {},
+                        onChanged: (value) {
+                          loginCubit.updateLoginModel(password: value);
+                        },
                       ),
                       const SizedBox(height: 42),
                       Padding(
@@ -105,9 +119,21 @@ class SignInPage extends BasePage<SignInCubit, SignInBuildable, SignInListenable
                             ),
                           ),
                           child: CommonButton.elevated(
-                            onPressed: () {
-                              context.router.replaceAll([MainNavigationRoute()]);
+                            onPressed: () async {
+                              String result = loginCubit.checkLoginData();
+                              if (result.isEmpty) {
+                                await loginCubit.login().then((date) {
+                                  if (date.isEmpty) {
+                                    context.router.replaceAll([MainNavigationRoute()]);
+                                  } else {
+                                    ResultNotifier(context: context, message: date).showError();
+                                  }
+                                });
+                              } else if (result.isNotEmpty) {
+                                ResultNotifier(context: context, message: result).showError();
+                              }
                             },
+                            loading: state.loading,
                             shadowColor: AppColors.transparent,
                             backgroundColor: AppColors.transparent,
                             text: Strings.signIn,

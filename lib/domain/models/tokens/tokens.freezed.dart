@@ -20,10 +20,9 @@ Tokens _$TokensFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Tokens {
-  @HiveField(0)
-  String? get refresh => throw _privateConstructorUsedError;
-  @HiveField(1)
-  String? get access => throw _privateConstructorUsedError;
+  String? get refreshToken => throw _privateConstructorUsedError;
+  String? get accessToken => throw _privateConstructorUsedError;
+  String? get role => throw _privateConstructorUsedError;
 
   /// Serializes this Tokens to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -39,7 +38,7 @@ abstract class $TokensCopyWith<$Res> {
   factory $TokensCopyWith(Tokens value, $Res Function(Tokens) then) =
       _$TokensCopyWithImpl<$Res, Tokens>;
   @useResult
-  $Res call({@HiveField(0) String? refresh, @HiveField(1) String? access});
+  $Res call({String? refreshToken, String? accessToken, String? role});
 }
 
 /// @nodoc
@@ -57,17 +56,22 @@ class _$TokensCopyWithImpl<$Res, $Val extends Tokens>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? refresh = freezed,
-    Object? access = freezed,
+    Object? refreshToken = freezed,
+    Object? accessToken = freezed,
+    Object? role = freezed,
   }) {
     return _then(_value.copyWith(
-      refresh: freezed == refresh
-          ? _value.refresh
-          : refresh // ignore: cast_nullable_to_non_nullable
+      refreshToken: freezed == refreshToken
+          ? _value.refreshToken
+          : refreshToken // ignore: cast_nullable_to_non_nullable
               as String?,
-      access: freezed == access
-          ? _value.access
-          : access // ignore: cast_nullable_to_non_nullable
+      accessToken: freezed == accessToken
+          ? _value.accessToken
+          : accessToken // ignore: cast_nullable_to_non_nullable
+              as String?,
+      role: freezed == role
+          ? _value.role
+          : role // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
   }
@@ -80,7 +84,7 @@ abstract class _$$TokensImplCopyWith<$Res> implements $TokensCopyWith<$Res> {
       __$$TokensImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({@HiveField(0) String? refresh, @HiveField(1) String? access});
+  $Res call({String? refreshToken, String? accessToken, String? role});
 }
 
 /// @nodoc
@@ -96,17 +100,22 @@ class __$$TokensImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? refresh = freezed,
-    Object? access = freezed,
+    Object? refreshToken = freezed,
+    Object? accessToken = freezed,
+    Object? role = freezed,
   }) {
     return _then(_$TokensImpl(
-      refresh: freezed == refresh
-          ? _value.refresh
-          : refresh // ignore: cast_nullable_to_non_nullable
+      refreshToken: freezed == refreshToken
+          ? _value.refreshToken
+          : refreshToken // ignore: cast_nullable_to_non_nullable
               as String?,
-      access: freezed == access
-          ? _value.access
-          : access // ignore: cast_nullable_to_non_nullable
+      accessToken: freezed == accessToken
+          ? _value.accessToken
+          : accessToken // ignore: cast_nullable_to_non_nullable
+              as String?,
+      role: freezed == role
+          ? _value.role
+          : role // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -114,32 +123,39 @@ class __$$TokensImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-@HiveType(typeId: 1)
 class _$TokensImpl implements _Tokens {
-  const _$TokensImpl({@HiveField(0) this.refresh, @HiveField(1) this.access});
+  const _$TokensImpl({this.refreshToken, this.accessToken, this.role});
 
   factory _$TokensImpl.fromJson(Map<String, dynamic> json) =>
       _$$TokensImplFromJson(json);
 
   @override
-  @HiveField(0)
-  final String? refresh;
+  final String? refreshToken;
   @override
-  @HiveField(1)
-  final String? access;
+  final String? accessToken;
+  @override
+  final String? role;
+
+  @override
+  String toString() {
+    return 'Tokens(refreshToken: $refreshToken, accessToken: $accessToken, role: $role)';
+  }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$TokensImpl &&
-            (identical(other.refresh, refresh) || other.refresh == refresh) &&
-            (identical(other.access, access) || other.access == access));
+            (identical(other.refreshToken, refreshToken) ||
+                other.refreshToken == refreshToken) &&
+            (identical(other.accessToken, accessToken) ||
+                other.accessToken == accessToken) &&
+            (identical(other.role, role) || other.role == role));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, refresh, access);
+  int get hashCode => Object.hash(runtimeType, refreshToken, accessToken, role);
 
   /// Create a copy of Tokens
   /// with the given fields replaced by the non-null parameter values.
@@ -159,17 +175,18 @@ class _$TokensImpl implements _Tokens {
 
 abstract class _Tokens implements Tokens {
   const factory _Tokens(
-      {@HiveField(0) final String? refresh,
-      @HiveField(1) final String? access}) = _$TokensImpl;
+      {final String? refreshToken,
+      final String? accessToken,
+      final String? role}) = _$TokensImpl;
 
   factory _Tokens.fromJson(Map<String, dynamic> json) = _$TokensImpl.fromJson;
 
   @override
-  @HiveField(0)
-  String? get refresh;
+  String? get refreshToken;
   @override
-  @HiveField(1)
-  String? get access;
+  String? get accessToken;
+  @override
+  String? get role;
 
   /// Create a copy of Tokens
   /// with the given fields replaced by the non-null parameter values.

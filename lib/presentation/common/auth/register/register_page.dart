@@ -1,6 +1,7 @@
+import 'dart:developer';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:board_datetime_picker/board_datetime_picker.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +15,7 @@ import 'package:iut_ecms/core/router/app_router.dart';
 import 'package:iut_ecms/core/widgets/common_button.dart';
 import 'package:iut_ecms/core/widgets/formatters/date_input_formatter.dart';
 import 'package:iut_ecms/core/widgets/formatters/phone_number_formatter.dart';
+import 'package:iut_ecms/core/widgets/result_notifier.dart';
 import 'package:iut_ecms/presentation/common/auth/register/cubit/register_cubit.dart';
 import 'package:iut_ecms/presentation/common/auth/register/cubit/register_state.dart';
 import 'package:iut_ecms/presentation/common/auth/widgets/auth_greeting_widget.dart';
@@ -26,11 +28,34 @@ class RegisterPage extends BasePage<RegisterCubit, RegisterBuildable, RegisterLi
 
   final FocusNode _focusNode = FocusNode();
   final CarouselSliderController _carouselController = CarouselSliderController();
-  final ValueNotifier<DateTime> builderDate = ValueNotifier(DateTime.now());
-  final scrollController = ScrollController();
-  final controller = BoardDateTimeController();
+  final TextEditingController firstNameController = TextEditingController();
+  final TextEditingController lastNameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController confirmPasswordController = TextEditingController();
+  final TextEditingController studentIdController = TextEditingController();
+  final TextEditingController universityController = TextEditingController();
+  final TextEditingController phoneNumberController = TextEditingController();
+  final TextEditingController birthDateController = TextEditingController();
+  late RegisterCubit registerCubit;
+
+  @override
+  void init(BuildContext context) {
+    registerCubit = context.read<RegisterCubit>();
+    super.init(context);
+  }
+
   @override
   void dispose() {
+    firstNameController.dispose();
+    lastNameController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+    confirmPasswordController.dispose();
+    studentIdController.dispose();
+    universityController.dispose();
+    phoneNumberController.dispose();
+    birthDateController.dispose();
     _focusNode.dispose();
     super.dispose();
   }
@@ -39,6 +64,15 @@ class RegisterPage extends BasePage<RegisterCubit, RegisterBuildable, RegisterLi
   Widget builder(BuildContext context, RegisterBuildable state) {
     double dynamicButtonPadding = (context.width * 0.08).clamp(40, 150);
     double dynamicScreenPadding = (context.width * 0.08).clamp(40, 100);
+    firstNameController.text = state.registerModel?.firstName ?? '';
+    lastNameController.text = state.registerModel?.lastName ?? '';
+    emailController.text = state.registerModel?.email ?? '';
+    passwordController.text = state.registerModel?.password ?? '';
+    studentIdController.text = state.registerModel?.studentId ?? '';
+    universityController.text = state.registerModel?.university ?? '';
+    confirmPasswordController.text = state.confirmedPassword ?? '';
+    phoneNumberController.text = state.registerModel?.phoneNumber ?? '';
+    birthDateController.text = state.registerModel?.birthDate ?? '';
 
     return Scaffold(
       body: Row(
@@ -96,7 +130,7 @@ class RegisterPage extends BasePage<RegisterCubit, RegisterBuildable, RegisterLi
                                   fontWeight: FontWeight.w500,
                                 ),
                                 recognizer: TapGestureRecognizer()
-                                  ..onTap = () => context.router.replace(const SignInRoute()),
+                                  ..onTap = () => context.router.replace(SignInRoute()),
                               ),
                             ],
                           ),
@@ -125,20 +159,27 @@ class RegisterPage extends BasePage<RegisterCubit, RegisterBuildable, RegisterLi
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             AuthInputView(
+                              controller: firstNameController,
                               header: Strings.firstName,
                               hint: Strings.typeHere,
                               icon: Icon(Icons.person_rounded, color: AppColors.textFieldIconColor),
-                              onChanged: (value) {},
+                              onChanged: (value) {
+                                registerCubit.updateRegisterModel(firstName: value);
+                              },
                             ),
                             const SizedBox(height: 16),
                             AuthInputView(
+                              controller: lastNameController,
                               header: Strings.lastName,
                               hint: Strings.typeHere,
                               icon: Icon(Icons.person_rounded, color: AppColors.textFieldIconColor),
-                              onChanged: (value) {},
+                              onChanged: (value) {
+                                registerCubit.updateRegisterModel(lastName: value);
+                              },
                             ),
                             const SizedBox(height: 16),
                             AuthInputView(
+                              controller: emailController,
                               header: Strings.emailAddress,
                               hint: Strings.typeHere,
                               icon: Assets.svgs.sms.svg(
@@ -147,10 +188,13 @@ class RegisterPage extends BasePage<RegisterCubit, RegisterBuildable, RegisterLi
                                   BlendMode.srcIn,
                                 ),
                               ),
-                              onChanged: (value) {},
+                              onChanged: (value) {
+                                registerCubit.updateRegisterModel(email: value);
+                              },
                             ),
                             const SizedBox(height: 16),
                             AuthInputView(
+                              controller: passwordController,
                               header: Strings.password,
                               hint: Strings.typeHere,
                               icon: Assets.svgs.lock.svg(
@@ -159,10 +203,13 @@ class RegisterPage extends BasePage<RegisterCubit, RegisterBuildable, RegisterLi
                                   BlendMode.srcIn,
                                 ),
                               ),
-                              onChanged: (value) {},
+                              onChanged: (value) {
+                                registerCubit.updateRegisterModel(password: value);
+                              },
                             ),
                             const SizedBox(height: 16),
                             AuthInputView(
+                              controller: confirmPasswordController,
                               header: Strings.confirmPassword,
                               hint: Strings.typeHere,
                               icon: Assets.svgs.lock.svg(
@@ -171,7 +218,9 @@ class RegisterPage extends BasePage<RegisterCubit, RegisterBuildable, RegisterLi
                                   BlendMode.srcIn,
                                 ),
                               ),
-                              onChanged: (value) {},
+                              onChanged: (value) {
+                                registerCubit.changeConfirmedPassword(value);
+                              },
                             ),
                             const SizedBox(height: 32),
                           ],
@@ -183,13 +232,17 @@ class RegisterPage extends BasePage<RegisterCubit, RegisterBuildable, RegisterLi
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             AuthInputView(
+                              controller: studentIdController,
                               header: Strings.studentId,
                               hint: Strings.typeHere,
                               icon: Icon(Icons.person_rounded, color: AppColors.textFieldIconColor),
-                              onChanged: (value) {},
+                              onChanged: (value) {
+                                registerCubit.updateRegisterModel(studentId: value);
+                              },
                             ),
                             const SizedBox(height: 16),
                             AuthInputView(
+                              controller: universityController,
                               header: Strings.university,
                               hint: Strings.typeHere,
                               icon: Assets.svgs.studentHat.svg(
@@ -198,10 +251,13 @@ class RegisterPage extends BasePage<RegisterCubit, RegisterBuildable, RegisterLi
                                   BlendMode.srcIn,
                                 ),
                               ),
-                              onChanged: (value) {},
+                              onChanged: (value) {
+                                registerCubit.updateRegisterModel(university: value);
+                              },
                             ),
                             const SizedBox(height: 16),
                             AuthInputView(
+                              controller: phoneNumberController,
                               header: Strings.phone,
                               hint: '(--) --- -- --',
                               maxLength: 14,
@@ -212,14 +268,16 @@ class RegisterPage extends BasePage<RegisterCubit, RegisterBuildable, RegisterLi
                                   BlendMode.srcIn,
                                 ),
                               ),
-                              onChanged: (value) {},
+                              onChanged: (value) {
+                                registerCubit.updateRegisterModel(phoneNumber: value);
+                              },
                             ),
                             const SizedBox(height: 16),
                             AuthInputView(
+                              controller: birthDateController,
                               header: Strings.dateOfBirth,
                               inputFormatter: [DateInputFormatter()],
                               maxLength: 10,
-                              readOnly: true,
                               hint: Strings.dmy,
                               icon: Assets.svgs.calendar.svg(
                                 colorFilter: ColorFilter.mode(
@@ -227,17 +285,8 @@ class RegisterPage extends BasePage<RegisterCubit, RegisterBuildable, RegisterLi
                                   BlendMode.srcIn,
                                 ),
                               ),
-                              onTap: () {
-                                showDialog(
-                                  context: context,
-                                  builder: (context) {
-                                    return DatePickerDialog(
-                                      initialDate: DateTime.now(),
-                                      firstDate: DateTime(1924),
-                                      lastDate: DateTime.now(),
-                                    );
-                                  },
-                                );
+                              onChanged: (value) {
+                                registerCubit.updateRegisterModel(birthDate: value);
                               },
                             ),
                             const SizedBox(height: 16),
@@ -283,18 +332,41 @@ class RegisterPage extends BasePage<RegisterCubit, RegisterBuildable, RegisterLi
                         ),
                       ),
                       child: CommonButton.elevated(
-                        onPressed: () {
+                        onPressed: () async {
                           int currentIndex = state.currentIndex;
-                          if (state.currentIndex < 1) {
-                            context.read<RegisterCubit>().pageIndexControl(currentIndex + 1);
-                            _carouselController.animateToPage(
-                              currentIndex + 1,
-                              duration: const Duration(milliseconds: 300),
-                            );
+                          String result = registerCubit.checkRegisterData();
+                          if ((state.registerModel?.password ?? '') !=
+                              confirmPasswordController.text) {
+                            ResultNotifier(context: context, message: 'Passwords do not match')
+                                .showError();
+                            return;
+                          }
+                          if (result.isEmpty) {
+                            if (currentIndex == 0) {
+                              context.read<RegisterCubit>().pageIndexControl(currentIndex + 1);
+                              _carouselController.animateToPage(
+                                currentIndex + 1,
+                                duration: const Duration(milliseconds: 300),
+                              );
+                            } else if (currentIndex == 1) {
+                              log(state.registerModel.toString());
+                              await registerCubit.register().then((data) {
+                                if (data.isEmpty) {
+                                  ResultNotifier(
+                                    context: context,
+                                    message: 'User has been registered successfully',
+                                  ).showSuccess();
+                                  context.router.replaceAll([SignInRoute()]);
+                                } else {
+                                  ResultNotifier(context: context, message: data).showError();
+                                }
+                              });
+                            }
                           } else {
-                            context.router.replaceAll([MainNavigationRoute()]);
+                            ResultNotifier(context: context, message: result).showError();
                           }
                         },
+                        loading: state.loading,
                         shadowColor: AppColors.transparent,
                         backgroundColor: AppColors.transparent,
                         text: state.currentIndex == 0 ? Strings.next : Strings.signUp,

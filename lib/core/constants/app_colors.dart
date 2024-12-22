@@ -19,6 +19,10 @@ class AppColors {
   static const Color blueOriginal = Color(0xFF1677FF);
   static const Color red = Color(0xFFFF4D4F);
   static const Color lowGrey = Color(0xFFF5F5F5);
+  static const Color bookViewBackground = Color(0xFFF2F2F2);
+  static const Color articleViewBackground = Color(0xFFF5F6FA);
+  static const Color lowActionContainerBorder = Color(0xFFD9D9D9);
+  static Color lowActionContainerBackground = Color(0xFF000000).withOpacity(0.04);
 
   /// action colors
   static const Color inactiveIcon = Color(0xFFC1C8DF);
@@ -32,4 +36,7 @@ class AppColors {
   static const Color textBlueOriginal = Color(0xFF1677FF);
   static const Color textInfoColor = Color(0xFF2C2C2C);
   static const Color subjectTableDataColor = Color(0xFF242424);
+  static const Color contentDescriptionTextColor = Color(0xFF656565);
+  static const Color authorNameDisplayColor = Color(0xFFBBBEC7);
+  static Color actionsTextColor = Color(0xFF000000).withOpacity(0.25);
 }

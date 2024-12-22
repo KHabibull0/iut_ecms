@@ -1,23 +1,94 @@
-import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iut_ecms/core/base/base_page.dart';
 import 'package:iut_ecms/core/constants/app_colors.dart';
+import 'package:iut_ecms/core/constants/roles.dart';
+import 'package:iut_ecms/core/di/injection.dart';
 import 'package:iut_ecms/core/gen/assets.gen.dart';
 import 'package:iut_ecms/core/gen/strings.dart';
+import 'package:iut_ecms/core/router/app_router.dart';
 import 'package:iut_ecms/domain/models/main_navigation_items.dart';
+import 'package:iut_ecms/domain/models/storage/shared_prefs.dart';
+import 'package:iut_ecms/domain/models/tokens/tokens.dart';
 import 'package:iut_ecms/presentation/common/main_navigation_page/cubit/main_navigation_cubit.dart';
 import 'package:iut_ecms/presentation/common/main_navigation_page/cubit/main_navigation_state.dart';
 import 'package:iut_ecms/presentation/common/main_navigation_page/widgets/custom_app_bar.dart';
-import 'package:iut_ecms/presentation/user/user_content/user_content_page.dart';
-import 'package:iut_ecms/presentation/user/user_home/user_home_page.dart';
-import 'package:iut_ecms/presentation/user/user_settings/user_settings_page.dart';
+import 'package:iut_ecms/presentation/manager/contents/manage/manage_contents/manage_contents_page.dart';
+import 'package:iut_ecms/presentation/manager/dashboard/manager_home_page.dart';
+import 'package:iut_ecms/presentation/manager/settings/manager_settings_page.dart';
+import 'package:iut_ecms/presentation/user/content/user_majors/user_majors_page.dart';
+import 'package:iut_ecms/presentation/user/dashboard/user_home_page.dart';
+import 'package:iut_ecms/presentation/user/settings/user_settings_page.dart';
 
 @RoutePage()
 class MainNavigationPage
     extends BasePage<MainNavigationCubit, MainNavigationBuildable, MainNavigationListenable> {
-  const MainNavigationPage({super.key});
+  MainNavigationPage({super.key});
+
+  final SharedPrefs _sharedPrefs = getIt<SharedPrefs>();
+  late MainNavigationCubit _mainNavigationCubit;
+  List<MainNavigationItems> navigationItems = [];
+
+  List<MainNavigationItems> getMainNavigationItems(String role) {
+    switch (role) {
+      case Roles.ROLE_STUDENT:
+        return MainNavigationItems.studentItems;
+      case Roles.ROLE_SYS_ADMIN:
+        return MainNavigationItems.adminItems;
+      case Roles.ROLE_CONTENT_MANAGER:
+        return MainNavigationItems.contentManagerItems;
+      default:
+        return MainNavigationItems.studentItems;
+    }
+  }
+
+  Widget getProperPage(int index, String role) {
+    switch (role) {
+      case Roles.ROLE_STUDENT:
+        switch (index) {
+          case 0:
+            return UserHomePage();
+          case 1:
+            return UserMajorsPage();
+          case 2:
+            return UserSettingsPage();
+        }
+        break;
+      case Roles.ROLE_SYS_ADMIN:
+        switch (index) {
+          case 0:
+            return Column();
+          case 1:
+            return Column();
+          case 2:
+            return Column();
+          case 3:
+            return Column();
+        }
+        break;
+      case Roles.ROLE_CONTENT_MANAGER:
+        switch (index) {
+          case 0:
+            return ManagerHomePage();
+          case 1:
+            return ManageContentsPage();
+          case 2:
+            return ManagerSettingsPage();
+        }
+        break;
+    }
+    return UserHomePage();
+  }
+
+  @override
+  void init(BuildContext context) {
+    _mainNavigationCubit = context.read<MainNavigationCubit>();
+    navigationItems = getMainNavigationItems(_mainNavigationCubit.getTokens().role!);
+
+    super.init(context);
+  }
 
   @override
   Widget builder(BuildContext context, MainNavigationBuildable state) {
@@ -51,9 +122,9 @@ class MainNavigationPage
                   Expanded(
                     child: ListView.builder(
                       shrinkWrap: true,
-                      itemCount: MainNavigationItems.items.length,
+                      itemCount: navigationItems.length,
                       itemBuilder: (BuildContext context, int index) {
-                        final item = MainNavigationItems.items[index];
+                        final item = navigationItems[index];
                         final isActive = state.pageIndex == index;
                         return InkWell(
                           onTap: () async {
@@ -108,21 +179,28 @@ class MainNavigationPage
                       },
                     ),
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        Strings.logOut,
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                          color: AppColors.textLowBlue,
-                          overflow: TextOverflow.ellipsis,
+                  InkWell(
+                    onTap: () async {
+                      await _sharedPrefs
+                          .setTokens(Tokens(accessToken: '', refreshToken: '', role: ''))
+                          .then((_) => context.router.replaceAll([SplashRoute()]));
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          Strings.logOut,
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                            color: AppColors.textLowBlue,
+                            overflow: TextOverflow.ellipsis,
+                          ),
                         ),
-                      ),
-                      const SizedBox(width: 10),
-                      Assets.svgs.logOut.svg(),
-                    ],
+                        const SizedBox(width: 10),
+                        Assets.svgs.logOut.svg(),
+                      ],
+                    ),
                   ),
                   const SizedBox(height: 80),
                 ],
@@ -150,7 +228,7 @@ class MainNavigationPage
                           ),
                         ],
                       ),
-                      child: getProperPage(state.pageIndex),
+                      child: getProperPage(state.pageIndex, _mainNavigationCubit.getTokens().role!),
                     ),
                   ),
                 ],
@@ -160,18 +238,5 @@ class MainNavigationPage
         ),
       ),
     );
-  }
-
-  Widget getProperPage(int index) {
-    switch (index) {
-      case 0:
-        return UserHomePage();
-      case 1:
-        return UserContentPage();
-      case 2:
-        return UserSettingsPage();
-      default:
-        return UserHomePage();
-    }
   }
 }

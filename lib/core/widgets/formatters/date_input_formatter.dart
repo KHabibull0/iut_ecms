@@ -6,25 +6,22 @@ class DateInputFormatter extends TextInputFormatter {
     final oldText = oldValue.text;
     final newText = newValue.text;
 
-    // Allow deletion without interference
     if (newText.length < oldText.length) {
       return newValue;
     }
 
-    // Remove non-numeric characters
     final filteredText = newText.replaceAll(RegExp(r'[^0-9]'), '');
 
     final buffer = StringBuffer();
     for (int i = 0; i < filteredText.length; i++) {
-      if (i == 2 || i == 4) {
-        buffer.write('/');
+      if (i == 4 || i == 6) {
+        buffer.write('-');
       }
       buffer.write(filteredText[i]);
     }
 
     final formattedText = buffer.toString();
 
-    // Ensure the cursor remains at the correct position
     return TextEditingValue(
       text: formattedText,
       selection: TextSelection.collapsed(offset: formattedText.length),

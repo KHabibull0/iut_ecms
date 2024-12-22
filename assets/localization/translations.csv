@@ -1,0 +1,72 @@
+keys,en_US,uz_UZ,ru_RU
+welcomeBack,Welcome back to UniCMS!,UniCMSga yana xush kelibsiz!,Добро пожаловать обратно в UniCMS!
+back,Back,Orqaga,Назад
+haveNoAccount,Don’t have an account? ,Hisob yo'qmi?,У вас нет учетной записи? 
+signUp,Sign Up,Ro'yxatdan o'tish,Зарегистрироваться
+loginToAccount,Login your Account,Hisobingizga kiring,Войдите в свой аккаунт
+emailAddress,Email address,Elektron pochta manzili,Адрес электронной почты
+password,Password,Parol,Пароль
+typeHere,Type here,Bu yerga yozing,Введите здесь
+rememberMe,Remember me,Meni eslang,Запомнить меня
+signIn,Sign In,Tizimga kirish,Войти
+welcomeToApp,Welcome to UniCMS,UniCMSga xush kelibsiz,Добро пожаловать в UniCMS
+alreadyHaveAccount,Already have an account?,Hisobingiz bormi?,У вас уже есть аккаунт?
+createYourAccount,Create your Account,Hisobingizni yaratish,Создайте свою учетную запись
+firstName,First name,Ism,Имя
+lastName,Last name,Familiya,Фамилия
+confirmPassword,Confirm password,Parolni tasdiqlash,Подтвердите пароль
+next,Next,Keyingisi,Следующий
+studentId,Student ID,Talaba IDsi,Студенческий билет
+university,University,Universitet,Университет
+phone,Phone,Telefon,Телефон
+dateOfBirth,Date of Birth,Tug'ilgan sana,Дата рождения
+dmy,YYYY-MM-DD,YYYY-OO-DD,ГГГГ-ММ-ДД
+home,Home,Uy,Дом
+browseContent,Browse Content,Kontentni ko'rib chiqish,Просмотр контента
+settings,Setting,Sozlama,Параметр
+logOut,Log out,Chiqish,Выйти
+hi,Hi,Salom,Привет
+search,Search,Qidiruv,Поиск
+platformBenefits,Benefits of our platform ,Platformamizning afzalliklari,Преимущества нашей платформы 
+cmsForStudents,This is CMS platform for students,Bu talabalar uchun CMS platformasi,Это платформа CMS для студентов
+ourPlatform,Our platform,Bizning platformamiz,Наша платформа
+profileDetails,Profile details,Profil tafsilotlari,Детали профиля
+upload,Upload,Yuklash,Загрузить
+name,Name,Ism,Имя
+eMail,E-mail,Elektron pochta,Электронная почта
+phoneNumber,Phone number,Telefon raqami,Номер телефона
+adress,Adress,Manzil,Адрес
+workOptional,Work (optional),Ish (ixtiyoriy),Работа (по желанию)
+deleteAccount,Delete account,Hisobni o'chirish,Удалить аккаунт
+accountDetails,Account details,Hisob tafsilotlari,Детали аккаунта
+currentPassword,Current Password,Joriy parol,Текущий пароль
+newPassword,New Password,Yangi parol,Новый пароль
+changePassword,Change password,Parolni o'zgartirish,Изменить пароль
+language,Language,Til,Язык
+readTerms,Read terms,Shartlarni o'qing,Читать условия
+privacyPolicy,Privancy & policy,Maxfiylik & Siyosat,Конфиденциальность & политика
+english,English,Ingliz,Английский
+russian,Russian,Rus,Русский
+uzbek,Uzbek,O'zbek,Узбекский
+yourName,Your name,Ismingiz,Ваше имя
+yourEmail,Your email,Elektron pochtangiz,Ваш адрес электронной почты
+yourPhoneNumber,Your phone Number,Telefon raqamingiz,Ваш номер телефона
+saveChanges,Save Changes,O'zgarishlarni saqlash,Сохранить изменения
+selectYourMajor,Select your Major,Mutaxassisligingizni tanlang,Выберите свою специальность
+canChooseAnySubject,You can choose any subject,Siz har qanday mavzuni tanlashingiz mumkin,Вы можете выбрать любую тему
+allResoursesHere,All resources here,Barcha manbalar shu yerda,Все ресурсы здесь
+major,Major,Mutaxassislik,Специальность
+subjectRelatedMajor,Subject related from,Mavzu bilan bog'liq,Тема связана с
+subjects,Subjects,Mavzular,Темы
+n,N,N,Н
+totalMaterials,Total Materials,Jami materiallar,Всего материалов
+previous,Previous,Oldingi,Предыдущий
+chooseContentType,Choose content type,Kontent turini tanlang ,Выберите тип контента
+eBook,Ebooks,Elektron kitoblar,Электронные книги
+letter,Letter,Xat,Письмо
+articles,Articles,Maqolalar,Статьи
+download,Download,Yuklab olish,Скачать
+read,Read,O'qish,Читать
+typeBook,ebook,elektron kitob,электронная книга
+typeLetter,letter,xat,письмо
+typeArticle,articles,maqolalar,статьи

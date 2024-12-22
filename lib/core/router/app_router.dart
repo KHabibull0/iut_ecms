@@ -14,7 +14,7 @@ import 'package:iut_ecms/presentation/manager/contents/update/update_e_books/upd
 import 'package:iut_ecms/presentation/manager/contents/update/update_e_letters/update_e_letters_page.dart';
 import 'package:iut_ecms/presentation/manager/contents/update/update_majors%20/update_majors_page.dart';
 import 'package:iut_ecms/presentation/manager/contents/update/update_subjects/update_subjects_page.dart';
-import 'package:iut_ecms/presentation/user/content/content_articles_page/user_articles_page.dart';
+import 'package:iut_ecms/presentation/user/content/user_articles_page/user_articles_page.dart';
 import 'package:iut_ecms/presentation/user/content/user_content_type/user_content_type_page.dart';
 import 'package:iut_ecms/presentation/user/content/user_document_reader/user_document_reader_page.dart';
 import 'package:iut_ecms/presentation/user/content/user_e_book_page/user_e_book_page.dart';
@@ -40,7 +40,6 @@ class AppRouter extends RootStackRouter {
         AutoRoute(page: UserSubjectsRoute.page),
         AutoRoute(page: UserContentTypeRoute.page),
         AutoRoute(page: UserEBookRoute.page),
-        AutoRoute(page: UserArticlesRoute.page),
         AutoRoute(page: UserArticlesRoute.page),
         AutoRoute(page: UserLettersRoute.page),
         AutoRoute(page: UserDocumentReaderRoute.page),

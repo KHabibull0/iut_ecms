@@ -62,8 +62,8 @@ import 'package:iut_ecms/presentation/manager/dashboard/cubit/manager_home_cubit
     as _i594;
 import 'package:iut_ecms/presentation/manager/settings/cubit/manager_settings_cubit.dart'
     as _i763;
-import 'package:iut_ecms/presentation/user/content/content_articles_page/cubit/user_articles_cubit.dart'
-    as _i370;
+import 'package:iut_ecms/presentation/user/content/user_articles_page/cubit/user_articles_cubit.dart'
+    as _i1012;
 import 'package:iut_ecms/presentation/user/content/user_content_type/cubit/user_content_type_cubit.dart'
     as _i648;
 import 'package:iut_ecms/presentation/user/content/user_e_book_page/cubit/user_e_book_cubit.dart'
@@ -100,9 +100,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i270.UserSubjectsCubit>(() => _i270.UserSubjectsCubit());
     gh.factory<_i648.UserContentTypeCubit>(() => _i648.UserContentTypeCubit());
+    gh.factory<_i1012.UserArticlesCubit>(() => _i1012.UserArticlesCubit());
     gh.factory<_i202.UserLettersCubit>(() => _i202.UserLettersCubit());
     gh.factory<_i259.UserEBookCubit>(() => _i259.UserEBookCubit());
-    gh.factory<_i370.UserArticlesCubit>(() => _i370.UserArticlesCubit());
     gh.factory<_i17.UserMajorsCubit>(() => _i17.UserMajorsCubit());
     gh.factory<_i601.UserHomeCubit>(() => _i601.UserHomeCubit());
     gh.factory<_i763.ManagerSettingsCubit>(() => _i763.ManagerSettingsCubit());

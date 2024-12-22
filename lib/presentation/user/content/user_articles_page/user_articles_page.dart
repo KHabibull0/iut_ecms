@@ -6,8 +6,8 @@ import 'package:iut_ecms/core/gen/strings.dart';
 import 'package:iut_ecms/core/router/app_router.dart';
 import 'package:iut_ecms/core/widgets/common_button.dart';
 import 'package:iut_ecms/core/widgets/custom_search_bar.dart';
-import 'package:iut_ecms/presentation/user/content/content_articles_page/cubit/user_articles_cubit.dart';
-import 'package:iut_ecms/presentation/user/content/content_articles_page/cubit/user_articles_state.dart';
+import 'package:iut_ecms/presentation/user/content/user_articles_page/cubit/user_articles_cubit.dart';
+import 'package:iut_ecms/presentation/user/content/user_articles_page/cubit/user_articles_state.dart';
 
 @RoutePage()
 class UserArticlesPage
@@ -38,6 +38,7 @@ class UserArticlesPage
                 InkWell(
                   onTap: () {
                     context.router.maybePop();
+                    //////
                   },
                   borderRadius: BorderRadius.circular(100),
                   child: SizedBox(

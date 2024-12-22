@@ -29,7 +29,8 @@ class SplashPage extends BasePage<SplashCubit, SplashBuildable, SplashListenable
         (value) => context.router.replace(SignInRoute()),
       );
     } else {
-      context.router.replace(MainNavigationRoute());
+      await Future.delayed(const Duration(milliseconds: 1500))
+          .then((value) => context.router.replace(MainNavigationRoute()));
     }
     super.init(context);
   }

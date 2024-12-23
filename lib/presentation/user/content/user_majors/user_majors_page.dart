@@ -2,11 +2,19 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:iut_ecms/core/base/base_page.dart';
 import 'package:iut_ecms/core/constants/app_colors.dart';
+import 'package:iut_ecms/core/gen/assets.gen.dart';
 import 'package:iut_ecms/core/gen/strings.dart';
 import 'package:iut_ecms/core/router/app_router.dart';
 import 'package:iut_ecms/presentation/user/content/user_majors/cubit/user_majors_cubit.dart';
 import 'package:iut_ecms/presentation/user/content/user_majors/cubit/user_majors_state.dart';
 
+// ignore: non_constant_identifier_names
+final List<String> MajorImageList=[
+  Assets.images.majorBusiness.path,
+  Assets.images.majorComputer.path,
+  Assets.images.majorEducation.path,
+  Assets.images.majorHealth.path,
+];
 class UserMajorsPage extends BasePage<UserMajorsCubit, UserMajorsBuildable, UserMajorsListenable> {
   const UserMajorsPage({super.key});
 
@@ -35,7 +43,7 @@ class UserMajorsPage extends BasePage<UserMajorsCubit, UserMajorsBuildable, User
               mainAxisSpacing: 20,
               mainAxisExtent: 182,
             ),
-            itemCount: 12,
+            itemCount: MajorImageList.length,
             itemBuilder: (BuildContext context, int index) {
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -49,6 +57,10 @@ class UserMajorsPage extends BasePage<UserMajorsCubit, UserMajorsBuildable, User
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         color: AppColors.primary,
+                        image:DecorationImage(
+                          image: AssetImage(MajorImageList[index]),
+                          fit: BoxFit.cover
+                        )
                       ),
                     ),
                   ),

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:iut_ecms/core/base/base_page.dart';
 import 'package:iut_ecms/core/constants/app_colors.dart';
 import 'package:iut_ecms/core/extensions/screen_size_extention.dart';
+import 'package:iut_ecms/core/gen/assets.gen.dart';
 import 'package:iut_ecms/core/gen/strings.dart';
 import 'package:iut_ecms/core/router/app_router.dart';
 import 'package:iut_ecms/core/widgets/custom_search_bar.dart';
@@ -81,8 +82,8 @@ class UserContentTypePage
                             child: _contentTypeView(
                               onTap: () => context.router.push(UserEBookRoute()),
                               type: Strings.eBook,
-                              description:
-                                  'description description description description description description description description description description description description description description description description',
+                              image: DecorationImage(image: AssetImage(Assets.images.book.path),fit: BoxFit.cover),
+                              description: Strings.descBook,
                             ),
                           ),
                           const SizedBox(width: 52),
@@ -90,9 +91,8 @@ class UserContentTypePage
                             child: _contentTypeView(
                               onTap: () => context.router.push(UserLettersRoute()),
                               type: Strings.letter,
-                              description:
-                                  'description description description description description description description description description description description description description description',
-                            ),
+                              image: DecorationImage(image: AssetImage(Assets.images.letter.path),fit: BoxFit.cover),
+                              description:Strings.descLetter),
                           ),
                         ],
                       ),
@@ -104,9 +104,9 @@ class UserContentTypePage
                         onTap: () => context.router.push(UserArticlesRoute()),
                         width: context.width * 0.425,
                         type: Strings.articles,
+                        image: DecorationImage(image: AssetImage(Assets.images.article.path),fit: BoxFit.cover),
                         description:
-                            'description description description description description description description description description description description description description description',
-                      ),
+                            Strings.descArticles),
                     ),
                   ],
                 ),
@@ -122,6 +122,7 @@ class UserContentTypePage
     required String type,
     required String description,
     void Function()? onTap,
+    DecorationImage? image,
     double? width,
   }) {
     return SizedBox(
@@ -135,7 +136,7 @@ class UserContentTypePage
               width: width ?? double.infinity,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
-                color: AppColors.primary,
+                image: image,
               ),
               child: Container(
                 height: 138,

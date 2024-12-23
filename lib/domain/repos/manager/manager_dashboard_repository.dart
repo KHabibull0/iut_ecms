@@ -5,4 +5,5 @@ import 'package:iut_ecms/domain/models/majors_model/majors_model.dart';
 abstract class ManagerDashboardRepository {
   Future<Either<String, ManagerDashboardModel>> getDashboardStatistics();
   Future<Either<String, List<MajorsModel>>> getMajors();
+  Future<String> addMajor({required MajorsModel major});
 }

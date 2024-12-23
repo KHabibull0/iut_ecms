@@ -23,6 +23,7 @@ mixin _$MajorsModel {
   int? get id => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
+  String? get photoName => throw _privateConstructorUsedError;
   String? get photo => throw _privateConstructorUsedError;
 
   /// Serializes this MajorsModel to a JSON map.
@@ -41,7 +42,12 @@ abstract class $MajorsModelCopyWith<$Res> {
           MajorsModel value, $Res Function(MajorsModel) then) =
       _$MajorsModelCopyWithImpl<$Res, MajorsModel>;
   @useResult
-  $Res call({int? id, String? name, String? description, String? photo});
+  $Res call(
+      {int? id,
+      String? name,
+      String? description,
+      String? photoName,
+      String? photo});
 }
 
 /// @nodoc
@@ -62,6 +68,7 @@ class _$MajorsModelCopyWithImpl<$Res, $Val extends MajorsModel>
     Object? id = freezed,
     Object? name = freezed,
     Object? description = freezed,
+    Object? photoName = freezed,
     Object? photo = freezed,
   }) {
     return _then(_value.copyWith(
@@ -76,6 +83,10 @@ class _$MajorsModelCopyWithImpl<$Res, $Val extends MajorsModel>
       description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      photoName: freezed == photoName
+          ? _value.photoName
+          : photoName // ignore: cast_nullable_to_non_nullable
               as String?,
       photo: freezed == photo
           ? _value.photo
@@ -93,7 +104,12 @@ abstract class _$$MajorsModelImplCopyWith<$Res>
       __$$MajorsModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int? id, String? name, String? description, String? photo});
+  $Res call(
+      {int? id,
+      String? name,
+      String? description,
+      String? photoName,
+      String? photo});
 }
 
 /// @nodoc
@@ -112,6 +128,7 @@ class __$$MajorsModelImplCopyWithImpl<$Res>
     Object? id = freezed,
     Object? name = freezed,
     Object? description = freezed,
+    Object? photoName = freezed,
     Object? photo = freezed,
   }) {
     return _then(_$MajorsModelImpl(
@@ -127,6 +144,10 @@ class __$$MajorsModelImplCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
+      photoName: freezed == photoName
+          ? _value.photoName
+          : photoName // ignore: cast_nullable_to_non_nullable
+              as String?,
       photo: freezed == photo
           ? _value.photo
           : photo // ignore: cast_nullable_to_non_nullable
@@ -138,7 +159,8 @@ class __$$MajorsModelImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$MajorsModelImpl implements _MajorsModel {
-  const _$MajorsModelImpl({this.id, this.name, this.description, this.photo});
+  const _$MajorsModelImpl(
+      {this.id, this.name, this.description, this.photoName, this.photo});
 
   factory _$MajorsModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$MajorsModelImplFromJson(json);
@@ -150,11 +172,13 @@ class _$MajorsModelImpl implements _MajorsModel {
   @override
   final String? description;
   @override
+  final String? photoName;
+  @override
   final String? photo;
 
   @override
   String toString() {
-    return 'MajorsModel(id: $id, name: $name, description: $description, photo: $photo)';
+    return 'MajorsModel(id: $id, name: $name, description: $description, photoName: $photoName, photo: $photo)';
   }
 
   @override
@@ -166,12 +190,15 @@ class _$MajorsModelImpl implements _MajorsModel {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.description, description) ||
                 other.description == description) &&
+            (identical(other.photoName, photoName) ||
+                other.photoName == photoName) &&
             (identical(other.photo, photo) || other.photo == photo));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, description, photo);
+  int get hashCode =>
+      Object.hash(runtimeType, id, name, description, photoName, photo);
 
   /// Create a copy of MajorsModel
   /// with the given fields replaced by the non-null parameter values.
@@ -194,6 +221,7 @@ abstract class _MajorsModel implements MajorsModel {
       {final int? id,
       final String? name,
       final String? description,
+      final String? photoName,
       final String? photo}) = _$MajorsModelImpl;
 
   factory _MajorsModel.fromJson(Map<String, dynamic> json) =
@@ -205,6 +233,8 @@ abstract class _MajorsModel implements MajorsModel {
   String? get name;
   @override
   String? get description;
+  @override
+  String? get photoName;
   @override
   String? get photo;
 

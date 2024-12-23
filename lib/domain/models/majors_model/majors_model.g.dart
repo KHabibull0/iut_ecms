@@ -11,6 +11,7 @@ _$MajorsModelImpl _$$MajorsModelImplFromJson(Map<String, dynamic> json) =>
       id: (json['id'] as num?)?.toInt(),
       name: json['name'] as String?,
       description: json['description'] as String?,
+      photoName: json['photoName'] as String?,
       photo: json['photo'] as String?,
     );
 
@@ -19,5 +20,6 @@ Map<String, dynamic> _$$MajorsModelImplToJson(_$MajorsModelImpl instance) =>
       'id': instance.id,
       'name': instance.name,
       'description': instance.description,
+      'photoName': instance.photoName,
       'photo': instance.photo,
     };

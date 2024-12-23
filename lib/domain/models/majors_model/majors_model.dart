@@ -9,6 +9,7 @@ class MajorsModel with _$MajorsModel {
     int? id,
     String? name,
     String? description,
+    String? photoName,
     String? photo,
   }) = _MajorsModel;
 

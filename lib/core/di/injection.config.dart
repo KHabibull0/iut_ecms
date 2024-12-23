@@ -109,7 +109,6 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i442.UpdateEBooksCubit>(() => _i442.UpdateEBooksCubit());
     gh.factory<_i786.UpdateArticlesCubit>(() => _i786.UpdateArticlesCubit());
     gh.factory<_i178.UpdateELettersCubit>(() => _i178.UpdateELettersCubit());
-    gh.factory<_i844.UpdateMajorsCubit>(() => _i844.UpdateMajorsCubit());
     gh.factory<_i429.UpdateSubjectsCubit>(() => _i429.UpdateSubjectsCubit());
     gh.factory<_i416.ManageSubjectsCubit>(() => _i416.ManageSubjectsCubit());
     gh.factory<_i748.ManageELettersCubit>(() => _i748.ManageELettersCubit());
@@ -137,6 +136,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i37.RegisterCubit(gh<_i655.AuthRepository>()));
     gh.factory<_i473.SplashCubit>(
         () => _i473.SplashCubit(gh<_i369.SplashRepository>()));
+    gh.factory<_i844.UpdateMajorsCubit>(
+        () => _i844.UpdateMajorsCubit(gh<_i8.ManagerDashboardRepository>()));
     gh.factory<_i886.ManageMajorsCubit>(
         () => _i886.ManageMajorsCubit(gh<_i8.ManagerDashboardRepository>()));
     gh.factory<_i594.ManagerHomeCubit>(

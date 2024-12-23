@@ -17,7 +17,10 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$UpdateMajorsBuildable {
   bool get loading => throw _privateConstructorUsedError;
+  bool get uploadLoading => throw _privateConstructorUsedError;
+  bool get isLaptopFileOpen => throw _privateConstructorUsedError;
   bool get error => throw _privateConstructorUsedError;
+  MajorsModel get majors => throw _privateConstructorUsedError;
 
   /// Create a copy of UpdateMajorsBuildable
   /// with the given fields replaced by the non-null parameter values.
@@ -32,7 +35,14 @@ abstract class $UpdateMajorsBuildableCopyWith<$Res> {
           $Res Function(UpdateMajorsBuildable) then) =
       _$UpdateMajorsBuildableCopyWithImpl<$Res, UpdateMajorsBuildable>;
   @useResult
-  $Res call({bool loading, bool error});
+  $Res call(
+      {bool loading,
+      bool uploadLoading,
+      bool isLaptopFileOpen,
+      bool error,
+      MajorsModel majors});
+
+  $MajorsModelCopyWith<$Res> get majors;
 }
 
 /// @nodoc
@@ -52,18 +62,43 @@ class _$UpdateMajorsBuildableCopyWithImpl<$Res,
   @override
   $Res call({
     Object? loading = null,
+    Object? uploadLoading = null,
+    Object? isLaptopFileOpen = null,
     Object? error = null,
+    Object? majors = null,
   }) {
     return _then(_value.copyWith(
       loading: null == loading
           ? _value.loading
           : loading // ignore: cast_nullable_to_non_nullable
               as bool,
+      uploadLoading: null == uploadLoading
+          ? _value.uploadLoading
+          : uploadLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isLaptopFileOpen: null == isLaptopFileOpen
+          ? _value.isLaptopFileOpen
+          : isLaptopFileOpen // ignore: cast_nullable_to_non_nullable
+              as bool,
       error: null == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as bool,
+      majors: null == majors
+          ? _value.majors
+          : majors // ignore: cast_nullable_to_non_nullable
+              as MajorsModel,
     ) as $Val);
+  }
+
+  /// Create a copy of UpdateMajorsBuildable
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $MajorsModelCopyWith<$Res> get majors {
+    return $MajorsModelCopyWith<$Res>(_value.majors, (value) {
+      return _then(_value.copyWith(majors: value) as $Val);
+    });
   }
 }
 
@@ -76,7 +111,15 @@ abstract class _$$UpdateMajorsBuildableImplCopyWith<$Res>
       __$$UpdateMajorsBuildableImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool loading, bool error});
+  $Res call(
+      {bool loading,
+      bool uploadLoading,
+      bool isLaptopFileOpen,
+      bool error,
+      MajorsModel majors});
+
+  @override
+  $MajorsModelCopyWith<$Res> get majors;
 }
 
 /// @nodoc
@@ -94,17 +137,32 @@ class __$$UpdateMajorsBuildableImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? loading = null,
+    Object? uploadLoading = null,
+    Object? isLaptopFileOpen = null,
     Object? error = null,
+    Object? majors = null,
   }) {
     return _then(_$UpdateMajorsBuildableImpl(
       loading: null == loading
           ? _value.loading
           : loading // ignore: cast_nullable_to_non_nullable
               as bool,
+      uploadLoading: null == uploadLoading
+          ? _value.uploadLoading
+          : uploadLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isLaptopFileOpen: null == isLaptopFileOpen
+          ? _value.isLaptopFileOpen
+          : isLaptopFileOpen // ignore: cast_nullable_to_non_nullable
+              as bool,
       error: null == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as bool,
+      majors: null == majors
+          ? _value.majors
+          : majors // ignore: cast_nullable_to_non_nullable
+              as MajorsModel,
     ));
   }
 }
@@ -112,18 +170,32 @@ class __$$UpdateMajorsBuildableImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$UpdateMajorsBuildableImpl implements _UpdateMajorsBuildable {
-  const _$UpdateMajorsBuildableImpl({this.loading = false, this.error = false});
+  const _$UpdateMajorsBuildableImpl(
+      {this.loading = false,
+      this.uploadLoading = false,
+      this.isLaptopFileOpen = false,
+      this.error = false,
+      this.majors = const MajorsModel()});
 
   @override
   @JsonKey()
   final bool loading;
   @override
   @JsonKey()
+  final bool uploadLoading;
+  @override
+  @JsonKey()
+  final bool isLaptopFileOpen;
+  @override
+  @JsonKey()
   final bool error;
+  @override
+  @JsonKey()
+  final MajorsModel majors;
 
   @override
   String toString() {
-    return 'UpdateMajorsBuildable(loading: $loading, error: $error)';
+    return 'UpdateMajorsBuildable(loading: $loading, uploadLoading: $uploadLoading, isLaptopFileOpen: $isLaptopFileOpen, error: $error, majors: $majors)';
   }
 
   @override
@@ -132,11 +204,17 @@ class _$UpdateMajorsBuildableImpl implements _UpdateMajorsBuildable {
         (other.runtimeType == runtimeType &&
             other is _$UpdateMajorsBuildableImpl &&
             (identical(other.loading, loading) || other.loading == loading) &&
-            (identical(other.error, error) || other.error == error));
+            (identical(other.uploadLoading, uploadLoading) ||
+                other.uploadLoading == uploadLoading) &&
+            (identical(other.isLaptopFileOpen, isLaptopFileOpen) ||
+                other.isLaptopFileOpen == isLaptopFileOpen) &&
+            (identical(other.error, error) || other.error == error) &&
+            (identical(other.majors, majors) || other.majors == majors));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, loading, error);
+  int get hashCode => Object.hash(
+      runtimeType, loading, uploadLoading, isLaptopFileOpen, error, majors);
 
   /// Create a copy of UpdateMajorsBuildable
   /// with the given fields replaced by the non-null parameter values.
@@ -149,13 +227,23 @@ class _$UpdateMajorsBuildableImpl implements _UpdateMajorsBuildable {
 }
 
 abstract class _UpdateMajorsBuildable implements UpdateMajorsBuildable {
-  const factory _UpdateMajorsBuildable({final bool loading, final bool error}) =
-      _$UpdateMajorsBuildableImpl;
+  const factory _UpdateMajorsBuildable(
+      {final bool loading,
+      final bool uploadLoading,
+      final bool isLaptopFileOpen,
+      final bool error,
+      final MajorsModel majors}) = _$UpdateMajorsBuildableImpl;
 
   @override
   bool get loading;
   @override
+  bool get uploadLoading;
+  @override
+  bool get isLaptopFileOpen;
+  @override
   bool get error;
+  @override
+  MajorsModel get majors;
 
   /// Create a copy of UpdateMajorsBuildable
   /// with the given fields replaced by the non-null parameter values.

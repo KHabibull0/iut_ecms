@@ -69,6 +69,7 @@ download,Download,Yuklab olish,Скачать
 read,Read,O'qish,Читать
 typeBook,ebook,elektron kitob,электронная книга
 typeLetter,letter,xat,письмо
+<<<<<<< HEAD
 typeArticle,articles,maqolalar,статьи
 accessibility,Accessibility,Qulaylik,Доступность
 timeCost,Time and Cost Saving,Vaqt va xarajatlarni tejash,Экономия времени и средств
@@ -77,3 +78,6 @@ centralized,Centralized Repository for Academic Resources,Akademik resurslar uch
 desc_book,"Digital versions of books that provide a convenient way to read and access literature or educational materials. These may include novels, textbooks, guides, and more, often formatted for easy navigation and searchability.","Kitoblarning raqamli versiyalari, bu adabiyot yoki o‘quv materiallarini o‘qish va ularga kirish uchun qulay usulni taqdim etadi. Ularga romanlar, darsliklar, qo‘llanmalar va boshqalar kiradi, ko‘pincha qulay navigatsiya va qidiruv imkoniyatlari bilan formatlangan.","Цифровые версии книг, которые предоставляют удобный способ чтения и доступа к литературе или учебным материалам. Это могут быть романы, учебники, руководства и многое другое, часто оформленные для удобной навигации и поиска."
 desc_letter,"Personal or professional correspondences, such as emails, memos, or formal letters. These documents may serve as records of communication or historical archives within your content system.","Shaxsiy yoki kasbiy yozishmalar, masalan, elektron pochta, eslatmalar yoki rasmiy xatlar. Ushbu hujjatlar muloqot yozuvlari yoki kontent tizimingizdagi tarixiy arxivlar sifatida xizmat qilishi mumkin.","Личные или профессиональные переписки, такие как электронные письма, заметки или официальные письма. Эти документы могут служить записями общения или историческими архивами в вашей системе контента."
 desc_articles,"Short-form written content covering various topics, including news, research, or opinion pieces. These are typically used for sharing insights, updates, or information in an easily digestible for","Turli mavzularni yorituvchi qisqa yozma kontent, jumladan, yangiliklar, tadqiqotlar yoki fikr-mulohazalar. Odatda, bu bilim, yangilanish yoki maʼlumotlarni oson o‘zlashtiriladigan shaklda almashish uchun ishlatiladi.","Краткий письменный контент, охватывающий различные темы, включая новости, исследования или мнения. Обычно используются для обмена инсайтами, обновлениями или информацией в легко усвояемой форме."
+=======
+typeArticle,articles,maqolalar,статьи
+>>>>>>> 157397f2e5cb1d8c9100890db4fd7f96f1a7869e

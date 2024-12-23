@@ -8,12 +8,12 @@ part of 'majors_model.dart';
 
 _$MajorsModelImpl _$$MajorsModelImplFromJson(Map<String, dynamic> json) =>
     _$MajorsModelImpl(
-      id: (json['id'] as num?)?.toInt(),
+      majorId: (json['majorId'] as num?)?.toInt(),
       name: json['name'] as String?,
     );
 
 Map<String, dynamic> _$$MajorsModelImplToJson(_$MajorsModelImpl instance) =>
     <String, dynamic>{
-      'id': instance.id,
+      'majorId': instance.majorId,
       'name': instance.name,
     };

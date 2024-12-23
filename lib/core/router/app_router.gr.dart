@@ -337,11 +337,17 @@ class UpdateELettersRoute extends PageRouteInfo<void> {
 /// [UpdateMajorsPage]
 class UpdateMajorsRoute extends PageRouteInfo<UpdateMajorsRouteArgs> {
   UpdateMajorsRoute({
+    required int majorId,
+    required String majorName,
     Key? key,
     List<PageRouteInfo>? children,
   }) : super(
           UpdateMajorsRoute.name,
-          args: UpdateMajorsRouteArgs(key: key),
+          args: UpdateMajorsRouteArgs(
+            majorId: majorId,
+            majorName: majorName,
+            key: key,
+          ),
           initialChildren: children,
         );
 
@@ -350,21 +356,32 @@ class UpdateMajorsRoute extends PageRouteInfo<UpdateMajorsRouteArgs> {
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      final args = data.argsAs<UpdateMajorsRouteArgs>(
-          orElse: () => const UpdateMajorsRouteArgs());
-      return UpdateMajorsPage(key: args.key);
+      final args = data.argsAs<UpdateMajorsRouteArgs>();
+      return UpdateMajorsPage(
+        majorId: args.majorId,
+        majorName: args.majorName,
+        key: args.key,
+      );
     },
   );
 }
 
 class UpdateMajorsRouteArgs {
-  const UpdateMajorsRouteArgs({this.key});
+  const UpdateMajorsRouteArgs({
+    required this.majorId,
+    required this.majorName,
+    this.key,
+  });
+
+  final int majorId;
+
+  final String majorName;
 
   final Key? key;
 
   @override
   String toString() {
-    return 'UpdateMajorsRouteArgs{key: $key}';
+    return 'UpdateMajorsRouteArgs{majorId: $majorId, majorName: $majorName, key: $key}';
   }
 }
 

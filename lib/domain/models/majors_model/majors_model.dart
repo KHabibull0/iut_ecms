@@ -6,7 +6,7 @@ part 'majors_model.g.dart';
 @freezed
 class MajorsModel with _$MajorsModel {
   const factory MajorsModel({
-    int? id,
+    int? majorId,
     String? name,
   }) = _MajorsModel;
 

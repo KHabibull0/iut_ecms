@@ -6,4 +6,6 @@ abstract class ManagerDashboardRepository {
   Future<Either<String, ManagerDashboardModel>> getDashboardStatistics();
   Future<Either<String, List<MajorsModel>>> getMajors();
   Future<String> addMajor({required MajorsModel major});
+  Future<String> updateMajor({required MajorsModel major});
+  Future<String> deleteMajor({required MajorsModel major});
 }

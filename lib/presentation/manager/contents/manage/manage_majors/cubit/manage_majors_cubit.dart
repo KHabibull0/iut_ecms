@@ -5,7 +5,7 @@ import 'package:iut_ecms/presentation/manager/contents/manage/manage_majors/cubi
 
 @injectable
 class ManageMajorsCubit extends BaseCubit<ManageMajorsBuildable, ManageMajorsListenable> {
-  ManageMajorsCubit(this._managerDashboardRepository) : super(const ManageMajorsBuildable()){
+  ManageMajorsCubit(this._managerDashboardRepository) : super(const ManageMajorsBuildable()) {
     getMajors();
   }
 
@@ -16,6 +16,14 @@ class ManageMajorsCubit extends BaseCubit<ManageMajorsBuildable, ManageMajorsLis
       final newHoverStates = {...buildable.hoverStates, key: isHovering};
       return buildable.copyWith(hoverStates: newHoverStates);
     });
+  }
+
+  Future<String> deleteMajor(int majorId, int index) async {
+    build((buildable) => buildable.copyWith(loading: true, error: false));
+    final major = buildable.majors[index].copyWith(majorId: majorId, name: null);
+    final result = await _managerDashboardRepository.deleteMajor(major: major);
+    build((buildable) => buildable.copyWith(loading: false, error: false));
+    return result;
   }
 
   Future<String> getMajors() async {

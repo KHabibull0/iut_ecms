@@ -56,7 +56,7 @@ class ManageMajorsPage
             icon: Icon(Icons.add, color: AppColors.white),
             text: 'Add Major',
             radius: 10,
-            onPressed: () => context.router.push(UpdateMajorsRoute()),
+            onPressed: () => context.router.push(UpdateMajorsRoute(majorName: '', majorId: 0)),
           ),
         ),
       ),
@@ -170,7 +170,14 @@ class ManageMajorsPage
                                                 onExit: (_) => _manageMajorsCubit.updateHovering(
                                                     deleteKey, false),
                                                 child: InkWell(
-                                                  onTap: () => {},
+                                                  onTap: () async {
+                                                    await _manageMajorsCubit
+                                                        .deleteMajor(
+                                                            state.majors[index].majorId ?? 0, index)
+                                                        .then((_) async {
+                                                      await _manageMajorsCubit.getMajors();
+                                                    });
+                                                  },
                                                   child: Container(
                                                     padding: const EdgeInsets.all(6),
                                                     child: Text(
@@ -200,9 +207,12 @@ class ManageMajorsPage
                                                 onExit: (_) => _manageMajorsCubit.updateHovering(
                                                     updateKey, false),
                                                 child: InkWell(
-                                                  onTap: () =>
-                                                      context.router.push(UpdateMajorsRoute()),
-                                                  onHover: (hovering) {},
+                                                  onTap: () => context.router.push(
+                                                    UpdateMajorsRoute(
+                                                      majorName: state.majors[index].name ?? '',
+                                                      majorId: state.majors[index].majorId ?? 0,
+                                                    ),
+                                                  ),
                                                   child: Container(
                                                     padding: const EdgeInsets.all(6),
                                                     child: Text(

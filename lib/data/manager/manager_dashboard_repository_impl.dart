@@ -140,4 +140,74 @@ class ManagerDashboardRepositoryImpl extends ManagerDashboardRepository {
     }
     return 'Unknown error occurred';
   }
+
+  @override
+  Future<String> updateMajor({required MajorsModel major}) async {
+    await _socketManager.connect(SocketConfig.SOCKET_HOST, SocketConfig.SOCKET_PORT);
+    final String accessToken = _sharedPrefs.getTokens().accessToken!;
+    final encodedData = jsonEncode(major.toJson());
+
+    final baseRequest = BaseRequestModel(
+      action: SocketActions.UPDATE_MAJOR,
+      entity: SocketEntity.MAJOR,
+      data: encodedData,
+      token: accessToken,
+    );
+    final request = jsonEncode(baseRequest.toJson());
+    log(request);
+    _socketManager.send(request);
+
+    final response = await _socketManager.dataStream.first;
+    final decodedResponse = jsonDecode(response);
+    final baseResponse = BaseResponseModel.fromJson(decodedResponse);
+
+    if (baseResponse.status == ResponseStatus.SUCCESS.name) {
+      if (baseResponse.data != null) {
+        return '';
+      }
+    } else if (baseResponse.status == ResponseStatus.ERROR.name) {
+      if (baseResponse.data != null) {
+        final errorData = jsonDecode(baseResponse.data!);
+        final errorMessage = errorData['message'] ?? 'Unknown error occurred';
+        log('Error message: $errorMessage');
+        return errorMessage;
+      }
+    }
+    return 'Unknown error occurred';
+  }
+
+  @override
+  Future<String> deleteMajor({required MajorsModel major}) async {
+    await _socketManager.connect(SocketConfig.SOCKET_HOST, SocketConfig.SOCKET_PORT);
+    final String accessToken = _sharedPrefs.getTokens().accessToken!;
+    final encodedData = jsonEncode(major.toJson());
+
+    final baseRequest = BaseRequestModel(
+      action: SocketActions.DELETE_MAJOR,
+      entity: SocketEntity.MAJOR,
+      data: encodedData,
+      token: accessToken,
+    );
+    final request = jsonEncode(baseRequest.toJson());
+    log(request);
+    _socketManager.send(request);
+
+    final response = await _socketManager.dataStream.first;
+    final decodedResponse = jsonDecode(response);
+    final baseResponse = BaseResponseModel.fromJson(decodedResponse);
+
+    if (baseResponse.status == ResponseStatus.SUCCESS.name) {
+      if (baseResponse.data != null) {
+        return '';
+      }
+    } else if (baseResponse.status == ResponseStatus.ERROR.name) {
+      if (baseResponse.data != null) {
+        final errorData = jsonDecode(baseResponse.data!);
+        final errorMessage = errorData['message'] ?? 'Unknown error occurred';
+        log('Error message: $errorMessage');
+        return errorMessage;
+      }
+    }
+    return 'Unknown error occurred';
+  }
 }

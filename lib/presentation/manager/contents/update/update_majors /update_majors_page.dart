@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -15,7 +13,10 @@ import 'package:iut_ecms/presentation/manager/contents/update/update_majors%20/c
 @RoutePage()
 class UpdateMajorsPage
     extends BasePage<UpdateMajorsCubit, UpdateMajorsBuildable, UpdateMajorsListenable> {
-  UpdateMajorsPage({super.key});
+  UpdateMajorsPage({required this.majorId, required this.majorName, super.key});
+
+  final String majorName;
+  final int majorId;
 
   final TextEditingController controller = TextEditingController();
 
@@ -23,6 +24,9 @@ class UpdateMajorsPage
   @override
   void init(BuildContext context) {
     _updateMajorCubit = context.read<UpdateMajorsCubit>();
+    if (majorName.isNotEmpty) {
+      controller.text = majorName;
+    }
     super.init(context);
   }
 
@@ -103,6 +107,7 @@ class UpdateMajorsPage
                           ),
                           const SizedBox(height: 4),
                           CommonTextField(
+                            controller: controller,
                             hint: 'Enter Major Name',
                             borderRadius: 10,
                             onChanged: (value) {
@@ -121,15 +126,39 @@ class UpdateMajorsPage
                         backgroundColor: AppColors.blueOriginal,
                         text: 'Save changes',
                         onPressed: () {
-                          if ((state.majors.name ?? '').isNotEmpty) {
-                            log('message');
-                            _updateMajorCubit.addMajor().then((_) {
+                          if (majorName.isNotEmpty) {
+                            _updateMajorCubit.updateMajor(majorId, controller.text).then((_) {
                               ResultNotifier(
-                                message: 'MAJOR ADDED SUCCESSFULLY',
+                                message: 'MAJOR UPDATED SUCCESSFULLY',
                                 context: context,
                               ).showSuccess();
                               context.router.maybePop();
+                            }).catchError((error) {
+                              ResultNotifier(
+                                message: 'FAILED TO UPDATE MAJOR: ${error.toString()}',
+                                context: context,
+                              ).showError();
                             });
+                          } else {
+                            if ((state.majors.name ?? '').isNotEmpty) {
+                              _updateMajorCubit.addMajor().then((_) {
+                                ResultNotifier(
+                                  message: 'MAJOR ADDED SUCCESSFULLY',
+                                  context: context,
+                                ).showSuccess();
+                                context.router.maybePop();
+                              }).catchError((error) {
+                                ResultNotifier(
+                                  message: 'FAILED TO ADD MAJOR: ${error.toString()}',
+                                  context: context,
+                                ).showError();
+                              });
+                            } else {
+                              ResultNotifier(
+                                message: 'Please enter a valid major name.',
+                                context: context,
+                              ).showError();
+                            }
                           }
                         },
                       ),

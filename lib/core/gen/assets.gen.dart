@@ -19,15 +19,98 @@ class $AssetsImagesGen {
   AssetGenImage get appLogo =>
       const AssetGenImage('assets/images/app_logo.png');
 
+  /// File path: assets/images/article.jpeg
+  AssetGenImage get article =>
+      const AssetGenImage('assets/images/article.jpeg');
+
   /// File path: assets/images/auth_welcome.png
   AssetGenImage get authWelcome =>
       const AssetGenImage('assets/images/auth_welcome.png');
+
+  /// File path: assets/images/banner.jpg
+  AssetGenImage get banner => const AssetGenImage('assets/images/banner.jpg');
+
+  /// File path: assets/images/benefit_academic.jpeg
+  AssetGenImage get benefitAcademic =>
+      const AssetGenImage('assets/images/benefit_academic.jpeg');
+
+  /// File path: assets/images/benefit_accessibility.png
+  AssetGenImage get benefitAccessibility =>
+      const AssetGenImage('assets/images/benefit_accessibility.png');
+
+  /// File path: assets/images/benefit_learning.jpg
+  AssetGenImage get benefitLearning =>
+      const AssetGenImage('assets/images/benefit_learning.jpg');
+
+  /// File path: assets/images/benefit_time.jpg
+  AssetGenImage get benefitTime =>
+      const AssetGenImage('assets/images/benefit_time.jpg');
+
+  /// File path: assets/images/book.jpg
+  AssetGenImage get book => const AssetGenImage('assets/images/book.jpg');
+
+  /// File path: assets/images/letter.jpeg
+  AssetGenImage get letter => const AssetGenImage('assets/images/letter.jpeg');
+
+  /// File path: assets/images/major_business.jpeg
+  AssetGenImage get majorBusiness =>
+      const AssetGenImage('assets/images/major_business.jpeg');
+
+  /// File path: assets/images/major_computer.jpeg
+  AssetGenImage get majorComputer =>
+      const AssetGenImage('assets/images/major_computer.jpeg');
+
+  /// File path: assets/images/major_education.jpg
+  AssetGenImage get majorEducation =>
+      const AssetGenImage('assets/images/major_education.jpg');
+
+  /// File path: assets/images/major_health.jpeg
+  AssetGenImage get majorHealth =>
+      const AssetGenImage('assets/images/major_health.jpeg');
+
+  /// File path: assets/images/tot_books.jpg
+  AssetGenImage get totBooks =>
+      const AssetGenImage('assets/images/tot_books.jpg');
+
+  /// File path: assets/images/tot_content.jpeg
+  AssetGenImage get totContent =>
+      const AssetGenImage('assets/images/tot_content.jpeg');
+
+  /// File path: assets/images/tot_major.jpeg
+  AssetGenImage get totMajor =>
+      const AssetGenImage('assets/images/tot_major.jpeg');
+
+  /// File path: assets/images/tot_users.jpg
+  AssetGenImage get totUsers =>
+      const AssetGenImage('assets/images/tot_users.jpg');
 
   /// File path: assets/images/verify.png
   AssetGenImage get verify => const AssetGenImage('assets/images/verify.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [appLogo, authWelcome, verify];
+  List<AssetGenImage> get values => [
+        appLogo,
+        article,
+        authWelcome,
+        banner,
+        benefitAcademic,
+        benefitAccessibility,
+        benefitLearning,
+        benefitTime,
+        book,
+        letter,
+        majorBusiness,
+        majorComputer,
+        majorEducation,
+        majorHealth,
+        totBooks,
+        totContent,
+        totMajor,
+        totUsers,
+        verify
+      ];
+
+  get bannerJpg => null;
 }
 
 class $AssetsLocalizationGen {

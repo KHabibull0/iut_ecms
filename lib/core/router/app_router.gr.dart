@@ -388,6 +388,41 @@ class UpdateSubjectsRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [UserArticlesPage]
+class UserArticlesRoute extends PageRouteInfo<UserArticlesRouteArgs> {
+  UserArticlesRoute({
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
+          UserArticlesRoute.name,
+          args: UserArticlesRouteArgs(key: key),
+          initialChildren: children,
+        );
+
+  static const String name = 'UserArticlesRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<UserArticlesRouteArgs>(
+          orElse: () => const UserArticlesRouteArgs());
+      return UserArticlesPage(key: args.key);
+    },
+  );
+}
+
+class UserArticlesRouteArgs {
+  const UserArticlesRouteArgs({this.key});
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'UserArticlesRouteArgs{key: $key}';
+  }
+}
+
+/// generated route for
 /// [UserContentTypePage]
 class UserContentTypeRoute extends PageRouteInfo<UserContentTypeRouteArgs> {
   UserContentTypeRoute({

@@ -109,8 +109,6 @@ class $AssetsImagesGen {
         totUsers,
         verify
       ];
-
-  get bannerJpg => null;
 }
 
 class $AssetsLocalizationGen {

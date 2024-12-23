@@ -1,10 +1,8 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:iut_ecms/core/base/base_page.dart';
 import 'package:iut_ecms/core/constants/app_colors.dart';
 import 'package:iut_ecms/core/extensions/screen_size_extention.dart';
-import 'package:iut_ecms/core/gen/assets.gen.dart';
 import 'package:iut_ecms/core/widgets/common_button.dart';
 import 'package:iut_ecms/core/widgets/common_text_filed.dart';
 import 'package:iut_ecms/presentation/manager/contents/update/update_majors%20/cubit/update_majors_cubit.dart';
@@ -81,14 +79,6 @@ class UpdateMajorsPage
                 ),
                 child: Column(
                   children: [
-                    Container(
-                      height: 130,
-                      width: fixedWidth,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: AppColors.primary,
-                      ),
-                    ),
                     const SizedBox(height: 32),
                     SizedBox(
                       width: fixedWidth,
@@ -111,46 +101,6 @@ class UpdateMajorsPage
                           ),
                         ],
                       ),
-                    ),
-                    const SizedBox(height: 42),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Upload Photo here',
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w400,
-                            color: AppColors.headline,
-                          ),
-                        ),
-                        const SizedBox(height: 4),
-                        SizedBox(
-                          height: 130,
-                          width: fixedWidth,
-                          child: DottedBorder(
-                            color: AppColors.dottedBorder,
-                            strokeWidth: 1,
-                            dashPattern: [10, 8],
-                            borderType: BorderType.RRect,
-                            radius: Radius.circular(10),
-                            child: Center(
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Assets.svgs.download.svg(),
-                                  const SizedBox(height: 8),
-                                  Text(
-                                    'Upload file here',
-                                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
                     ),
                     const SizedBox(height: 62),
                     SizedBox(

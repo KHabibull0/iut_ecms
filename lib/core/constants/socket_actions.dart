@@ -7,4 +7,9 @@ class SocketActions {
   static const String CREATE_BOOK = "CREATE_BOOK";
   static const String GET_STATISTICS = "GET_STATISTICS";
   static const String ADD_MAJOR = "ADD_MAJOR";
+  static const String UPDATE_MAJOR = "UPDATE_MAJOR";
+  static const String GET_MAJOR_NAMES = "GET_MAJOR_NAMES";
+  static const String DELETE_MAJOR = "DELETE_MAJOR";
+  static const String ADD_SUBJECT = "ADD_SUBJECT";
+  static const String GET_SUBJECT_NAMES = "GET_SUBJECT_NAMES";
 }

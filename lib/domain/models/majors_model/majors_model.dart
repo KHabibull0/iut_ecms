@@ -8,9 +8,6 @@ class MajorsModel with _$MajorsModel {
   const factory MajorsModel({
     int? id,
     String? name,
-    String? description,
-    String? photoName,
-    String? photo,
   }) = _MajorsModel;
 
   factory MajorsModel.fromJson(Map<String, dynamic> json) => _$MajorsModelFromJson(json);

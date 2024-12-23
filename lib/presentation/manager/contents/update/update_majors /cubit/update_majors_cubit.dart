@@ -18,26 +18,9 @@ class UpdateMajorsCubit extends BaseCubit<UpdateMajorsBuildable, UpdateMajorsLis
     return result;
   }
 
-  void updateMajorModel({
-    String? name,
-    String? photoName,
-    String? photo,
-  }) {
-    final updatedMajor = buildable.majors.copyWith(
-      name: name ?? buildable.majors.name,
-      photoName: photoName ?? buildable.majors.photoName,
-      photo: photo ?? buildable.majors.photo,
-    );
+  void updateMajorModel({String? name}) {
+    final updatedMajor = buildable.majors.copyWith(name: name ?? buildable.majors.name);
 
     build((buildable) => buildable.copyWith(majors: updatedMajor));
-  }
-
-  String checkMajorFields() {
-    if (buildable.majors.name == null ||
-        buildable.majors.photo == null ||
-        buildable.majors.photoName == null) {
-      return 'Please fill all fields';
-    }
-    return '';
   }
 }

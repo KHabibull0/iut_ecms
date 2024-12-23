@@ -1,10 +1,14 @@
+import 'dart:developer';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iut_ecms/core/base/base_page.dart';
 import 'package:iut_ecms/core/constants/app_colors.dart';
 import 'package:iut_ecms/core/extensions/screen_size_extention.dart';
 import 'package:iut_ecms/core/widgets/common_button.dart';
 import 'package:iut_ecms/core/widgets/common_text_filed.dart';
+import 'package:iut_ecms/core/widgets/result_notifier.dart';
 import 'package:iut_ecms/presentation/manager/contents/update/update_majors%20/cubit/update_majors_cubit.dart';
 import 'package:iut_ecms/presentation/manager/contents/update/update_majors%20/cubit/update_majors_state.dart';
 
@@ -13,16 +17,20 @@ class UpdateMajorsPage
     extends BasePage<UpdateMajorsCubit, UpdateMajorsBuildable, UpdateMajorsListenable> {
   UpdateMajorsPage({super.key});
 
-  final List<String> _items = [
-    'Apple',
-    'Banana',
-    'Cherry',
-    'Date',
-    'ElderberryElderberryElderberryElderberryElderberryElderberryElderberryElderberryElderberryElderberryElderberryElderberryElderberryElderberry',
-    'Fig',
-    'Grapes',
-    'Honeydew',
-  ];
+  final TextEditingController controller = TextEditingController();
+
+  late UpdateMajorsCubit _updateMajorCubit;
+  @override
+  void init(BuildContext context) {
+    _updateMajorCubit = context.read<UpdateMajorsCubit>();
+    super.init(context);
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget builder(BuildContext context, UpdateMajorsBuildable state) {
@@ -97,7 +105,9 @@ class UpdateMajorsPage
                           CommonTextField(
                             hint: 'Enter Major Name',
                             borderRadius: 10,
-                            onChanged: (value) {},
+                            onChanged: (value) {
+                              _updateMajorCubit.updateMajorModel(name: value);
+                            },
                           ),
                         ],
                       ),
@@ -107,9 +117,21 @@ class UpdateMajorsPage
                       width: 200,
                       height: 48,
                       child: CommonButton.elevated(
+                        loading: state.loading,
                         backgroundColor: AppColors.blueOriginal,
                         text: 'Save changes',
-                        onPressed: () {},
+                        onPressed: () {
+                          if ((state.majors.name ?? '').isNotEmpty) {
+                            log('message');
+                            _updateMajorCubit.addMajor().then((_) {
+                              ResultNotifier(
+                                message: 'MAJOR ADDED SUCCESSFULLY',
+                                context: context,
+                              ).showSuccess();
+                              context.router.maybePop();
+                            });
+                          }
+                        },
                       ),
                     ),
                   ],

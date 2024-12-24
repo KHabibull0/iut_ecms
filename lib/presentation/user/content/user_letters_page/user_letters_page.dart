@@ -142,7 +142,8 @@ class UserLettersPage
                                 child: CommonButton.elevated(
                                   text: Strings.read,
                                   backgroundColor: AppColors.blueOriginal,
-                                  onPressed: () => context.router.push(UserDocumentReaderRoute()),
+                                  onPressed: () =>
+                                      context.router.push(UserDocumentReaderRoute(filePath: '')),
                                 ),
                               ),
                             ],

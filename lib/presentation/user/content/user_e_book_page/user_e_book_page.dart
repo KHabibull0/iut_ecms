@@ -1,4 +1,8 @@
+import 'dart:developer';
+import 'dart:io';
+
 import 'package:auto_route/auto_route.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:iut_ecms/core/base/base_page.dart';
 import 'package:iut_ecms/core/constants/app_colors.dart';
@@ -8,6 +12,7 @@ import 'package:iut_ecms/core/widgets/common_button.dart';
 import 'package:iut_ecms/core/widgets/custom_search_bar.dart';
 import 'package:iut_ecms/presentation/user/content/user_e_book_page/cubit/user_e_book_cubit.dart';
 import 'package:iut_ecms/presentation/user/content/user_e_book_page/cubit/user_e_book_state.dart';
+import 'package:path_provider/path_provider.dart';
 
 @RoutePage()
 class UserEBookPage extends BasePage<UserEBookCubit, UserEBookBuildable, UserEBookListenable> {
@@ -23,6 +28,53 @@ class UserEBookPage extends BasePage<UserEBookCubit, UserEBookBuildable, UserEBo
     'Grapes',
     'Honeydew',
   ];
+
+  Future<String> downloadPdf(String url, String fileName) async {
+    try {
+      Directory appDocDir = await getApplicationDocumentsDirectory();
+      String filePath = "${appDocDir.path}/$fileName";
+
+      if (File(filePath).existsSync()) {
+        log("File already exists at $filePath");
+        return filePath;
+      }
+
+      Dio dio = Dio();
+      Response response = await dio.download(
+        url,
+        filePath,
+        onReceiveProgress: (received, total) {
+          if (total != -1) {
+            log("Progress: ${(received / total * 100).toStringAsFixed(0)}%");
+          }
+        },
+      );
+
+      if (response.statusCode == 200) {
+        log("File downloaded successfully to $filePath");
+        return filePath;
+      } else {
+        throw Exception("Failed to download the file");
+      }
+    } catch (e) {
+      throw Exception("Error downloading file: $e");
+    }
+  }
+
+  Future<String> _downloadAndShowPath() async {
+    const String pdfUrl =
+        "https://drive.google.com/uc?export=download&id=1xUiZue-HYxZbXyzIB6lqa59KRBpG3iFB";
+    const String fileName = "example.pdf";
+
+    try {
+      String filePath = await downloadPdf(pdfUrl, fileName);
+      log(filePath);
+      return filePath;
+    } catch (e) {
+      log(e.toString());
+      return e.toString();
+    } finally {}
+  }
 
   @override
   Widget builder(BuildContext context, UserEBookBuildable state) {
@@ -178,7 +230,12 @@ class UserEBookPage extends BasePage<UserEBookCubit, UserEBookBuildable, UserEBo
                                 child: CommonButton.elevated(
                                   text: Strings.download,
                                   backgroundColor: AppColors.blueOriginal,
-                                  onPressed: () => context.router.push(UserDocumentReaderRoute()),
+                                  onPressed: () async {
+                                    await _downloadAndShowPath().then((value) {
+                                      log('$value');
+                                      context.router.push(UserDocumentReaderRoute(filePath: value));
+                                    });
+                                  },
                                 ),
                               ),
                             ],

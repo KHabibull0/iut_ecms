@@ -152,7 +152,8 @@ class UserArticlesPage
                                 child: CommonButton.elevated(
                                   text: Strings.download,
                                   backgroundColor: AppColors.blueOriginal,
-                                  onPressed: () => context.router.push(UserDocumentReaderRoute()),
+                                  onPressed: () =>
+                                      context.router.push(UserDocumentReaderRoute(filePath: '')),
                                 ),
                               ),
                             ],

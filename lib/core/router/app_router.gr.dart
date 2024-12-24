@@ -480,10 +480,14 @@ class UserDocumentReaderRoute
     extends PageRouteInfo<UserDocumentReaderRouteArgs> {
   UserDocumentReaderRoute({
     Key? key,
+    required String filePath,
     List<PageRouteInfo>? children,
   }) : super(
           UserDocumentReaderRoute.name,
-          args: UserDocumentReaderRouteArgs(key: key),
+          args: UserDocumentReaderRouteArgs(
+            key: key,
+            filePath: filePath,
+          ),
           initialChildren: children,
         );
 
@@ -492,21 +496,28 @@ class UserDocumentReaderRoute
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      final args = data.argsAs<UserDocumentReaderRouteArgs>(
-          orElse: () => const UserDocumentReaderRouteArgs());
-      return UserDocumentReaderPage(key: args.key);
+      final args = data.argsAs<UserDocumentReaderRouteArgs>();
+      return UserDocumentReaderPage(
+        key: args.key,
+        filePath: args.filePath,
+      );
     },
   );
 }
 
 class UserDocumentReaderRouteArgs {
-  const UserDocumentReaderRouteArgs({this.key});
+  const UserDocumentReaderRouteArgs({
+    this.key,
+    required this.filePath,
+  });
 
   final Key? key;
 
+  final String filePath;
+
   @override
   String toString() {
-    return 'UserDocumentReaderRouteArgs{key: $key}';
+    return 'UserDocumentReaderRouteArgs{key: $key, filePath: $filePath}';
   }
 }
 

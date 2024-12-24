@@ -6,7 +6,7 @@ part of 'strings.dart';
 // LocalizationGenerator
 // **************************************************************************
 
-// Generated at: Mon, 23 Dec 2024 12:06:23 +05:00
+// Generated at: Mon, 23 Dec 2024 19:10:28 +05:00
 class Strings {
   static const supportedLocales = [
     Locale('en', 'US'),

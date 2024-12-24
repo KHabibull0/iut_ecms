@@ -58,6 +58,9 @@ dependencies:
   path: ^1.9.0
   googleapis: ^13.2.0
   googleapis_auth: ^1.6.0
+  path_provider: ^2.1.5
+  pdfrx: ^1.0.97
+  url_launcher: ^6.3.1
 
 dev_dependencies:
   flutter_test:

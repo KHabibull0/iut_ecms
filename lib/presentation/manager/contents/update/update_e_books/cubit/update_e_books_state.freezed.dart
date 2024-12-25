@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$UpdateEBooksBuildable {
   bool get loading => throw _privateConstructorUsedError;
+  bool get uploadFileLoading => throw _privateConstructorUsedError;
   bool get error => throw _privateConstructorUsedError;
 
   /// Create a copy of UpdateEBooksBuildable
@@ -32,7 +33,7 @@ abstract class $UpdateEBooksBuildableCopyWith<$Res> {
           $Res Function(UpdateEBooksBuildable) then) =
       _$UpdateEBooksBuildableCopyWithImpl<$Res, UpdateEBooksBuildable>;
   @useResult
-  $Res call({bool loading, bool error});
+  $Res call({bool loading, bool uploadFileLoading, bool error});
 }
 
 /// @nodoc
@@ -52,12 +53,17 @@ class _$UpdateEBooksBuildableCopyWithImpl<$Res,
   @override
   $Res call({
     Object? loading = null,
+    Object? uploadFileLoading = null,
     Object? error = null,
   }) {
     return _then(_value.copyWith(
       loading: null == loading
           ? _value.loading
           : loading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      uploadFileLoading: null == uploadFileLoading
+          ? _value.uploadFileLoading
+          : uploadFileLoading // ignore: cast_nullable_to_non_nullable
               as bool,
       error: null == error
           ? _value.error
@@ -76,7 +82,7 @@ abstract class _$$UpdateEBooksBuildableImplCopyWith<$Res>
       __$$UpdateEBooksBuildableImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool loading, bool error});
+  $Res call({bool loading, bool uploadFileLoading, bool error});
 }
 
 /// @nodoc
@@ -94,12 +100,17 @@ class __$$UpdateEBooksBuildableImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? loading = null,
+    Object? uploadFileLoading = null,
     Object? error = null,
   }) {
     return _then(_$UpdateEBooksBuildableImpl(
       loading: null == loading
           ? _value.loading
           : loading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      uploadFileLoading: null == uploadFileLoading
+          ? _value.uploadFileLoading
+          : uploadFileLoading // ignore: cast_nullable_to_non_nullable
               as bool,
       error: null == error
           ? _value.error
@@ -112,18 +123,24 @@ class __$$UpdateEBooksBuildableImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$UpdateEBooksBuildableImpl implements _UpdateEBooksBuildable {
-  const _$UpdateEBooksBuildableImpl({this.loading = false, this.error = false});
+  const _$UpdateEBooksBuildableImpl(
+      {this.loading = false,
+      this.uploadFileLoading = false,
+      this.error = false});
 
   @override
   @JsonKey()
   final bool loading;
   @override
   @JsonKey()
+  final bool uploadFileLoading;
+  @override
+  @JsonKey()
   final bool error;
 
   @override
   String toString() {
-    return 'UpdateEBooksBuildable(loading: $loading, error: $error)';
+    return 'UpdateEBooksBuildable(loading: $loading, uploadFileLoading: $uploadFileLoading, error: $error)';
   }
 
   @override
@@ -132,11 +149,14 @@ class _$UpdateEBooksBuildableImpl implements _UpdateEBooksBuildable {
         (other.runtimeType == runtimeType &&
             other is _$UpdateEBooksBuildableImpl &&
             (identical(other.loading, loading) || other.loading == loading) &&
+            (identical(other.uploadFileLoading, uploadFileLoading) ||
+                other.uploadFileLoading == uploadFileLoading) &&
             (identical(other.error, error) || other.error == error));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, loading, error);
+  int get hashCode =>
+      Object.hash(runtimeType, loading, uploadFileLoading, error);
 
   /// Create a copy of UpdateEBooksBuildable
   /// with the given fields replaced by the non-null parameter values.
@@ -149,11 +169,15 @@ class _$UpdateEBooksBuildableImpl implements _UpdateEBooksBuildable {
 }
 
 abstract class _UpdateEBooksBuildable implements UpdateEBooksBuildable {
-  const factory _UpdateEBooksBuildable({final bool loading, final bool error}) =
-      _$UpdateEBooksBuildableImpl;
+  const factory _UpdateEBooksBuildable(
+      {final bool loading,
+      final bool uploadFileLoading,
+      final bool error}) = _$UpdateEBooksBuildableImpl;
 
   @override
   bool get loading;
+  @override
+  bool get uploadFileLoading;
   @override
   bool get error;
 

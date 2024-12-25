@@ -38,7 +38,6 @@ class UserArticlesPage
                 InkWell(
                   onTap: () {
                     context.router.maybePop();
-                    //////
                   },
                   borderRadius: BorderRadius.circular(100),
                   child: SizedBox(

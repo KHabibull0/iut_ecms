@@ -12,4 +12,8 @@ class SocketActions {
   static const String DELETE_MAJOR = "DELETE_MAJOR";
   static const String ADD_SUBJECT = "ADD_SUBJECT";
   static const String GET_SUBJECT_NAMES = "GET_SUBJECT_NAMES";
+  static const String UPDATE_SUBJECT = "UPDATE_SUBJECT";
+  static const String DELETE_SUBJECT = "DELETE_SUBJECT";
+  static const String GET_BOOKS = "GET_BOOKS";
+  static const String DELETE_BOOK = "DELETE_BOOK";
 }

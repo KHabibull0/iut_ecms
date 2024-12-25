@@ -38,6 +38,7 @@ class SplashPage extends BasePage<SplashCubit, SplashBuildable, SplashListenable
   @override
   Widget builder(BuildContext context, SplashBuildable state) {
     return Scaffold(
+      backgroundColor: AppColors.white,
       body: Stack(
         children: [
           Center(child: Assets.images.appLogo.image(height: 150, width: 300)),

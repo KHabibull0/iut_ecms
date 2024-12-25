@@ -19,7 +19,9 @@ mixin _$ManageSubjectsBuildable {
   bool get loading => throw _privateConstructorUsedError;
   bool get error => throw _privateConstructorUsedError;
   String get selectedMajor => throw _privateConstructorUsedError;
-  List<String> get majorsList => throw _privateConstructorUsedError;
+  int get currentMajorId => throw _privateConstructorUsedError;
+  List<SubjectsModel> get subjectsList => throw _privateConstructorUsedError;
+  List<MajorsModel> get majorsList => throw _privateConstructorUsedError;
   Map<String, bool> get hoverStates => throw _privateConstructorUsedError;
 
   /// Create a copy of ManageSubjectsBuildable
@@ -39,7 +41,9 @@ abstract class $ManageSubjectsBuildableCopyWith<$Res> {
       {bool loading,
       bool error,
       String selectedMajor,
-      List<String> majorsList,
+      int currentMajorId,
+      List<SubjectsModel> subjectsList,
+      List<MajorsModel> majorsList,
       Map<String, bool> hoverStates});
 }
 
@@ -62,6 +66,8 @@ class _$ManageSubjectsBuildableCopyWithImpl<$Res,
     Object? loading = null,
     Object? error = null,
     Object? selectedMajor = null,
+    Object? currentMajorId = null,
+    Object? subjectsList = null,
     Object? majorsList = null,
     Object? hoverStates = null,
   }) {
@@ -78,10 +84,18 @@ class _$ManageSubjectsBuildableCopyWithImpl<$Res,
           ? _value.selectedMajor
           : selectedMajor // ignore: cast_nullable_to_non_nullable
               as String,
+      currentMajorId: null == currentMajorId
+          ? _value.currentMajorId
+          : currentMajorId // ignore: cast_nullable_to_non_nullable
+              as int,
+      subjectsList: null == subjectsList
+          ? _value.subjectsList
+          : subjectsList // ignore: cast_nullable_to_non_nullable
+              as List<SubjectsModel>,
       majorsList: null == majorsList
           ? _value.majorsList
           : majorsList // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as List<MajorsModel>,
       hoverStates: null == hoverStates
           ? _value.hoverStates
           : hoverStates // ignore: cast_nullable_to_non_nullable
@@ -103,7 +117,9 @@ abstract class _$$ManageSubjectsBuildableImplCopyWith<$Res>
       {bool loading,
       bool error,
       String selectedMajor,
-      List<String> majorsList,
+      int currentMajorId,
+      List<SubjectsModel> subjectsList,
+      List<MajorsModel> majorsList,
       Map<String, bool> hoverStates});
 }
 
@@ -125,6 +141,8 @@ class __$$ManageSubjectsBuildableImplCopyWithImpl<$Res>
     Object? loading = null,
     Object? error = null,
     Object? selectedMajor = null,
+    Object? currentMajorId = null,
+    Object? subjectsList = null,
     Object? majorsList = null,
     Object? hoverStates = null,
   }) {
@@ -141,10 +159,18 @@ class __$$ManageSubjectsBuildableImplCopyWithImpl<$Res>
           ? _value.selectedMajor
           : selectedMajor // ignore: cast_nullable_to_non_nullable
               as String,
+      currentMajorId: null == currentMajorId
+          ? _value.currentMajorId
+          : currentMajorId // ignore: cast_nullable_to_non_nullable
+              as int,
+      subjectsList: null == subjectsList
+          ? _value._subjectsList
+          : subjectsList // ignore: cast_nullable_to_non_nullable
+              as List<SubjectsModel>,
       majorsList: null == majorsList
           ? _value._majorsList
           : majorsList // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as List<MajorsModel>,
       hoverStates: null == hoverStates
           ? _value._hoverStates
           : hoverStates // ignore: cast_nullable_to_non_nullable
@@ -159,10 +185,13 @@ class _$ManageSubjectsBuildableImpl implements _ManageSubjectsBuildable {
   const _$ManageSubjectsBuildableImpl(
       {this.loading = false,
       this.error = false,
-      this.selectedMajor = '',
-      final List<String> majorsList = const [],
+      this.selectedMajor = 'Select Major',
+      this.currentMajorId = 0,
+      final List<SubjectsModel> subjectsList = const [],
+      final List<MajorsModel> majorsList = const [],
       final Map<String, bool> hoverStates = const {}})
-      : _majorsList = majorsList,
+      : _subjectsList = subjectsList,
+        _majorsList = majorsList,
         _hoverStates = hoverStates;
 
   @override
@@ -174,10 +203,22 @@ class _$ManageSubjectsBuildableImpl implements _ManageSubjectsBuildable {
   @override
   @JsonKey()
   final String selectedMajor;
-  final List<String> _majorsList;
   @override
   @JsonKey()
-  List<String> get majorsList {
+  final int currentMajorId;
+  final List<SubjectsModel> _subjectsList;
+  @override
+  @JsonKey()
+  List<SubjectsModel> get subjectsList {
+    if (_subjectsList is EqualUnmodifiableListView) return _subjectsList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_subjectsList);
+  }
+
+  final List<MajorsModel> _majorsList;
+  @override
+  @JsonKey()
+  List<MajorsModel> get majorsList {
     if (_majorsList is EqualUnmodifiableListView) return _majorsList;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_majorsList);
@@ -194,7 +235,7 @@ class _$ManageSubjectsBuildableImpl implements _ManageSubjectsBuildable {
 
   @override
   String toString() {
-    return 'ManageSubjectsBuildable(loading: $loading, error: $error, selectedMajor: $selectedMajor, majorsList: $majorsList, hoverStates: $hoverStates)';
+    return 'ManageSubjectsBuildable(loading: $loading, error: $error, selectedMajor: $selectedMajor, currentMajorId: $currentMajorId, subjectsList: $subjectsList, majorsList: $majorsList, hoverStates: $hoverStates)';
   }
 
   @override
@@ -206,6 +247,10 @@ class _$ManageSubjectsBuildableImpl implements _ManageSubjectsBuildable {
             (identical(other.error, error) || other.error == error) &&
             (identical(other.selectedMajor, selectedMajor) ||
                 other.selectedMajor == selectedMajor) &&
+            (identical(other.currentMajorId, currentMajorId) ||
+                other.currentMajorId == currentMajorId) &&
+            const DeepCollectionEquality()
+                .equals(other._subjectsList, _subjectsList) &&
             const DeepCollectionEquality()
                 .equals(other._majorsList, _majorsList) &&
             const DeepCollectionEquality()
@@ -218,6 +263,8 @@ class _$ManageSubjectsBuildableImpl implements _ManageSubjectsBuildable {
       loading,
       error,
       selectedMajor,
+      currentMajorId,
+      const DeepCollectionEquality().hash(_subjectsList),
       const DeepCollectionEquality().hash(_majorsList),
       const DeepCollectionEquality().hash(_hoverStates));
 
@@ -236,7 +283,9 @@ abstract class _ManageSubjectsBuildable implements ManageSubjectsBuildable {
       {final bool loading,
       final bool error,
       final String selectedMajor,
-      final List<String> majorsList,
+      final int currentMajorId,
+      final List<SubjectsModel> subjectsList,
+      final List<MajorsModel> majorsList,
       final Map<String, bool> hoverStates}) = _$ManageSubjectsBuildableImpl;
 
   @override
@@ -246,7 +295,11 @@ abstract class _ManageSubjectsBuildable implements ManageSubjectsBuildable {
   @override
   String get selectedMajor;
   @override
-  List<String> get majorsList;
+  int get currentMajorId;
+  @override
+  List<SubjectsModel> get subjectsList;
+  @override
+  List<MajorsModel> get majorsList;
   @override
   Map<String, bool> get hoverStates;
 

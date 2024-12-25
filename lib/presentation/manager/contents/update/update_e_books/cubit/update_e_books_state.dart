@@ -6,6 +6,7 @@ part 'update_e_books_state.freezed.dart';
 class UpdateEBooksBuildable with _$UpdateEBooksBuildable {
   const factory UpdateEBooksBuildable({
     @Default(false) bool loading,
+    @Default(false) bool uploadFileLoading,
     @Default(false) bool error,
   }) = _UpdateEBooksBuildable;
 }

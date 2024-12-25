@@ -1,11 +1,15 @@
+import 'dart:developer';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iut_ecms/core/base/base_page.dart';
 import 'package:iut_ecms/core/constants/app_colors.dart';
 import 'package:iut_ecms/core/extensions/screen_size_extention.dart';
+import 'package:iut_ecms/core/router/app_router.dart';
 import 'package:iut_ecms/core/widgets/common_button.dart';
 import 'package:iut_ecms/core/widgets/custom_search_bar.dart';
+import 'package:iut_ecms/core/widgets/result_notifier.dart';
 import 'package:iut_ecms/presentation/manager/contents/manage/manage_subjects/cubit/manage_subjects_cubit.dart';
 import 'package:iut_ecms/presentation/manager/contents/manage/manage_subjects/cubit/manage_subjects_state.dart';
 
@@ -21,16 +25,6 @@ class ManageSubjectsPage
     super.init(context);
   }
 
-  final List<String> _items = [
-    'Apple',
-    'Banana',
-    'Cherry',
-    'Date',
-    'ElderberryElderberryElderberryElderberryElderberryElderberryElderberryElderberryElderberryElderberryElderberryElderberryElderberryElderberry',
-    'Fig',
-    'Grapes',
-    'Honeydew',
-  ];
   @override
   Widget builder(BuildContext context, ManageSubjectsBuildable state) {
     return Scaffold(
@@ -78,7 +72,11 @@ class ManageSubjectsPage
                       ),
                       const Spacer(),
                       CustomSearchBar(
-                        items: _items,
+                        items: state.subjectsList
+                            .map((subject) => subject.name)
+                            .where((name) => name != null)
+                            .cast<String>()
+                            .toList(),
                         onSearchItemTap: () {},
                       ),
                     ],
@@ -107,12 +105,16 @@ class ManageSubjectsPage
                         ),
                         child: DropdownButtonHideUnderline(
                           child: DropdownButton<String>(
-                            value: state.selectedMajor,
+                            value: state.selectedMajor.isNotEmpty == true &&
+                                    state.majorsList
+                                        .any((major) => major.name == state.selectedMajor)
+                                ? state.selectedMajor
+                                : null,
                             items: state.majorsList.map((entry) {
                               return DropdownMenuItem(
-                                value: entry,
+                                value: entry.name,
                                 child: Text(
-                                  entry,
+                                  entry.name ?? 'null',
                                   style: TextStyle(
                                     fontSize: 14,
                                     fontWeight: FontWeight.w400,
@@ -123,12 +125,23 @@ class ManageSubjectsPage
                             }).toList(),
                             onChanged: (String? newValue) async {
                               if (newValue == null) return;
+                              _manageSubjectsCubit.updateSelectedDropDownValue(newValue);
+                              final selectedMajor =
+                                  state.majorsList.firstWhere((major) => major.name == newValue);
+                              final result = await _manageSubjectsCubit.getSubjects(
+                                name: selectedMajor.name ?? '',
+                                majorId: selectedMajor.majorId ?? 0,
+                              );
+                              _manageSubjectsCubit.updateCurrentMajorId(selectedMajor.majorId ?? 0);
+
+                              log('result: $result');
                             },
                             icon: Icon(
                               Icons.arrow_drop_down,
                               color: Colors.grey.shade600,
                             ),
                             isExpanded: true,
+                            hint: Text('Select Major'),
                             borderRadius: BorderRadius.circular(10),
                             dropdownColor: AppColors.white,
                           ),
@@ -144,7 +157,17 @@ class ManageSubjectsPage
                             backgroundColor: AppColors.blueOriginal,
                             elevation: 0,
                             text: 'Add Subject',
-                            onPressed: () {},
+                            onPressed: () {
+                              if (state.currentMajorId != 0) {
+                                context.router
+                                    .push(UpdateSubjectsRoute(name: '', id: state.currentMajorId));
+                              } else if (state.currentMajorId == 0) {
+                                ResultNotifier(
+                                  message: 'Please select major first',
+                                  context: context,
+                                ).showError();
+                              }
+                            },
                           ),
                         ),
                       ),
@@ -156,7 +179,7 @@ class ManageSubjectsPage
                       child: GridView.builder(
                         scrollDirection: Axis.vertical,
                         shrinkWrap: true,
-                        itemCount: 123,
+                        itemCount: state.subjectsList.length + 1,
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 1,
                           mainAxisExtent: 34,
@@ -191,7 +214,9 @@ class ManageSubjectsPage
                                     ),
                                     const SizedBox(width: 8),
                                     Text(
-                                      index == 0 ? 'Subjects' : 'Introduction to Computer Science',
+                                      index == 0
+                                          ? 'Subjects'
+                                          : state.subjectsList[index - 1].name ?? '',
                                       style: TextStyle(
                                         fontSize: 14,
                                         fontWeight: index == 0 ? FontWeight.w500 : FontWeight.w400,
@@ -226,7 +251,24 @@ class ManageSubjectsPage
                                                 onExit: (_) => _manageSubjectsCubit.updateHovering(
                                                     deleteKey, false),
                                                 child: InkWell(
-                                                  onTap: () => {},
+                                                  onTap: () async {
+                                                    await _manageSubjectsCubit
+                                                        .deleteSubject(
+                                                            subjectId: state.subjectsList[index - 1]
+                                                                    .subjectId ??
+                                                                0)
+                                                        .then((_) {
+                                                      ResultNotifier(
+                                                        context: context,
+                                                        message: 'Subject deleted successfully'
+                                                            .toUpperCase(),
+                                                      ).showSuccess();
+                                                      _manageSubjectsCubit.getSubjects(
+                                                        name: '',
+                                                        majorId: state.currentMajorId,
+                                                      );
+                                                    });
+                                                  },
                                                   child: Container(
                                                     padding: const EdgeInsets.all(6),
                                                     child: Text(
@@ -256,7 +298,14 @@ class ManageSubjectsPage
                                                 onExit: (_) => _manageSubjectsCubit.updateHovering(
                                                     updateKey, false),
                                                 child: InkWell(
-                                                  onTap: () => {},
+                                                  onTap: () {
+                                                    context.router.push(UpdateSubjectsRoute(
+                                                      name:
+                                                          state.subjectsList[index - 1].name ?? '',
+                                                      id: state.subjectsList[index - 1].subjectId ??
+                                                          0,
+                                                    ));
+                                                  },
                                                   child: Container(
                                                     padding: const EdgeInsets.all(6),
                                                     child: Text(

@@ -65,10 +65,13 @@ class ManageArticlesRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [ManageEBooksPage]
-class ManageEBooksRoute extends PageRouteInfo<void> {
-  const ManageEBooksRoute({List<PageRouteInfo>? children})
-      : super(
+class ManageEBooksRoute extends PageRouteInfo<ManageEBooksRouteArgs> {
+  ManageEBooksRoute({
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
           ManageEBooksRoute.name,
+          args: ManageEBooksRouteArgs(key: key),
           initialChildren: children,
         );
 
@@ -77,17 +80,33 @@ class ManageEBooksRoute extends PageRouteInfo<void> {
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return const ManageEBooksPage();
+      final args = data.argsAs<ManageEBooksRouteArgs>(
+          orElse: () => const ManageEBooksRouteArgs());
+      return ManageEBooksPage(key: args.key);
     },
   );
 }
 
+class ManageEBooksRouteArgs {
+  const ManageEBooksRouteArgs({this.key});
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'ManageEBooksRouteArgs{key: $key}';
+  }
+}
+
 /// generated route for
 /// [ManageELettersPage]
-class ManageELettersRoute extends PageRouteInfo<void> {
-  const ManageELettersRoute({List<PageRouteInfo>? children})
-      : super(
+class ManageELettersRoute extends PageRouteInfo<ManageELettersRouteArgs> {
+  ManageELettersRoute({
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
           ManageELettersRoute.name,
+          args: ManageELettersRouteArgs(key: key),
           initialChildren: children,
         );
 
@@ -96,9 +115,22 @@ class ManageELettersRoute extends PageRouteInfo<void> {
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return const ManageELettersPage();
+      final args = data.argsAs<ManageELettersRouteArgs>(
+          orElse: () => const ManageELettersRouteArgs());
+      return ManageELettersPage(key: args.key);
     },
   );
+}
+
+class ManageELettersRouteArgs {
+  const ManageELettersRouteArgs({this.key});
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'ManageELettersRouteArgs{key: $key}';
+  }
 }
 
 /// generated route for
@@ -297,10 +329,17 @@ class UpdateArticlesRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [UpdateEBooksPage]
-class UpdateEBooksRoute extends PageRouteInfo<void> {
-  const UpdateEBooksRoute({List<PageRouteInfo>? children})
-      : super(
+class UpdateEBooksRoute extends PageRouteInfo<UpdateEBooksRouteArgs> {
+  UpdateEBooksRoute({
+    required int subjectId,
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
           UpdateEBooksRoute.name,
+          args: UpdateEBooksRouteArgs(
+            subjectId: subjectId,
+            key: key,
+          ),
           initialChildren: children,
         );
 
@@ -309,9 +348,29 @@ class UpdateEBooksRoute extends PageRouteInfo<void> {
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return const UpdateEBooksPage();
+      final args = data.argsAs<UpdateEBooksRouteArgs>();
+      return UpdateEBooksPage(
+        subjectId: args.subjectId,
+        key: args.key,
+      );
     },
   );
+}
+
+class UpdateEBooksRouteArgs {
+  const UpdateEBooksRouteArgs({
+    required this.subjectId,
+    this.key,
+  });
+
+  final int subjectId;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'UpdateEBooksRouteArgs{subjectId: $subjectId, key: $key}';
+  }
 }
 
 /// generated route for
@@ -387,10 +446,19 @@ class UpdateMajorsRouteArgs {
 
 /// generated route for
 /// [UpdateSubjectsPage]
-class UpdateSubjectsRoute extends PageRouteInfo<void> {
-  const UpdateSubjectsRoute({List<PageRouteInfo>? children})
-      : super(
+class UpdateSubjectsRoute extends PageRouteInfo<UpdateSubjectsRouteArgs> {
+  UpdateSubjectsRoute({
+    required String name,
+    required int id,
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
           UpdateSubjectsRoute.name,
+          args: UpdateSubjectsRouteArgs(
+            name: name,
+            id: id,
+            key: key,
+          ),
           initialChildren: children,
         );
 
@@ -399,9 +467,33 @@ class UpdateSubjectsRoute extends PageRouteInfo<void> {
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return const UpdateSubjectsPage();
+      final args = data.argsAs<UpdateSubjectsRouteArgs>();
+      return UpdateSubjectsPage(
+        name: args.name,
+        id: args.id,
+        key: args.key,
+      );
     },
   );
+}
+
+class UpdateSubjectsRouteArgs {
+  const UpdateSubjectsRouteArgs({
+    required this.name,
+    required this.id,
+    this.key,
+  });
+
+  final String name;
+
+  final int id;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'UpdateSubjectsRouteArgs{name: $name, id: $id, key: $key}';
+  }
 }
 
 /// generated route for

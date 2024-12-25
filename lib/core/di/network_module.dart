@@ -6,6 +6,8 @@ abstract class NetworkModule {
   Dio dio() {
     final dio = Dio();
 
+    dio.options.baseUrl = 'http://v1/api/books';
+
     dio.interceptors.add(
       PrettyDioLogger(
         requestHeader: kDebugMode,

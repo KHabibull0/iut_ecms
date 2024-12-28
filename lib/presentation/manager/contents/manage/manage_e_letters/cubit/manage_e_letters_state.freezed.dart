@@ -17,7 +17,6 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$ManageELettersBuildable {
   bool get loading => throw _privateConstructorUsedError;
-  bool get deleteLoading => throw _privateConstructorUsedError;
   bool get error => throw _privateConstructorUsedError;
   int get majorId => throw _privateConstructorUsedError;
   int get subjectId => throw _privateConstructorUsedError;
@@ -25,8 +24,9 @@ mixin _$ManageELettersBuildable {
   String get selectedSubject => throw _privateConstructorUsedError;
   List<MajorsModel> get majorsList => throw _privateConstructorUsedError;
   List<SubjectsModel> get subjectsList => throw _privateConstructorUsedError;
-  List<EBookModel> get booksList => throw _privateConstructorUsedError;
+  List<ELetterModel> get eLettersList => throw _privateConstructorUsedError;
   Map<String, bool> get hoverStates => throw _privateConstructorUsedError;
+  Map<String, bool> get deletingStates => throw _privateConstructorUsedError;
 
   /// Create a copy of ManageELettersBuildable
   /// with the given fields replaced by the non-null parameter values.
@@ -43,7 +43,6 @@ abstract class $ManageELettersBuildableCopyWith<$Res> {
   @useResult
   $Res call(
       {bool loading,
-      bool deleteLoading,
       bool error,
       int majorId,
       int subjectId,
@@ -51,8 +50,9 @@ abstract class $ManageELettersBuildableCopyWith<$Res> {
       String selectedSubject,
       List<MajorsModel> majorsList,
       List<SubjectsModel> subjectsList,
-      List<EBookModel> booksList,
-      Map<String, bool> hoverStates});
+      List<ELetterModel> eLettersList,
+      Map<String, bool> hoverStates,
+      Map<String, bool> deletingStates});
 }
 
 /// @nodoc
@@ -72,7 +72,6 @@ class _$ManageELettersBuildableCopyWithImpl<$Res,
   @override
   $Res call({
     Object? loading = null,
-    Object? deleteLoading = null,
     Object? error = null,
     Object? majorId = null,
     Object? subjectId = null,
@@ -80,17 +79,14 @@ class _$ManageELettersBuildableCopyWithImpl<$Res,
     Object? selectedSubject = null,
     Object? majorsList = null,
     Object? subjectsList = null,
-    Object? booksList = null,
+    Object? eLettersList = null,
     Object? hoverStates = null,
+    Object? deletingStates = null,
   }) {
     return _then(_value.copyWith(
       loading: null == loading
           ? _value.loading
           : loading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      deleteLoading: null == deleteLoading
-          ? _value.deleteLoading
-          : deleteLoading // ignore: cast_nullable_to_non_nullable
               as bool,
       error: null == error
           ? _value.error
@@ -120,13 +116,17 @@ class _$ManageELettersBuildableCopyWithImpl<$Res,
           ? _value.subjectsList
           : subjectsList // ignore: cast_nullable_to_non_nullable
               as List<SubjectsModel>,
-      booksList: null == booksList
-          ? _value.booksList
-          : booksList // ignore: cast_nullable_to_non_nullable
-              as List<EBookModel>,
+      eLettersList: null == eLettersList
+          ? _value.eLettersList
+          : eLettersList // ignore: cast_nullable_to_non_nullable
+              as List<ELetterModel>,
       hoverStates: null == hoverStates
           ? _value.hoverStates
           : hoverStates // ignore: cast_nullable_to_non_nullable
+              as Map<String, bool>,
+      deletingStates: null == deletingStates
+          ? _value.deletingStates
+          : deletingStates // ignore: cast_nullable_to_non_nullable
               as Map<String, bool>,
     ) as $Val);
   }
@@ -143,7 +143,6 @@ abstract class _$$ManageELettersBuildableImplCopyWith<$Res>
   @useResult
   $Res call(
       {bool loading,
-      bool deleteLoading,
       bool error,
       int majorId,
       int subjectId,
@@ -151,8 +150,9 @@ abstract class _$$ManageELettersBuildableImplCopyWith<$Res>
       String selectedSubject,
       List<MajorsModel> majorsList,
       List<SubjectsModel> subjectsList,
-      List<EBookModel> booksList,
-      Map<String, bool> hoverStates});
+      List<ELetterModel> eLettersList,
+      Map<String, bool> hoverStates,
+      Map<String, bool> deletingStates});
 }
 
 /// @nodoc
@@ -171,7 +171,6 @@ class __$$ManageELettersBuildableImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? loading = null,
-    Object? deleteLoading = null,
     Object? error = null,
     Object? majorId = null,
     Object? subjectId = null,
@@ -179,17 +178,14 @@ class __$$ManageELettersBuildableImplCopyWithImpl<$Res>
     Object? selectedSubject = null,
     Object? majorsList = null,
     Object? subjectsList = null,
-    Object? booksList = null,
+    Object? eLettersList = null,
     Object? hoverStates = null,
+    Object? deletingStates = null,
   }) {
     return _then(_$ManageELettersBuildableImpl(
       loading: null == loading
           ? _value.loading
           : loading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      deleteLoading: null == deleteLoading
-          ? _value.deleteLoading
-          : deleteLoading // ignore: cast_nullable_to_non_nullable
               as bool,
       error: null == error
           ? _value.error
@@ -219,13 +215,17 @@ class __$$ManageELettersBuildableImplCopyWithImpl<$Res>
           ? _value._subjectsList
           : subjectsList // ignore: cast_nullable_to_non_nullable
               as List<SubjectsModel>,
-      booksList: null == booksList
-          ? _value._booksList
-          : booksList // ignore: cast_nullable_to_non_nullable
-              as List<EBookModel>,
+      eLettersList: null == eLettersList
+          ? _value._eLettersList
+          : eLettersList // ignore: cast_nullable_to_non_nullable
+              as List<ELetterModel>,
       hoverStates: null == hoverStates
           ? _value._hoverStates
           : hoverStates // ignore: cast_nullable_to_non_nullable
+              as Map<String, bool>,
+      deletingStates: null == deletingStates
+          ? _value._deletingStates
+          : deletingStates // ignore: cast_nullable_to_non_nullable
               as Map<String, bool>,
     ));
   }
@@ -236,7 +236,6 @@ class __$$ManageELettersBuildableImplCopyWithImpl<$Res>
 class _$ManageELettersBuildableImpl implements _ManageELettersBuildable {
   const _$ManageELettersBuildableImpl(
       {this.loading = false,
-      this.deleteLoading = false,
       this.error = false,
       this.majorId = 0,
       this.subjectId = 0,
@@ -244,19 +243,18 @@ class _$ManageELettersBuildableImpl implements _ManageELettersBuildable {
       this.selectedSubject = '',
       final List<MajorsModel> majorsList = const [],
       final List<SubjectsModel> subjectsList = const [],
-      final List<EBookModel> booksList = const [],
-      final Map<String, bool> hoverStates = const {}})
+      final List<ELetterModel> eLettersList = const [],
+      final Map<String, bool> hoverStates = const {},
+      final Map<String, bool> deletingStates = const {}})
       : _majorsList = majorsList,
         _subjectsList = subjectsList,
-        _booksList = booksList,
-        _hoverStates = hoverStates;
+        _eLettersList = eLettersList,
+        _hoverStates = hoverStates,
+        _deletingStates = deletingStates;
 
   @override
   @JsonKey()
   final bool loading;
-  @override
-  @JsonKey()
-  final bool deleteLoading;
   @override
   @JsonKey()
   final bool error;
@@ -290,13 +288,13 @@ class _$ManageELettersBuildableImpl implements _ManageELettersBuildable {
     return EqualUnmodifiableListView(_subjectsList);
   }
 
-  final List<EBookModel> _booksList;
+  final List<ELetterModel> _eLettersList;
   @override
   @JsonKey()
-  List<EBookModel> get booksList {
-    if (_booksList is EqualUnmodifiableListView) return _booksList;
+  List<ELetterModel> get eLettersList {
+    if (_eLettersList is EqualUnmodifiableListView) return _eLettersList;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_booksList);
+    return EqualUnmodifiableListView(_eLettersList);
   }
 
   final Map<String, bool> _hoverStates;
@@ -308,9 +306,18 @@ class _$ManageELettersBuildableImpl implements _ManageELettersBuildable {
     return EqualUnmodifiableMapView(_hoverStates);
   }
 
+  final Map<String, bool> _deletingStates;
+  @override
+  @JsonKey()
+  Map<String, bool> get deletingStates {
+    if (_deletingStates is EqualUnmodifiableMapView) return _deletingStates;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_deletingStates);
+  }
+
   @override
   String toString() {
-    return 'ManageELettersBuildable(loading: $loading, deleteLoading: $deleteLoading, error: $error, majorId: $majorId, subjectId: $subjectId, selectedMajor: $selectedMajor, selectedSubject: $selectedSubject, majorsList: $majorsList, subjectsList: $subjectsList, booksList: $booksList, hoverStates: $hoverStates)';
+    return 'ManageELettersBuildable(loading: $loading, error: $error, majorId: $majorId, subjectId: $subjectId, selectedMajor: $selectedMajor, selectedSubject: $selectedSubject, majorsList: $majorsList, subjectsList: $subjectsList, eLettersList: $eLettersList, hoverStates: $hoverStates, deletingStates: $deletingStates)';
   }
 
   @override
@@ -319,8 +326,6 @@ class _$ManageELettersBuildableImpl implements _ManageELettersBuildable {
         (other.runtimeType == runtimeType &&
             other is _$ManageELettersBuildableImpl &&
             (identical(other.loading, loading) || other.loading == loading) &&
-            (identical(other.deleteLoading, deleteLoading) ||
-                other.deleteLoading == deleteLoading) &&
             (identical(other.error, error) || other.error == error) &&
             (identical(other.majorId, majorId) || other.majorId == majorId) &&
             (identical(other.subjectId, subjectId) ||
@@ -334,16 +339,17 @@ class _$ManageELettersBuildableImpl implements _ManageELettersBuildable {
             const DeepCollectionEquality()
                 .equals(other._subjectsList, _subjectsList) &&
             const DeepCollectionEquality()
-                .equals(other._booksList, _booksList) &&
+                .equals(other._eLettersList, _eLettersList) &&
             const DeepCollectionEquality()
-                .equals(other._hoverStates, _hoverStates));
+                .equals(other._hoverStates, _hoverStates) &&
+            const DeepCollectionEquality()
+                .equals(other._deletingStates, _deletingStates));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       loading,
-      deleteLoading,
       error,
       majorId,
       subjectId,
@@ -351,8 +357,9 @@ class _$ManageELettersBuildableImpl implements _ManageELettersBuildable {
       selectedSubject,
       const DeepCollectionEquality().hash(_majorsList),
       const DeepCollectionEquality().hash(_subjectsList),
-      const DeepCollectionEquality().hash(_booksList),
-      const DeepCollectionEquality().hash(_hoverStates));
+      const DeepCollectionEquality().hash(_eLettersList),
+      const DeepCollectionEquality().hash(_hoverStates),
+      const DeepCollectionEquality().hash(_deletingStates));
 
   /// Create a copy of ManageELettersBuildable
   /// with the given fields replaced by the non-null parameter values.
@@ -367,7 +374,6 @@ class _$ManageELettersBuildableImpl implements _ManageELettersBuildable {
 abstract class _ManageELettersBuildable implements ManageELettersBuildable {
   const factory _ManageELettersBuildable(
       {final bool loading,
-      final bool deleteLoading,
       final bool error,
       final int majorId,
       final int subjectId,
@@ -375,13 +381,12 @@ abstract class _ManageELettersBuildable implements ManageELettersBuildable {
       final String selectedSubject,
       final List<MajorsModel> majorsList,
       final List<SubjectsModel> subjectsList,
-      final List<EBookModel> booksList,
-      final Map<String, bool> hoverStates}) = _$ManageELettersBuildableImpl;
+      final List<ELetterModel> eLettersList,
+      final Map<String, bool> hoverStates,
+      final Map<String, bool> deletingStates}) = _$ManageELettersBuildableImpl;
 
   @override
   bool get loading;
-  @override
-  bool get deleteLoading;
   @override
   bool get error;
   @override
@@ -397,9 +402,11 @@ abstract class _ManageELettersBuildable implements ManageELettersBuildable {
   @override
   List<SubjectsModel> get subjectsList;
   @override
-  List<EBookModel> get booksList;
+  List<ELetterModel> get eLettersList;
   @override
   Map<String, bool> get hoverStates;
+  @override
+  Map<String, bool> get deletingStates;
 
   /// Create a copy of ManageELettersBuildable
   /// with the given fields replaced by the non-null parameter values.

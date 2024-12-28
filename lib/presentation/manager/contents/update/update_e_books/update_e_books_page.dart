@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:auto_route/auto_route.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iut_ecms/core/base/base_page.dart';
 import 'package:iut_ecms/core/constants/app_colors.dart';
@@ -114,7 +115,7 @@ class UpdateEBooksPage
                 const SizedBox(width: 32),
                 Expanded(
                   child: _inputFieldView(
-                    inputType: TextInputType.number,
+                    inputFormatter: [FilteringTextInputFormatter.digitsOnly],
                     controller: pageCountController,
                     header: 'Book Pages',
                     hint: 'Number of Pages in Book',
@@ -146,12 +147,21 @@ class UpdateEBooksPage
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        state.uploadFileLoading
-                            ? CircularProgressIndicator.adaptive()
-                            : Icon(Icons.add),
+                        bookPathController.text.isEmpty
+                            ? state.uploadFileLoading
+                                ? CircularProgressIndicator.adaptive()
+                                : Icon(Icons.add)
+                            : Text(
+                                bookPathController.text.split('/').last,
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                  color: AppColors.primary,
+                                ),
+                              ),
                         const SizedBox(height: 8),
                         Text(
-                          'Upload Book',
+                          bookPathController.text.isEmpty ? 'Upload Book' : 'Book Uploaded',
                           style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
                         ),
                       ],
@@ -175,13 +185,14 @@ class UpdateEBooksPage
                       bookPathController.text.isNotEmpty ||
                       descriptionController.text.isNotEmpty) {
                     EBookModel eBookModel = EBookModel(
-                      subjectId: 1,
+                      subjectId: subjectId,
                       description: descriptionController.text,
                       author: authorController.text,
                       book: bookPathController.text,
                       title: authorController.text,
                       pageCount: int.tryParse(pageCountController.text),
                     );
+                    log('e book sending... $eBookModel');
                     await _updateEBooksCubit.addEBook(eBookModel: eBookModel).then((value) {
                       if (value.isEmpty) {
                         ResultNotifier(
@@ -214,7 +225,8 @@ class UpdateEBooksPage
       {required String header,
       required String hint,
       TextEditingController? controller,
-      TextInputType? inputType}) {
+      TextInputType? inputType,
+      List<TextInputFormatter>? inputFormatter}) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -228,6 +240,7 @@ class UpdateEBooksPage
         ),
         const SizedBox(height: 4),
         CommonTextField(
+          inputFormatter: inputFormatter,
           inputType: inputType,
           borderRadius: 10,
           controller: controller,

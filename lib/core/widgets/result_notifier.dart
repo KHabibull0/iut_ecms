@@ -28,7 +28,7 @@ class ResultNotifier {
           overflow: TextOverflow.ellipsis,
         ),
       ),
-      icon: Assets.images.verify.image(height: 30, width: 30),
+      icon: Assets.images.verify.image(height: 30, width: 30, color: AppColors.white),
       showProgressIndicator: false,
       displayCloseButton: false,
       progressBarWidth: 2,

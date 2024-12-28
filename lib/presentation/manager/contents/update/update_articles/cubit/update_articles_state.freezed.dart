@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$UpdateArticlesBuildable {
   bool get loading => throw _privateConstructorUsedError;
+  bool get uploadFileLoading => throw _privateConstructorUsedError;
   bool get error => throw _privateConstructorUsedError;
 
   /// Create a copy of UpdateArticlesBuildable
@@ -32,7 +33,7 @@ abstract class $UpdateArticlesBuildableCopyWith<$Res> {
           $Res Function(UpdateArticlesBuildable) then) =
       _$UpdateArticlesBuildableCopyWithImpl<$Res, UpdateArticlesBuildable>;
   @useResult
-  $Res call({bool loading, bool error});
+  $Res call({bool loading, bool uploadFileLoading, bool error});
 }
 
 /// @nodoc
@@ -52,12 +53,17 @@ class _$UpdateArticlesBuildableCopyWithImpl<$Res,
   @override
   $Res call({
     Object? loading = null,
+    Object? uploadFileLoading = null,
     Object? error = null,
   }) {
     return _then(_value.copyWith(
       loading: null == loading
           ? _value.loading
           : loading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      uploadFileLoading: null == uploadFileLoading
+          ? _value.uploadFileLoading
+          : uploadFileLoading // ignore: cast_nullable_to_non_nullable
               as bool,
       error: null == error
           ? _value.error
@@ -76,7 +82,7 @@ abstract class _$$UpdateArticlesBuildableImplCopyWith<$Res>
       __$$UpdateArticlesBuildableImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool loading, bool error});
+  $Res call({bool loading, bool uploadFileLoading, bool error});
 }
 
 /// @nodoc
@@ -95,12 +101,17 @@ class __$$UpdateArticlesBuildableImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? loading = null,
+    Object? uploadFileLoading = null,
     Object? error = null,
   }) {
     return _then(_$UpdateArticlesBuildableImpl(
       loading: null == loading
           ? _value.loading
           : loading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      uploadFileLoading: null == uploadFileLoading
+          ? _value.uploadFileLoading
+          : uploadFileLoading // ignore: cast_nullable_to_non_nullable
               as bool,
       error: null == error
           ? _value.error
@@ -114,18 +125,23 @@ class __$$UpdateArticlesBuildableImplCopyWithImpl<$Res>
 
 class _$UpdateArticlesBuildableImpl implements _UpdateArticlesBuildable {
   const _$UpdateArticlesBuildableImpl(
-      {this.loading = false, this.error = false});
+      {this.loading = false,
+      this.uploadFileLoading = false,
+      this.error = false});
 
   @override
   @JsonKey()
   final bool loading;
   @override
   @JsonKey()
+  final bool uploadFileLoading;
+  @override
+  @JsonKey()
   final bool error;
 
   @override
   String toString() {
-    return 'UpdateArticlesBuildable(loading: $loading, error: $error)';
+    return 'UpdateArticlesBuildable(loading: $loading, uploadFileLoading: $uploadFileLoading, error: $error)';
   }
 
   @override
@@ -134,11 +150,14 @@ class _$UpdateArticlesBuildableImpl implements _UpdateArticlesBuildable {
         (other.runtimeType == runtimeType &&
             other is _$UpdateArticlesBuildableImpl &&
             (identical(other.loading, loading) || other.loading == loading) &&
+            (identical(other.uploadFileLoading, uploadFileLoading) ||
+                other.uploadFileLoading == uploadFileLoading) &&
             (identical(other.error, error) || other.error == error));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, loading, error);
+  int get hashCode =>
+      Object.hash(runtimeType, loading, uploadFileLoading, error);
 
   /// Create a copy of UpdateArticlesBuildable
   /// with the given fields replaced by the non-null parameter values.
@@ -152,10 +171,14 @@ class _$UpdateArticlesBuildableImpl implements _UpdateArticlesBuildable {
 
 abstract class _UpdateArticlesBuildable implements UpdateArticlesBuildable {
   const factory _UpdateArticlesBuildable(
-      {final bool loading, final bool error}) = _$UpdateArticlesBuildableImpl;
+      {final bool loading,
+      final bool uploadFileLoading,
+      final bool error}) = _$UpdateArticlesBuildableImpl;
 
   @override
   bool get loading;
+  @override
+  bool get uploadFileLoading;
   @override
   bool get error;
 

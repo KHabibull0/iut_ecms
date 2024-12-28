@@ -1,6 +1,6 @@
 import 'package:injectable/injectable.dart';
 import 'package:iut_ecms/core/base/base_cubit.dart';
-import 'package:iut_ecms/domain/models/e_book_model/e_book_model.dart';
+import 'package:iut_ecms/domain/models/e_letter_model/e_letter_model.dart';
 import 'package:iut_ecms/domain/models/majors_model/majors_model.dart';
 import 'package:iut_ecms/domain/repos/manager/manager_content_repository.dart';
 import 'package:iut_ecms/domain/repos/manager/manager_dashboard_repository.dart';
@@ -9,7 +9,9 @@ import 'package:iut_ecms/presentation/manager/contents/manage/manage_e_letters/c
 @injectable
 class ManageELettersCubit extends BaseCubit<ManageELettersBuildable, ManageELettersListenable> {
   ManageELettersCubit(this._managerDashboardRepository, this._managerContentRepository)
-      : super(const ManageELettersBuildable());
+      : super(const ManageELettersBuildable()) {
+    getMajors();
+  }
   final ManagerDashboardRepository _managerDashboardRepository;
   final ManagerContentRepository _managerContentRepository;
 
@@ -29,28 +31,50 @@ class ManageELettersCubit extends BaseCubit<ManageELettersBuildable, ManageELett
     );
   }
 
-  Future<String> getEBooks(int subjectId) async {
+  Future<String> getELetters(int subjectId) async {
     build((buildable) => buildable.copyWith(loading: true, error: false));
-    final eBookModel = EBookModel(subjectId: subjectId);
-    final result = await _managerContentRepository.getEBooks(eBookModel: eBookModel);
+    final ELetterModel eLetterModel = ELetterModel(subjectId: subjectId);
+    final result = await _managerContentRepository.getELetters(eLetterModel: eLetterModel);
     return result.fold(
       (error) {
         build((buildable) => buildable.copyWith(loading: false, error: true));
         return error;
       },
       (data) {
-        build((buildable) => buildable.copyWith(loading: false, error: false, booksList: data));
+        build((buildable) => buildable.copyWith(loading: false, error: false, eLettersList: data));
         return '';
       },
     );
   }
 
-  Future<String> deleteEBook(int bookId) async {
-    build((buildable) => buildable.copyWith(deleteLoading: true, error: false));
-    final eBookModel = EBookModel(bookId: bookId);
-    final result = await _managerContentRepository.deleteEBooks(eBookModel: eBookModel);
-    build((buildable) => buildable.copyWith(deleteLoading: false, error: false));
+  Future<String> getMajors() async {
+    build((buildable) => buildable.copyWith(loading: true, error: false));
+    final result = await _managerDashboardRepository.getMajors();
+    return result.fold(
+      (error) {
+        build((buildable) => buildable.copyWith(loading: false, error: true));
+        return error;
+      },
+      (data) {
+        build((buildable) => buildable.copyWith(loading: false, error: false, majorsList: data));
+        return '';
+      },
+    );
+  }
+
+  Future<String> deleteELetters(int eLetterId) async {
+    updateDeleting('$eLetterId', true);
+    final ELetterModel eLetterModel = ELetterModel(eLetterId: eLetterId);
+    final result = await _managerContentRepository.deleteELetters(eLetterModel: eLetterModel);
+    updateDeleting('$eLetterId', false);
     return result;
+  }
+
+  void updateDeleting(String key, bool isHovering) {
+    build((buildable) {
+      final newDeletingStates = {...buildable.deletingStates, key: isHovering};
+      return buildable.copyWith(deletingStates: newDeletingStates);
+    });
   }
 
   void updateHovering(String key, bool isHovering) {

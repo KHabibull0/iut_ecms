@@ -18,6 +18,15 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$ManageArticlesBuildable {
   bool get loading => throw _privateConstructorUsedError;
   bool get error => throw _privateConstructorUsedError;
+  int get majorId => throw _privateConstructorUsedError;
+  int get subjectId => throw _privateConstructorUsedError;
+  String get selectedMajor => throw _privateConstructorUsedError;
+  String get selectedSubject => throw _privateConstructorUsedError;
+  List<MajorsModel> get majorsList => throw _privateConstructorUsedError;
+  List<SubjectsModel> get subjectsList => throw _privateConstructorUsedError;
+  List<ArticleModel> get articlesList => throw _privateConstructorUsedError;
+  Map<String, bool> get hoverStates => throw _privateConstructorUsedError;
+  Map<String, bool> get deletingStates => throw _privateConstructorUsedError;
 
   /// Create a copy of ManageArticlesBuildable
   /// with the given fields replaced by the non-null parameter values.
@@ -32,7 +41,18 @@ abstract class $ManageArticlesBuildableCopyWith<$Res> {
           $Res Function(ManageArticlesBuildable) then) =
       _$ManageArticlesBuildableCopyWithImpl<$Res, ManageArticlesBuildable>;
   @useResult
-  $Res call({bool loading, bool error});
+  $Res call(
+      {bool loading,
+      bool error,
+      int majorId,
+      int subjectId,
+      String selectedMajor,
+      String selectedSubject,
+      List<MajorsModel> majorsList,
+      List<SubjectsModel> subjectsList,
+      List<ArticleModel> articlesList,
+      Map<String, bool> hoverStates,
+      Map<String, bool> deletingStates});
 }
 
 /// @nodoc
@@ -53,6 +73,15 @@ class _$ManageArticlesBuildableCopyWithImpl<$Res,
   $Res call({
     Object? loading = null,
     Object? error = null,
+    Object? majorId = null,
+    Object? subjectId = null,
+    Object? selectedMajor = null,
+    Object? selectedSubject = null,
+    Object? majorsList = null,
+    Object? subjectsList = null,
+    Object? articlesList = null,
+    Object? hoverStates = null,
+    Object? deletingStates = null,
   }) {
     return _then(_value.copyWith(
       loading: null == loading
@@ -63,6 +92,42 @@ class _$ManageArticlesBuildableCopyWithImpl<$Res,
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as bool,
+      majorId: null == majorId
+          ? _value.majorId
+          : majorId // ignore: cast_nullable_to_non_nullable
+              as int,
+      subjectId: null == subjectId
+          ? _value.subjectId
+          : subjectId // ignore: cast_nullable_to_non_nullable
+              as int,
+      selectedMajor: null == selectedMajor
+          ? _value.selectedMajor
+          : selectedMajor // ignore: cast_nullable_to_non_nullable
+              as String,
+      selectedSubject: null == selectedSubject
+          ? _value.selectedSubject
+          : selectedSubject // ignore: cast_nullable_to_non_nullable
+              as String,
+      majorsList: null == majorsList
+          ? _value.majorsList
+          : majorsList // ignore: cast_nullable_to_non_nullable
+              as List<MajorsModel>,
+      subjectsList: null == subjectsList
+          ? _value.subjectsList
+          : subjectsList // ignore: cast_nullable_to_non_nullable
+              as List<SubjectsModel>,
+      articlesList: null == articlesList
+          ? _value.articlesList
+          : articlesList // ignore: cast_nullable_to_non_nullable
+              as List<ArticleModel>,
+      hoverStates: null == hoverStates
+          ? _value.hoverStates
+          : hoverStates // ignore: cast_nullable_to_non_nullable
+              as Map<String, bool>,
+      deletingStates: null == deletingStates
+          ? _value.deletingStates
+          : deletingStates // ignore: cast_nullable_to_non_nullable
+              as Map<String, bool>,
     ) as $Val);
   }
 }
@@ -76,7 +141,18 @@ abstract class _$$ManageArticlesBuildableImplCopyWith<$Res>
       __$$ManageArticlesBuildableImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool loading, bool error});
+  $Res call(
+      {bool loading,
+      bool error,
+      int majorId,
+      int subjectId,
+      String selectedMajor,
+      String selectedSubject,
+      List<MajorsModel> majorsList,
+      List<SubjectsModel> subjectsList,
+      List<ArticleModel> articlesList,
+      Map<String, bool> hoverStates,
+      Map<String, bool> deletingStates});
 }
 
 /// @nodoc
@@ -96,6 +172,15 @@ class __$$ManageArticlesBuildableImplCopyWithImpl<$Res>
   $Res call({
     Object? loading = null,
     Object? error = null,
+    Object? majorId = null,
+    Object? subjectId = null,
+    Object? selectedMajor = null,
+    Object? selectedSubject = null,
+    Object? majorsList = null,
+    Object? subjectsList = null,
+    Object? articlesList = null,
+    Object? hoverStates = null,
+    Object? deletingStates = null,
   }) {
     return _then(_$ManageArticlesBuildableImpl(
       loading: null == loading
@@ -106,6 +191,42 @@ class __$$ManageArticlesBuildableImplCopyWithImpl<$Res>
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as bool,
+      majorId: null == majorId
+          ? _value.majorId
+          : majorId // ignore: cast_nullable_to_non_nullable
+              as int,
+      subjectId: null == subjectId
+          ? _value.subjectId
+          : subjectId // ignore: cast_nullable_to_non_nullable
+              as int,
+      selectedMajor: null == selectedMajor
+          ? _value.selectedMajor
+          : selectedMajor // ignore: cast_nullable_to_non_nullable
+              as String,
+      selectedSubject: null == selectedSubject
+          ? _value.selectedSubject
+          : selectedSubject // ignore: cast_nullable_to_non_nullable
+              as String,
+      majorsList: null == majorsList
+          ? _value._majorsList
+          : majorsList // ignore: cast_nullable_to_non_nullable
+              as List<MajorsModel>,
+      subjectsList: null == subjectsList
+          ? _value._subjectsList
+          : subjectsList // ignore: cast_nullable_to_non_nullable
+              as List<SubjectsModel>,
+      articlesList: null == articlesList
+          ? _value._articlesList
+          : articlesList // ignore: cast_nullable_to_non_nullable
+              as List<ArticleModel>,
+      hoverStates: null == hoverStates
+          ? _value._hoverStates
+          : hoverStates // ignore: cast_nullable_to_non_nullable
+              as Map<String, bool>,
+      deletingStates: null == deletingStates
+          ? _value._deletingStates
+          : deletingStates // ignore: cast_nullable_to_non_nullable
+              as Map<String, bool>,
     ));
   }
 }
@@ -114,7 +235,22 @@ class __$$ManageArticlesBuildableImplCopyWithImpl<$Res>
 
 class _$ManageArticlesBuildableImpl implements _ManageArticlesBuildable {
   const _$ManageArticlesBuildableImpl(
-      {this.loading = false, this.error = false});
+      {this.loading = false,
+      this.error = false,
+      this.majorId = 0,
+      this.subjectId = 0,
+      this.selectedMajor = '',
+      this.selectedSubject = '',
+      final List<MajorsModel> majorsList = const [],
+      final List<SubjectsModel> subjectsList = const [],
+      final List<ArticleModel> articlesList = const [],
+      final Map<String, bool> hoverStates = const {},
+      final Map<String, bool> deletingStates = const {}})
+      : _majorsList = majorsList,
+        _subjectsList = subjectsList,
+        _articlesList = articlesList,
+        _hoverStates = hoverStates,
+        _deletingStates = deletingStates;
 
   @override
   @JsonKey()
@@ -122,10 +258,66 @@ class _$ManageArticlesBuildableImpl implements _ManageArticlesBuildable {
   @override
   @JsonKey()
   final bool error;
+  @override
+  @JsonKey()
+  final int majorId;
+  @override
+  @JsonKey()
+  final int subjectId;
+  @override
+  @JsonKey()
+  final String selectedMajor;
+  @override
+  @JsonKey()
+  final String selectedSubject;
+  final List<MajorsModel> _majorsList;
+  @override
+  @JsonKey()
+  List<MajorsModel> get majorsList {
+    if (_majorsList is EqualUnmodifiableListView) return _majorsList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_majorsList);
+  }
+
+  final List<SubjectsModel> _subjectsList;
+  @override
+  @JsonKey()
+  List<SubjectsModel> get subjectsList {
+    if (_subjectsList is EqualUnmodifiableListView) return _subjectsList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_subjectsList);
+  }
+
+  final List<ArticleModel> _articlesList;
+  @override
+  @JsonKey()
+  List<ArticleModel> get articlesList {
+    if (_articlesList is EqualUnmodifiableListView) return _articlesList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_articlesList);
+  }
+
+  final Map<String, bool> _hoverStates;
+  @override
+  @JsonKey()
+  Map<String, bool> get hoverStates {
+    if (_hoverStates is EqualUnmodifiableMapView) return _hoverStates;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_hoverStates);
+  }
+
+  final Map<String, bool> _deletingStates;
+  @override
+  @JsonKey()
+  Map<String, bool> get deletingStates {
+    if (_deletingStates is EqualUnmodifiableMapView) return _deletingStates;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_deletingStates);
+  }
 
   @override
   String toString() {
-    return 'ManageArticlesBuildable(loading: $loading, error: $error)';
+    return 'ManageArticlesBuildable(loading: $loading, error: $error, majorId: $majorId, subjectId: $subjectId, selectedMajor: $selectedMajor, selectedSubject: $selectedSubject, majorsList: $majorsList, subjectsList: $subjectsList, articlesList: $articlesList, hoverStates: $hoverStates, deletingStates: $deletingStates)';
   }
 
   @override
@@ -134,11 +326,40 @@ class _$ManageArticlesBuildableImpl implements _ManageArticlesBuildable {
         (other.runtimeType == runtimeType &&
             other is _$ManageArticlesBuildableImpl &&
             (identical(other.loading, loading) || other.loading == loading) &&
-            (identical(other.error, error) || other.error == error));
+            (identical(other.error, error) || other.error == error) &&
+            (identical(other.majorId, majorId) || other.majorId == majorId) &&
+            (identical(other.subjectId, subjectId) ||
+                other.subjectId == subjectId) &&
+            (identical(other.selectedMajor, selectedMajor) ||
+                other.selectedMajor == selectedMajor) &&
+            (identical(other.selectedSubject, selectedSubject) ||
+                other.selectedSubject == selectedSubject) &&
+            const DeepCollectionEquality()
+                .equals(other._majorsList, _majorsList) &&
+            const DeepCollectionEquality()
+                .equals(other._subjectsList, _subjectsList) &&
+            const DeepCollectionEquality()
+                .equals(other._articlesList, _articlesList) &&
+            const DeepCollectionEquality()
+                .equals(other._hoverStates, _hoverStates) &&
+            const DeepCollectionEquality()
+                .equals(other._deletingStates, _deletingStates));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, loading, error);
+  int get hashCode => Object.hash(
+      runtimeType,
+      loading,
+      error,
+      majorId,
+      subjectId,
+      selectedMajor,
+      selectedSubject,
+      const DeepCollectionEquality().hash(_majorsList),
+      const DeepCollectionEquality().hash(_subjectsList),
+      const DeepCollectionEquality().hash(_articlesList),
+      const DeepCollectionEquality().hash(_hoverStates),
+      const DeepCollectionEquality().hash(_deletingStates));
 
   /// Create a copy of ManageArticlesBuildable
   /// with the given fields replaced by the non-null parameter values.
@@ -152,12 +373,40 @@ class _$ManageArticlesBuildableImpl implements _ManageArticlesBuildable {
 
 abstract class _ManageArticlesBuildable implements ManageArticlesBuildable {
   const factory _ManageArticlesBuildable(
-      {final bool loading, final bool error}) = _$ManageArticlesBuildableImpl;
+      {final bool loading,
+      final bool error,
+      final int majorId,
+      final int subjectId,
+      final String selectedMajor,
+      final String selectedSubject,
+      final List<MajorsModel> majorsList,
+      final List<SubjectsModel> subjectsList,
+      final List<ArticleModel> articlesList,
+      final Map<String, bool> hoverStates,
+      final Map<String, bool> deletingStates}) = _$ManageArticlesBuildableImpl;
 
   @override
   bool get loading;
   @override
   bool get error;
+  @override
+  int get majorId;
+  @override
+  int get subjectId;
+  @override
+  String get selectedMajor;
+  @override
+  String get selectedSubject;
+  @override
+  List<MajorsModel> get majorsList;
+  @override
+  List<SubjectsModel> get subjectsList;
+  @override
+  List<ArticleModel> get articlesList;
+  @override
+  Map<String, bool> get hoverStates;
+  @override
+  Map<String, bool> get deletingStates;
 
   /// Create a copy of ManageArticlesBuildable
   /// with the given fields replaced by the non-null parameter values.

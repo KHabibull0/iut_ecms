@@ -17,7 +17,6 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$ManageEBooksBuildable {
   bool get loading => throw _privateConstructorUsedError;
-  bool get deleteLoading => throw _privateConstructorUsedError;
   bool get error => throw _privateConstructorUsedError;
   int get majorId => throw _privateConstructorUsedError;
   int get subjectId => throw _privateConstructorUsedError;
@@ -27,6 +26,7 @@ mixin _$ManageEBooksBuildable {
   List<SubjectsModel> get subjectsList => throw _privateConstructorUsedError;
   List<EBookModel> get booksList => throw _privateConstructorUsedError;
   Map<String, bool> get hoverStates => throw _privateConstructorUsedError;
+  Map<String, bool> get deletingStates => throw _privateConstructorUsedError;
 
   /// Create a copy of ManageEBooksBuildable
   /// with the given fields replaced by the non-null parameter values.
@@ -43,7 +43,6 @@ abstract class $ManageEBooksBuildableCopyWith<$Res> {
   @useResult
   $Res call(
       {bool loading,
-      bool deleteLoading,
       bool error,
       int majorId,
       int subjectId,
@@ -52,7 +51,8 @@ abstract class $ManageEBooksBuildableCopyWith<$Res> {
       List<MajorsModel> majorsList,
       List<SubjectsModel> subjectsList,
       List<EBookModel> booksList,
-      Map<String, bool> hoverStates});
+      Map<String, bool> hoverStates,
+      Map<String, bool> deletingStates});
 }
 
 /// @nodoc
@@ -72,7 +72,6 @@ class _$ManageEBooksBuildableCopyWithImpl<$Res,
   @override
   $Res call({
     Object? loading = null,
-    Object? deleteLoading = null,
     Object? error = null,
     Object? majorId = null,
     Object? subjectId = null,
@@ -82,15 +81,12 @@ class _$ManageEBooksBuildableCopyWithImpl<$Res,
     Object? subjectsList = null,
     Object? booksList = null,
     Object? hoverStates = null,
+    Object? deletingStates = null,
   }) {
     return _then(_value.copyWith(
       loading: null == loading
           ? _value.loading
           : loading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      deleteLoading: null == deleteLoading
-          ? _value.deleteLoading
-          : deleteLoading // ignore: cast_nullable_to_non_nullable
               as bool,
       error: null == error
           ? _value.error
@@ -128,6 +124,10 @@ class _$ManageEBooksBuildableCopyWithImpl<$Res,
           ? _value.hoverStates
           : hoverStates // ignore: cast_nullable_to_non_nullable
               as Map<String, bool>,
+      deletingStates: null == deletingStates
+          ? _value.deletingStates
+          : deletingStates // ignore: cast_nullable_to_non_nullable
+              as Map<String, bool>,
     ) as $Val);
   }
 }
@@ -143,7 +143,6 @@ abstract class _$$ManageEBooksBuildableImplCopyWith<$Res>
   @useResult
   $Res call(
       {bool loading,
-      bool deleteLoading,
       bool error,
       int majorId,
       int subjectId,
@@ -152,7 +151,8 @@ abstract class _$$ManageEBooksBuildableImplCopyWith<$Res>
       List<MajorsModel> majorsList,
       List<SubjectsModel> subjectsList,
       List<EBookModel> booksList,
-      Map<String, bool> hoverStates});
+      Map<String, bool> hoverStates,
+      Map<String, bool> deletingStates});
 }
 
 /// @nodoc
@@ -170,7 +170,6 @@ class __$$ManageEBooksBuildableImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? loading = null,
-    Object? deleteLoading = null,
     Object? error = null,
     Object? majorId = null,
     Object? subjectId = null,
@@ -180,15 +179,12 @@ class __$$ManageEBooksBuildableImplCopyWithImpl<$Res>
     Object? subjectsList = null,
     Object? booksList = null,
     Object? hoverStates = null,
+    Object? deletingStates = null,
   }) {
     return _then(_$ManageEBooksBuildableImpl(
       loading: null == loading
           ? _value.loading
           : loading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      deleteLoading: null == deleteLoading
-          ? _value.deleteLoading
-          : deleteLoading // ignore: cast_nullable_to_non_nullable
               as bool,
       error: null == error
           ? _value.error
@@ -226,6 +222,10 @@ class __$$ManageEBooksBuildableImplCopyWithImpl<$Res>
           ? _value._hoverStates
           : hoverStates // ignore: cast_nullable_to_non_nullable
               as Map<String, bool>,
+      deletingStates: null == deletingStates
+          ? _value._deletingStates
+          : deletingStates // ignore: cast_nullable_to_non_nullable
+              as Map<String, bool>,
     ));
   }
 }
@@ -235,7 +235,6 @@ class __$$ManageEBooksBuildableImplCopyWithImpl<$Res>
 class _$ManageEBooksBuildableImpl implements _ManageEBooksBuildable {
   const _$ManageEBooksBuildableImpl(
       {this.loading = false,
-      this.deleteLoading = false,
       this.error = false,
       this.majorId = 0,
       this.subjectId = 0,
@@ -244,18 +243,17 @@ class _$ManageEBooksBuildableImpl implements _ManageEBooksBuildable {
       final List<MajorsModel> majorsList = const [],
       final List<SubjectsModel> subjectsList = const [],
       final List<EBookModel> booksList = const [],
-      final Map<String, bool> hoverStates = const {}})
+      final Map<String, bool> hoverStates = const {},
+      final Map<String, bool> deletingStates = const {}})
       : _majorsList = majorsList,
         _subjectsList = subjectsList,
         _booksList = booksList,
-        _hoverStates = hoverStates;
+        _hoverStates = hoverStates,
+        _deletingStates = deletingStates;
 
   @override
   @JsonKey()
   final bool loading;
-  @override
-  @JsonKey()
-  final bool deleteLoading;
   @override
   @JsonKey()
   final bool error;
@@ -307,9 +305,18 @@ class _$ManageEBooksBuildableImpl implements _ManageEBooksBuildable {
     return EqualUnmodifiableMapView(_hoverStates);
   }
 
+  final Map<String, bool> _deletingStates;
+  @override
+  @JsonKey()
+  Map<String, bool> get deletingStates {
+    if (_deletingStates is EqualUnmodifiableMapView) return _deletingStates;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_deletingStates);
+  }
+
   @override
   String toString() {
-    return 'ManageEBooksBuildable(loading: $loading, deleteLoading: $deleteLoading, error: $error, majorId: $majorId, subjectId: $subjectId, selectedMajor: $selectedMajor, selectedSubject: $selectedSubject, majorsList: $majorsList, subjectsList: $subjectsList, booksList: $booksList, hoverStates: $hoverStates)';
+    return 'ManageEBooksBuildable(loading: $loading, error: $error, majorId: $majorId, subjectId: $subjectId, selectedMajor: $selectedMajor, selectedSubject: $selectedSubject, majorsList: $majorsList, subjectsList: $subjectsList, booksList: $booksList, hoverStates: $hoverStates, deletingStates: $deletingStates)';
   }
 
   @override
@@ -318,8 +325,6 @@ class _$ManageEBooksBuildableImpl implements _ManageEBooksBuildable {
         (other.runtimeType == runtimeType &&
             other is _$ManageEBooksBuildableImpl &&
             (identical(other.loading, loading) || other.loading == loading) &&
-            (identical(other.deleteLoading, deleteLoading) ||
-                other.deleteLoading == deleteLoading) &&
             (identical(other.error, error) || other.error == error) &&
             (identical(other.majorId, majorId) || other.majorId == majorId) &&
             (identical(other.subjectId, subjectId) ||
@@ -335,14 +340,15 @@ class _$ManageEBooksBuildableImpl implements _ManageEBooksBuildable {
             const DeepCollectionEquality()
                 .equals(other._booksList, _booksList) &&
             const DeepCollectionEquality()
-                .equals(other._hoverStates, _hoverStates));
+                .equals(other._hoverStates, _hoverStates) &&
+            const DeepCollectionEquality()
+                .equals(other._deletingStates, _deletingStates));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       loading,
-      deleteLoading,
       error,
       majorId,
       subjectId,
@@ -351,7 +357,8 @@ class _$ManageEBooksBuildableImpl implements _ManageEBooksBuildable {
       const DeepCollectionEquality().hash(_majorsList),
       const DeepCollectionEquality().hash(_subjectsList),
       const DeepCollectionEquality().hash(_booksList),
-      const DeepCollectionEquality().hash(_hoverStates));
+      const DeepCollectionEquality().hash(_hoverStates),
+      const DeepCollectionEquality().hash(_deletingStates));
 
   /// Create a copy of ManageEBooksBuildable
   /// with the given fields replaced by the non-null parameter values.
@@ -366,7 +373,6 @@ class _$ManageEBooksBuildableImpl implements _ManageEBooksBuildable {
 abstract class _ManageEBooksBuildable implements ManageEBooksBuildable {
   const factory _ManageEBooksBuildable(
       {final bool loading,
-      final bool deleteLoading,
       final bool error,
       final int majorId,
       final int subjectId,
@@ -375,12 +381,11 @@ abstract class _ManageEBooksBuildable implements ManageEBooksBuildable {
       final List<MajorsModel> majorsList,
       final List<SubjectsModel> subjectsList,
       final List<EBookModel> booksList,
-      final Map<String, bool> hoverStates}) = _$ManageEBooksBuildableImpl;
+      final Map<String, bool> hoverStates,
+      final Map<String, bool> deletingStates}) = _$ManageEBooksBuildableImpl;
 
   @override
   bool get loading;
-  @override
-  bool get deleteLoading;
   @override
   bool get error;
   @override
@@ -399,6 +404,8 @@ abstract class _ManageEBooksBuildable implements ManageEBooksBuildable {
   List<EBookModel> get booksList;
   @override
   Map<String, bool> get hoverStates;
+  @override
+  Map<String, bool> get deletingStates;
 
   /// Create a copy of ManageEBooksBuildable
   /// with the given fields replaced by the non-null parameter values.

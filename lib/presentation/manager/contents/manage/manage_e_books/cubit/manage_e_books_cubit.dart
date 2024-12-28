@@ -23,6 +23,13 @@ class ManageEBooksCubit extends BaseCubit<ManageEBooksBuildable, ManageEBooksLis
     });
   }
 
+  void updateDeleting(String key, bool isHovering) {
+    build((buildable) {
+      final newDeletingStates = {...buildable.deletingStates, key: isHovering};
+      return buildable.copyWith(deletingStates: newDeletingStates);
+    });
+  }
+
   void updateCurrentMajorId(int currentMajorId) {
     build((buildable) => buildable.copyWith(majorId: currentMajorId));
   }
@@ -40,10 +47,10 @@ class ManageEBooksCubit extends BaseCubit<ManageEBooksBuildable, ManageEBooksLis
   }
 
   Future<String> deleteEBook(int bookId) async {
-    build((buildable) => buildable.copyWith(deleteLoading: true, error: false));
+    updateDeleting('$bookId', true);
     final eBookModel = EBookModel(bookId: bookId);
     final result = await _managerContentRepository.deleteEBooks(eBookModel: eBookModel);
-    build((buildable) => buildable.copyWith(deleteLoading: false, error: false));
+    updateDeleting('$bookId', false);
     return result;
   }
 

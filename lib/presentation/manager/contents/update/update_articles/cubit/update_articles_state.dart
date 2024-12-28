@@ -6,6 +6,7 @@ part 'update_articles_state.freezed.dart';
 class UpdateArticlesBuildable with _$UpdateArticlesBuildable {
   const factory UpdateArticlesBuildable({
     @Default(false) bool loading,
+    @Default(false) bool uploadFileLoading,
     @Default(false) bool error,
   }) = _UpdateArticlesBuildable;
 }

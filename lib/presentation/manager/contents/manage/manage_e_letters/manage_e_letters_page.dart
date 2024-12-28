@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iut_ecms/core/base/base_page.dart';
 import 'package:iut_ecms/core/constants/app_colors.dart';
 import 'package:iut_ecms/core/extensions/screen_size_extention.dart';
+import 'package:iut_ecms/core/router/app_router.dart';
 import 'package:iut_ecms/core/widgets/common_button.dart';
 import 'package:iut_ecms/core/widgets/result_notifier.dart';
 import 'package:iut_ecms/presentation/manager/contents/manage/manage_e_letters/cubit/manage_e_letters_cubit.dart';
@@ -59,7 +60,7 @@ class ManageELettersPage
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Manage E-Books',
+              'Manage E-Letters',
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.w600,
@@ -156,7 +157,7 @@ class ManageELettersPage
                         final selectedSubject =
                             state.subjectsList.firstWhere((subject) => subject.name == newValue);
 
-                        await _manageELettersCubit.getEBooks(selectedSubject.subjectId ?? 0).then(
+                        await _manageELettersCubit.getELetters(selectedSubject.subjectId ?? 0).then(
                           (returnedResult) {
                             if (returnedResult.isNotEmpty) {
                               ResultNotifier(context: context, message: returnedResult).showError();
@@ -180,7 +181,7 @@ class ManageELettersPage
             ),
             const SizedBox(height: 32),
             Text(
-              'Available E-Books',
+              'Available E-Letters',
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.w600,
@@ -193,7 +194,7 @@ class ManageELettersPage
                 shrinkWrap: true,
                 physics: const ClampingScrollPhysics(),
                 scrollDirection: Axis.vertical,
-                itemCount: state.booksList.length + 1,
+                itemCount: state.eLettersList.length + 1,
                 padding: EdgeInsets.only(bottom: 24, top: 12),
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 1,
@@ -226,7 +227,7 @@ class ManageELettersPage
                           ),
                           const SizedBox(width: 8),
                           Text(
-                            index == 0 ? 'Subjects' : '${state.booksList[index - 1].title}',
+                            index == 0 ? 'Subjects' : '${state.eLettersList[index - 1].title}',
                             style: TextStyle(
                               fontSize: 14,
                               fontWeight: index == 0 ? FontWeight.w500 : FontWeight.w400,
@@ -252,7 +253,9 @@ class ManageELettersPage
                                   )
                                 : Align(
                                     alignment: Alignment.center,
-                                    child: state.deleteLoading
+                                    child: state.deletingStates[
+                                                '${state.eLettersList[index - 1].eLetterId}'] ==
+                                            true
                                         ? CircularProgressIndicator.adaptive()
                                         : MouseRegion(
                                             onEnter: (_) => _manageELettersCubit.updateHovering(
@@ -261,8 +264,9 @@ class ManageELettersPage
                                                 deleteKey, false),
                                             child: InkWell(
                                               onTap: () async {
-                                                final bookId = state.booksList[index - 1].bookId;
-                                                if (bookId == null) {
+                                                final eLetterId =
+                                                    state.eLettersList[index - 1].eLetterId;
+                                                if (eLetterId == null) {
                                                   ResultNotifier(
                                                     context: context,
                                                     message: 'Invalid book ID',
@@ -270,7 +274,7 @@ class ManageELettersPage
                                                   return;
                                                 }
                                                 await _manageELettersCubit
-                                                    .deleteEBook(bookId)
+                                                    .deleteELetters(eLetterId)
                                                     .then((result) async {
                                                   if (result.isNotEmpty) {
                                                     ResultNotifier(
@@ -279,10 +283,10 @@ class ManageELettersPage
                                                     ).showError();
                                                   } else {
                                                     await _manageELettersCubit
-                                                        .getEBooks(state.subjectId);
+                                                        .getELetters(state.subjectId);
                                                     ResultNotifier(
                                                       context: context,
-                                                      message: 'E-BOOK DELETED SUCCESSFULLY',
+                                                      message: 'E-LETTER DELETED SUCCESSFULLY',
                                                     ).showSuccess();
                                                   }
                                                 });
@@ -319,8 +323,14 @@ class ManageELettersPage
         height: 52,
         width: 150,
         child: CommonButton.elevated(
-          text: 'Add E-Book',
-          onPressed: () {},
+          text: 'Add E-Letter',
+          onPressed: () {
+            if (state.subjectId == 0) {
+              ResultNotifier(context: context, message: 'Please select a subject').showError();
+            } else {
+              context.router.push(UpdateELettersRoute(subjectId: state.subjectId));
+            }
+          },
         ),
       ),
     );

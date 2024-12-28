@@ -257,7 +257,9 @@ class ManageEBooksPage
                                   )
                                 : Align(
                                     alignment: Alignment.center,
-                                    child: state.deleteLoading
+                                    child: state.deletingStates[
+                                                '${state.booksList[index - 1].bookId}'] ==
+                                            true
                                         ? CircularProgressIndicator.adaptive()
                                         : MouseRegion(
                                             onEnter: (_) =>
@@ -326,7 +328,12 @@ class ManageEBooksPage
         child: CommonButton.elevated(
           text: 'Add E-Book',
           onPressed: () {
-            context.router.push(UpdateEBooksRoute(subjectId: state.subjectId));
+            if (state.subjectId == 0) {
+              ResultNotifier(context: context, message: 'Please select a subject').showError();
+              return;
+            } else {
+              context.router.push(UpdateEBooksRoute(subjectId: state.subjectId));
+            }
           },
         ),
       ),

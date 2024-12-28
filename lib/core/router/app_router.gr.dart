@@ -46,10 +46,13 @@ class MainNavigationRouteArgs {
 
 /// generated route for
 /// [ManageArticlesPage]
-class ManageArticlesRoute extends PageRouteInfo<void> {
-  const ManageArticlesRoute({List<PageRouteInfo>? children})
-      : super(
+class ManageArticlesRoute extends PageRouteInfo<ManageArticlesRouteArgs> {
+  ManageArticlesRoute({
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
           ManageArticlesRoute.name,
+          args: ManageArticlesRouteArgs(key: key),
           initialChildren: children,
         );
 
@@ -58,9 +61,22 @@ class ManageArticlesRoute extends PageRouteInfo<void> {
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return const ManageArticlesPage();
+      final args = data.argsAs<ManageArticlesRouteArgs>(
+          orElse: () => const ManageArticlesRouteArgs());
+      return ManageArticlesPage(key: args.key);
     },
   );
+}
+
+class ManageArticlesRouteArgs {
+  const ManageArticlesRouteArgs({this.key});
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'ManageArticlesRouteArgs{key: $key}';
+  }
 }
 
 /// generated route for
@@ -310,10 +326,17 @@ class SplashRouteArgs {
 
 /// generated route for
 /// [UpdateArticlesPage]
-class UpdateArticlesRoute extends PageRouteInfo<void> {
-  const UpdateArticlesRoute({List<PageRouteInfo>? children})
-      : super(
+class UpdateArticlesRoute extends PageRouteInfo<UpdateArticlesRouteArgs> {
+  UpdateArticlesRoute({
+    required int subjectId,
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
           UpdateArticlesRoute.name,
+          args: UpdateArticlesRouteArgs(
+            subjectId: subjectId,
+            key: key,
+          ),
           initialChildren: children,
         );
 
@@ -322,9 +345,29 @@ class UpdateArticlesRoute extends PageRouteInfo<void> {
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return const UpdateArticlesPage();
+      final args = data.argsAs<UpdateArticlesRouteArgs>();
+      return UpdateArticlesPage(
+        subjectId: args.subjectId,
+        key: args.key,
+      );
     },
   );
+}
+
+class UpdateArticlesRouteArgs {
+  const UpdateArticlesRouteArgs({
+    required this.subjectId,
+    this.key,
+  });
+
+  final int subjectId;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'UpdateArticlesRouteArgs{subjectId: $subjectId, key: $key}';
+  }
 }
 
 /// generated route for
@@ -375,10 +418,17 @@ class UpdateEBooksRouteArgs {
 
 /// generated route for
 /// [UpdateELettersPage]
-class UpdateELettersRoute extends PageRouteInfo<void> {
-  const UpdateELettersRoute({List<PageRouteInfo>? children})
-      : super(
+class UpdateELettersRoute extends PageRouteInfo<UpdateELettersRouteArgs> {
+  UpdateELettersRoute({
+    required int subjectId,
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
           UpdateELettersRoute.name,
+          args: UpdateELettersRouteArgs(
+            subjectId: subjectId,
+            key: key,
+          ),
           initialChildren: children,
         );
 
@@ -387,9 +437,29 @@ class UpdateELettersRoute extends PageRouteInfo<void> {
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return const UpdateELettersPage();
+      final args = data.argsAs<UpdateELettersRouteArgs>();
+      return UpdateELettersPage(
+        subjectId: args.subjectId,
+        key: args.key,
+      );
     },
   );
+}
+
+class UpdateELettersRouteArgs {
+  const UpdateELettersRouteArgs({
+    required this.subjectId,
+    this.key,
+  });
+
+  final int subjectId;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'UpdateELettersRouteArgs{subjectId: $subjectId, key: $key}';
+  }
 }
 
 /// generated route for

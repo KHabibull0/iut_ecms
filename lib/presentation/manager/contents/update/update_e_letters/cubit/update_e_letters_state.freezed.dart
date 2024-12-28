@@ -17,7 +17,9 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$UpdateELettersBuildable {
   bool get loading => throw _privateConstructorUsedError;
+  bool get uploadFileLoading => throw _privateConstructorUsedError;
   bool get error => throw _privateConstructorUsedError;
+  String get selectedELetterType => throw _privateConstructorUsedError;
 
   /// Create a copy of UpdateELettersBuildable
   /// with the given fields replaced by the non-null parameter values.
@@ -32,7 +34,11 @@ abstract class $UpdateELettersBuildableCopyWith<$Res> {
           $Res Function(UpdateELettersBuildable) then) =
       _$UpdateELettersBuildableCopyWithImpl<$Res, UpdateELettersBuildable>;
   @useResult
-  $Res call({bool loading, bool error});
+  $Res call(
+      {bool loading,
+      bool uploadFileLoading,
+      bool error,
+      String selectedELetterType});
 }
 
 /// @nodoc
@@ -52,17 +58,27 @@ class _$UpdateELettersBuildableCopyWithImpl<$Res,
   @override
   $Res call({
     Object? loading = null,
+    Object? uploadFileLoading = null,
     Object? error = null,
+    Object? selectedELetterType = null,
   }) {
     return _then(_value.copyWith(
       loading: null == loading
           ? _value.loading
           : loading // ignore: cast_nullable_to_non_nullable
               as bool,
+      uploadFileLoading: null == uploadFileLoading
+          ? _value.uploadFileLoading
+          : uploadFileLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
       error: null == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as bool,
+      selectedELetterType: null == selectedELetterType
+          ? _value.selectedELetterType
+          : selectedELetterType // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -76,7 +92,11 @@ abstract class _$$UpdateELettersBuildableImplCopyWith<$Res>
       __$$UpdateELettersBuildableImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool loading, bool error});
+  $Res call(
+      {bool loading,
+      bool uploadFileLoading,
+      bool error,
+      String selectedELetterType});
 }
 
 /// @nodoc
@@ -95,17 +115,27 @@ class __$$UpdateELettersBuildableImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? loading = null,
+    Object? uploadFileLoading = null,
     Object? error = null,
+    Object? selectedELetterType = null,
   }) {
     return _then(_$UpdateELettersBuildableImpl(
       loading: null == loading
           ? _value.loading
           : loading // ignore: cast_nullable_to_non_nullable
               as bool,
+      uploadFileLoading: null == uploadFileLoading
+          ? _value.uploadFileLoading
+          : uploadFileLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
       error: null == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as bool,
+      selectedELetterType: null == selectedELetterType
+          ? _value.selectedELetterType
+          : selectedELetterType // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -114,18 +144,27 @@ class __$$UpdateELettersBuildableImplCopyWithImpl<$Res>
 
 class _$UpdateELettersBuildableImpl implements _UpdateELettersBuildable {
   const _$UpdateELettersBuildableImpl(
-      {this.loading = false, this.error = false});
+      {this.loading = false,
+      this.uploadFileLoading = false,
+      this.error = false,
+      this.selectedELetterType = ''});
 
   @override
   @JsonKey()
   final bool loading;
   @override
   @JsonKey()
+  final bool uploadFileLoading;
+  @override
+  @JsonKey()
   final bool error;
+  @override
+  @JsonKey()
+  final String selectedELetterType;
 
   @override
   String toString() {
-    return 'UpdateELettersBuildable(loading: $loading, error: $error)';
+    return 'UpdateELettersBuildable(loading: $loading, uploadFileLoading: $uploadFileLoading, error: $error, selectedELetterType: $selectedELetterType)';
   }
 
   @override
@@ -134,11 +173,16 @@ class _$UpdateELettersBuildableImpl implements _UpdateELettersBuildable {
         (other.runtimeType == runtimeType &&
             other is _$UpdateELettersBuildableImpl &&
             (identical(other.loading, loading) || other.loading == loading) &&
-            (identical(other.error, error) || other.error == error));
+            (identical(other.uploadFileLoading, uploadFileLoading) ||
+                other.uploadFileLoading == uploadFileLoading) &&
+            (identical(other.error, error) || other.error == error) &&
+            (identical(other.selectedELetterType, selectedELetterType) ||
+                other.selectedELetterType == selectedELetterType));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, loading, error);
+  int get hashCode => Object.hash(
+      runtimeType, loading, uploadFileLoading, error, selectedELetterType);
 
   /// Create a copy of UpdateELettersBuildable
   /// with the given fields replaced by the non-null parameter values.
@@ -152,12 +196,19 @@ class _$UpdateELettersBuildableImpl implements _UpdateELettersBuildable {
 
 abstract class _UpdateELettersBuildable implements UpdateELettersBuildable {
   const factory _UpdateELettersBuildable(
-      {final bool loading, final bool error}) = _$UpdateELettersBuildableImpl;
+      {final bool loading,
+      final bool uploadFileLoading,
+      final bool error,
+      final String selectedELetterType}) = _$UpdateELettersBuildableImpl;
 
   @override
   bool get loading;
   @override
+  bool get uploadFileLoading;
+  @override
   bool get error;
+  @override
+  String get selectedELetterType;
 
   /// Create a copy of UpdateELettersBuildable
   /// with the given fields replaced by the non-null parameter values.

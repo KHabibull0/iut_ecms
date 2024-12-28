@@ -15,5 +15,11 @@ class SocketActions {
   static const String UPDATE_SUBJECT = "UPDATE_SUBJECT";
   static const String DELETE_SUBJECT = "DELETE_SUBJECT";
   static const String GET_BOOKS = "GET_BOOKS";
+  static const String GET_E_LETTERS = "GET_E_LETTERS";
   static const String DELETE_BOOK = "DELETE_BOOK";
+  static const String DELETE_E_LETTER = "DELETE_E_LETTER";
+  static const String CREATE_E_LETTER = "CREATE_E_LETTER";
+  static const String CREATE_ARTICLE = "CREATE_ARTICLE";
+  static const String GET_ARTICLES = "GET_ARTICLES";
+  static const String DELETE_ARTICLE = "DELETE_ARTICLE";
 }

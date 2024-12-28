@@ -12,6 +12,7 @@ class EBookModel with _$EBookModel {
     String? author,
     int? pageCount,
     String? book,
+    String? path,
     String? description,
   }) = _EBookModel;
 

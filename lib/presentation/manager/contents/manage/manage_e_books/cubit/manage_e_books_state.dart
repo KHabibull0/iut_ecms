@@ -9,7 +9,6 @@ part 'manage_e_books_state.freezed.dart';
 class ManageEBooksBuildable with _$ManageEBooksBuildable {
   const factory ManageEBooksBuildable({
     @Default(false) bool loading,
-    @Default(false) bool deleteLoading,
     @Default(false) bool error,
     @Default(0) int majorId,
     @Default(0) int subjectId,
@@ -19,6 +18,7 @@ class ManageEBooksBuildable with _$ManageEBooksBuildable {
     @Default([]) List<SubjectsModel> subjectsList,
     @Default([]) List<EBookModel> booksList,
     @Default({}) Map<String, bool> hoverStates,
+    @Default({}) Map<String, bool> deletingStates,
   }) = _ManageEBooksBuildable;
 }
 

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "565685689551",
+    "project_id": "uni-cms",
+    "storage_bucket": "uni-cms.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:565685689551:android:2e2a209cf3a9666aacebba",
+        "android_client_info": {
+          "package_name": "com.uni.cms.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCYYmyFcAh5wiGD4qNcX7F7RbdSbitC8Do"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

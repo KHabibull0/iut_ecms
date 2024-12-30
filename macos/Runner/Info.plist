@@ -28,5 +28,14 @@
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+    <key>NSAppleEventsUsageDescription</key>
+    <string>We need access to your files...</string>
+    <key>NSDocumentsFolderUsageDescription</key>
+    <string>Allow access to Documents folder</string>
+    <key>NSAppTransportSecurity</key>
+    <dict>
+      <key>NSAllowsArbitraryLoads</key>
+      <true/>
+    </dict>
 </dict>
 </plist>

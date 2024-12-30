@@ -13,8 +13,6 @@ class Storage {
   static Future<Storage> create() async {
     await Hive.initFlutter();
 
-    Hive.registerAdapter(TokensImplAdapter());
-
     final box = await Hive.openBox('storage');
     return Storage(box);
   }

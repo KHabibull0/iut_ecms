@@ -6,7 +6,7 @@ part of 'strings.dart';
 // LocalizationGenerator
 // **************************************************************************
 
-// Generated at: Sun, 22 Dec 2024 13:58:16 +05:00
+// Generated at: Tue, 24 Dec 2024 13:43:32 +05:00
 class Strings {
   static const supportedLocales = [
     Locale('en', 'US'),
@@ -226,4 +226,21 @@ class Strings {
 
   // typeArticle
   static String get typeArticle => 'typeArticle'.tr();
+
+  // accessibility
+  static String get accessibility => 'accessibility'.tr();
+
+  // timeCost
+  static String get timeCost => 'timeCost'.tr();
+
+  // improveExperience
+  static String get improveExperience => 'improveExperience'.tr();
+
+  // centralized
+  static String get centralized => 'centralized'.tr();
+
+  // desc
+  static String get descBook => 'desc_book'.tr();
+  static String get descLetter => 'desc_letter'.tr();
+  static String get descArticles => 'desc_articles'.tr();
 }

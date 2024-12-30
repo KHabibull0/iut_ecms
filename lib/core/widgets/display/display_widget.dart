@@ -1,9 +1,10 @@
 import 'package:elegant_notification/elegant_notification.dart';
-import 'package:elegant_notification/resources/arrays.dart';
 import 'package:flutter/material.dart';
+import 'package:iut_ecms/core/constants/app_colors.dart';
 import 'package:iut_ecms/core/di/injection.dart';
+import 'package:iut_ecms/core/widgets/display/display.dart';
 
-import 'display.dart';
+import '../../gen/assets.gen.dart';
 import 'display_type.dart';
 
 class DisplayWidget extends StatelessWidget {
@@ -29,53 +30,77 @@ class DisplayWidget extends StatelessWidget {
     );
   }
 
-  void _initDisplay(BuildContext context) {
+  _initDisplay(BuildContext context) {
     final display = getIt<Display>();
 
-    display.setOnDisplayListener((message) {
-      final IconData icon;
-      final Color color;
-      switch (message.type) {
-        case DisplayType.error:
-          icon = Icons.error;
-          color = Colors.red;
-          break;
-        case DisplayType.warning:
-          icon = Icons.warning;
-          color = Colors.orange;
-          break;
-        case DisplayType.info:
-          icon = Icons.info_outline;
-          color = Colors.blue;
-          break;
-        case DisplayType.success:
-          icon = Icons.check_circle_outline;
-          color = Colors.green;
-          break;
-      }
+    display.setOnDisplayListener(
+      (message) {
+        final Widget icon;
+        final Color color;
+        switch (message.type) {
+          case DisplayType.error:
+            icon = Assets.svgs.information.svg(
+              colorFilter: const ColorFilter.mode(
+                Colors.white,
+                BlendMode.srcIn,
+              ),
+              height: 28,
+              width: 28,
+            );
+            color = Colors.red;
+            break;
+          case DisplayType.warning:
+            icon = Assets.svgs.information.svg(
+              colorFilter: const ColorFilter.mode(
+                Colors.white,
+                BlendMode.srcIn,
+              ),
+              height: 28,
+              width: 28,
+            );
+            color = Colors.orange;
+            break;
+          case DisplayType.info:
+            icon = Assets.svgs.information.svg(
+              colorFilter: const ColorFilter.mode(
+                Colors.white,
+                BlendMode.srcIn,
+              ),
+              height: 28,
+              width: 28,
+            );
+            color = Colors.blue;
+            break;
+          case DisplayType.success:
+            icon = Assets.images.verify.image(
+              color: Colors.white,
+              height: 28,
+              width: 28,
+            );
+            color = Colors.green;
+            break;
+        }
 
-      ElegantNotification(
-        title: Text(
-          message.title ?? '',
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
-            color: color,
+        ElegantNotification(
+          animationDuration: const Duration(seconds: 1),
+          height: 72,
+          background: color,
+          description: Text(
+            message.description,
+            maxLines: 3,
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w500,
+              color: AppColors.white,
+              overflow: TextOverflow.ellipsis,
+            ),
           ),
-        ),
-        description: Text(
-          message.description,
-          style: TextStyle(
-            fontSize: 14,
-            fontWeight: FontWeight.w400,
-            color: color,
-          ),
-        ),
-        icon: Icon(icon, color: color),
-        position: Alignment.topCenter,
-        animation: AnimationType.fromTop,
-        progressIndicatorColor: color,
-      ).show(context);
-    });
+          icon: icon,
+          notificationMargin: 56,
+          showProgressIndicator: false,
+          displayCloseButton: false,
+        ).show(context);
+      },
+    );
   }
 }
